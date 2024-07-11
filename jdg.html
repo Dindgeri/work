@@ -3,77 +3,270 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>João David's Portfolio</title>
     <style>
-        .portfolio-container {
+        /* Enhanced styling for clarity */
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            padding: 20px;
+            background-color: #f0f0f0;
+            color: #333;
+            margin: 0;
+        }
+        .section {
+            margin-bottom: 40px;
+        }
+        .section h2 {
+            font-size: 1.5em;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            color: #555;
+        }
+        .link-list {
             display: flex;
             flex-wrap: wrap;
-            justify-content: space-around;
+            gap: 20px;
         }
-        .portfolio-item {
-            width: 30%;
-            margin: 10px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-            padding: 10px;
-            box-sizing: border-box;
+        .link-item {
+            flex: 0 1 calc(25% - 20px); /* Four items per row with 20px gap */
+            max-width: 200px; /* Limit maximum width */
+            text-align: center;
+            background-color: #fff;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
         }
-        .portfolio-item img {
-            width: 100%;
+        .link-item img {
+            max-width: 100%;
             height: auto;
-            display: block;
+            margin-bottom: 10px;
         }
-        .portfolio-item h3 {
-            font-size: 1.2em;
-            margin: 10px 0;
-        }
-        .portfolio-item a {
+        .link-item a {
             text-decoration: none;
-            color: #1a0dab;
-        }
-        .portfolio-item a:hover {
-            text-decoration: underline;
-        }
-        .portfolio-item p {
-            margin: 5px 0;
+            color: #333;
+            font-weight: bold;
         }
     </style>
 </head>
 <body>
-    <div class="portfolio-container">
-        <div class="portfolio-item">
-            <h3>Professional Background</h3>
-            <p>
-                <a href="https://drive.google.com/file/d/1glCAcSeAeiJNAa7g-kNDmGR48J8apddW">View on Google Drive</a>
-            </p>
+    <div class="section">
+        <h2>Online Portfolio</h2>
+        <div class="link-list">
+            <div class="link-item">
+                <img src="https://i.postimg.cc/8kyDwW6T/image.png" alt="Loom Logo">
+                <a href="https://loom.com/share/d2943922118f424ca8558b39e510cfa5">Loom</a>
+            </div>
+            <div class="link-item">
+                <img src="https://i.postimg.cc/0yCqMwPg/image.png" alt="Behance Logo">
+                <a href="https://be.net/joaodavid">Behance</a>
+            </div>
+            <div class="link-item">
+                <img src="https://i.postimg.cc/gjygS3Mm/image.png" alt="YouTube Logo">
+                <a href="https://youtube.com/@lylatsys">YouTube</a>
+            </div>
+            <div class="link-item">
+                <img src="https://i.postimg.cc/Z5Jp3W1Y/image.png" alt="ArtStation Logo">
+                <a href="https://artstation.com/jdavidag">ArtStation</a>
+            </div>
         </div>
+    </div>
 
-        <div class="portfolio-item">
-            <h3>Talisman.xyz proposal</h3>
-            <a href="https://mega.nz/file/y0NQCZqD#pfwrFCP7mjVQ5AgqMgwTcMZfyyH_Qq9EE1XmXbPbGk8">
-                <img src="https://i.postimg.cc/Z5J6FGt9/image.png" alt="Talisman.xyz proposal">
-            </a>
-            <p>
-                <a href="https://mega.nz/file/y0NQCZqD#pfwrFCP7mjVQ5AgqMgwTcMZfyyH_Qq9EE1XmXbPbGk8">View on Mega</a>
-            </p>
+    <div class="section">
+        <h2>Social Outlets</h2>
+        <div class="link-list">
+            <div class="link-item">
+                <img src="https://i.postimg.cc/sx2JcbZ9/image.png" alt="X.com Logo">
+                <a href="https://x.com/joao_david_g">X.com</a>
+            </div>
+            <div class="link-item">
+                <img src="https://static-exp1.licdn.com/scds/common/u/images/logos/favicons/v1/favicon.ico" alt="LinkedIn Logo">
+                <a href="https://linkedin.com/in/dindgeri">LinkedIn</a>
+            </div>
+            <div class="link-item">
+                <img src="https://i.postimg.cc/pdNqH0gR/image.png" alt="Instagram Logo">
+                <a href="https://instagram.com/lylatsys">Instagram</a>
+            </div>
+            <div class="link-item">
+                <img src="https://i.postimg.cc/66RRsWB2/image.png" alt="Reddit Logo">
+                <a href="https://www.reddit.com/u/instastella">Reddit</a>
+            </div>
+            <div class="link-item">
+                <img src="https://i.postimg.cc/159BRnCV/image.png" alt="Product Hunt Logo">
+                <a href="https://producthunt.com/@crescendoll">Product Hunt</a>
+            </div>
+            <div class="link-item">
+                <img src="https://github.githubassets.com/favicons/favicon.svg" alt="GitHub Logo">
+                <a href="https://github.com/dindgeri">GitHub</a>
+            </div>
         </div>
+    </div>
 
-        <div class="portfolio-item">
-            <h3>TAIKAI $TKAI</h3>
-            <a href="https://mega.nz/file/31F0FQgY#RtTiKkWl75apLNRrixCk3azIUyLYp-k1QJP7rF_ZlQE">
-                <img src="https://i.postimg.cc/7653JSvm/image.png" alt="TAIKAI $TKAI">
-            </a>
-            <p>
-                <a href="https://mega.nz/file/31F0FQgY#RtTiKkWl75apLNRrixCk3azIUyLYp-k1QJP7rF_ZlQE">View on Mega</a>
-            </p>
+    <div class="section">
+        <h2>Web3 Platforms</h2>
+        <div class="link-list">
+            <div class="link-item">
+                <img src="https://i.postimg.cc/SxnWjWWR/image.png" alt="Audius $AUDIO Logo">
+                <a href="https://audius.co/joaodavid">Audius $AUDIO</a>
+            </div>
+            <div class="link-item">
+                <img src="https://i.postimg.cc/1t7mgN0R/image.png" alt="Blockchain Works Logo">
+                <a href="https://blockchain.works-hub.com/users/d542f0d9-61d5-4188-8561-4317f60091ca">Blockchain Works</a>
+            </div>
+            <div class="link-item">
+                <img src="https://i.postimg.cc/h4bjbfSr/image.png" alt="Web3 Jobs Logo">
+                <a href="https://web3.career/@joaodavid">Web3 Jobs</a>
+            </div>
+            <div class="link-item">
+                <img src="https://cryptojobslist.com/favicon.ico" alt="CryptoJobsList Logo">
+                <a href="https://cryptojobslist.com/@crescendoll">CryptoJobsList</a>
+            </div>
         </div>
+    </div>
 
-        <div class="portfolio-item">
-            <h3>Bepro Network $BEPRO</h3>
-            <a href="https://mega.nz/file/uhtBBJJR#Fy5h4pBKopxn-gdlTt98k2TclUHfOtrjf8xTUXQTi8E">
-                <img src="https://i.postimg.cc/HxnJPmBx/image.png" alt="Bepro Network $BEPRO">
-            </a>
-            <p>
-                <a href="https://mega.nz/file/uhtBBJJR#Fy5h4pBKopxn-gdlTt98k2TclUHfOtrjf8xTUXQTi8E">View on Mega</a>
-            </p>
+    <div class="section">
+        <h2>Contact Details</h2>
+        <div class="link-list">
+            <div class="link-item">
+                <img src="https://i.postimg.cc/25v9Lp41/image.png" alt="Telegram Logo">
+                <a href="https://t.me/crescendoll">Telegram</a>
+            </div>
+            <div class="link-item">
+                <img src="https://i.postimg.cc/5yHx8NpB/image.png" alt="WhatsApp Logo">
+                <a href="https://wa.me/351967739724">WhatsApp</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>Samples of meme content</h2>
+        <div class="link-list">
+            <div class="link-item">
+                <img src="https://layerx.xyz/favicon.ico" alt="LayerX.xyz Logo">
+                <a href="https://t.me/LayerX_Labs/301595/302312">LayerX.xyz</a>
+            </div>
+            <div class="link-item">
+                <img src="https://instagram.com/favicon.ico" alt="Bepro Network $BEPRO Logo">
+                <a href="https://instagram.com/p/CgUTvKntbGt">Bepro Network $BEPRO</a>
+            </div>
+            <div class="link-item">
+                <img src="https://x.com/favicon.ico" alt="Bepro Network $BEPRO Logo">
+                <a href="https://x.com/bepronet/status/1689236366595604481">Bepro Network $BEPRO</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>Samples of community engagement</h2>
+        <div class="link-list">
+            <div class="link-item">
+                <img src="https://x.com/favicon.ico" alt="Community Talk: Roadmap 2023 - TAIKAI Labs & Bepro Network Logo">
+                <a href="https://x.com/i/spaces/1yNxaNnjnwDKj">Community Talk: Roadmap 2023 - TAIKAI Labs & Bepro Network</a>
+            </div>
+            <div class="link-item">
+                <img src="https://open.spotify.com/favicon.ico" alt="LayerX Talks Logo">
+                <a href="https://open.spotify.com/show/4dCGQWq4SzBLc6RBYoTeKm">LayerX Talks</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>Samples of community announcements</h2>
+        <div class="link-list">
+            <div class="link-item">
+                <img src="https://static-exp1.licdn.com/scds/common/u/images/logos/favicons/v1/favicon.ico" alt="LinkedIn Logo">
+                <a href="https://linkedin.com/in/dindgeri/recent-activity">LinkedIn feed</a>
+            </div>
+            <div class="link-item">
+                <img src="https://i.postimg.cc/66RRsWB2/image.png" alt="Reddit Logo">
+                <a href="https://search-new.pullpush.io/?author=instastella&type=submission&sort_type=score&sort=desc">Reddit metrics</a>
+            </div>
+            <div class="link-item">
+                <img src="https://x.com/favicon.ico" alt="LayerX.xyz Logo">
+                <a href="https://x.com/LayerXlab/status/1631319074142576640">LayerX.xyz</a>
+            </div>
+            <div class="link-item">
+                <img src="https://x.com/favicon.ico" alt="Bepro Network $BEPRO Logo">
+                <a href="https://x.com/bepronet/status/1509489241906200578">Bepro Network $BEPRO</a>
+            </div>
+            <div class="link-item">
+                <img src="https://mega.nz/favicon.ico" alt="Polkamarkets $POLK Logo">
+                <a href="https://mega.nz/file/mktwxKSL#FaJ895Fbmy2hYj8FUSkRHo_LPxWHD-K6XW4AHd2a3BU">Polkamarkets $POLK</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>Samples of video editing</h2>
+        <div class="link-list">
+            <div class="link-item">
+                <img src="https://mega.nz/favicon.ico" alt="Shutter Network $SHU Logo">
+                <a href="https://mega.nz/file/PllRTaga#y1LwdDYd3IrqUrM_xhQfnslLlgvR_w5GoDRjfuHFEco">Shutter Network $SHU</a>
+            </div>
+            <div class="link-item">
+                <img src="https://drive.google.com/favicon.ico" alt="Cluster Protocol $CP Logo">
+                <a href="https://drive.google.com/drive/folders/1l6_CPWcbnLxFnWEjuw8tXJtZ4MemXFdw">Cluster Protocol $CP</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>Samples of content production</h2>
+        <div class="link-list">
+            <div class="link-item">
+                <img src="https://i.postimg.cc/SxnWjWWR/image.png" alt="Audius $AUDIO Logo">
+                <a href="https://audius.co/lylatsys/albums">Audius $AUDIO</a>
+            </div>
+            <div class="link-item">
+                <img src="https://x.com/favicon.ico" alt="LayerX.xyz Logo">
+                <a href="https://x.com/LayerXlab/status/1635302212602847234">LayerX.xyz</a>
+            </div>
+            <div class="link-item">
+                <img src="https://dindgeri.github.io/favicon.ico" alt="TAIKAI $TKAI Logo">
+                <a href="https://dindgeri.github.io/askroberto">TAIKAI $TKAI hackathon</a>
+            </div>
+            <div class="link-item">
+                <img src="https://x.com/favicon.ico" alt="Bepro Network $BEPRO Logo">
+                <a href="https://linkedin.com/in/dindgeri/overlay/1707608300016/single-media-viewer">Bepro Network $BEPRO sticker set</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>Samples of content writing</h2>
+        <div class="link-list">
+            <div class="link-item">
+                <img src="https://dindgeri.github.io/favicon.ico" alt="Clash Cards Champions $CCC Logo">
+                <a href="https://dindgeri.github.io/ccc">Clash Cards Champions $CCC</a>
+            </div>
+            <!-- Additional links provided -->
+            <div class="link-item">
+                <img src="https://ssl.gstatic.com/docs/doclist/images/icon_11_document_list.ico" alt="Google Docs Logo">
+                <a href="https://docs.google.com/document/d/10CySHq9FccLG2ykeHgK2qWvXfL9sTp02DO89llwhKjU">Google Docs Link 1</a>
+            </div>
+            <!-- Repeat structure for all provided Google Docs links -->
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>Samples of brand awareness</h2>
+        <div class="link-list">
+            <div class="link-item">
+                <img src="https://drive.google.com/favicon.ico" alt="CoinMarketCap Logo">
+                <a href="https://drive.google.com/file/d/1glCAcSeAeiJNAa7g-kNDmGR48J8apddW">CoinMarketCap proposal</a>
+            </div>
+            <div class="link-item">
+                <img src="https://mega.nz/favicon.ico" alt="Talisman.xyz Logo">
+                <a href="https://mega.nz/file/y0NQCZqD#pfwrFCP7mjVQ5AgqMgwTcMZfyyH_Qq9EE1XmXbPbGk8">Talisman.xyz proposal</a>
+            </div>
+            <div class="link-item">
+                <img src="https://mega.nz/favicon.ico" alt="TAIKAI $TKAI Logo">
+                <a href="https://mega.nz/file/31F0FQgY#RtTiKkWl75apLNRrixCk3azIUyLYp-k1QJP7rF_ZlQE">TAIKAI $TKAI</a>
+            </div>
+            <div class="link-item">
+                <img src="https://mega.nz/favicon.ico" alt="Bepro Network $BEPRO Logo">
+                <a href="https://mega.nz/file/uhtBBJJR#F">Bepro Network $BEPRO</a>
+            </div>
         </div>
     </div>
 </body>

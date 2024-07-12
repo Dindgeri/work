@@ -183,44 +183,28 @@
 
     <!-- JavaScript for scroll-based scaling effect -->
     <script>
-// Variable to store last scroll position
-let lastScrollTop = 0;
+        // Function to handle scroll
+        function handleScroll() {
+            // Calculate the current scroll position relative to the full page height
+            let scrollPercentage = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
 
-// Select all link items
-const linkItems = document.querySelectorAll('.link-item');
+            // Calculate the scale factor based on the scroll percentage
+            let scaleFactor = 1 - (scrollPercentage / 100) * 0.33;
+            scaleFactor = Math.max(0.67, scaleFactor); // Ensure scaleFactor doesn't go below 0.67
 
-// Function to handle scroll
-function handleScroll() {
-    // Calculate scroll progress as a percentage of the total page height
-    let scrollPercentage = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
-
-    // Determine scroll direction
-    let st = window.pageYOffset || document.documentElement.scrollTop;
-    let direction = st > lastScrollTop ? 'down' : 'up';
-
-    // Update scaling factor based on scroll percentage and direction
-    linkItems.forEach(item => {
-        // Adjust scaleFactor based on scroll direction
-        let scaleFactor;
-        if (direction === 'up') {
-            scaleFactor = 1 + (scrollPercentage / 1000); // Increase scale when scrolling up
-        } else {
-            scaleFactor = 1 - (scrollPercentage / 1000); // Decrease scale when scrolling down
+            // Apply the scale factor to all link items with a smooth transition
+            document.querySelectorAll('.link-item').forEach(item => {
+                item.style.transition = 'transform 0.3s';
+                item.style.transform = `scale(${scaleFactor})`;
+            });
         }
-        
-        item.style.setProperty('--scale-factor', scaleFactor);
-    });
 
-    // Update last scroll position
-    lastScrollTop = st <= 0 ? 0 : st;
-}
+        // Event listener for scroll
+        window.addEventListener('scroll', handleScroll);
 
-// Event listener for scroll
-window.addEventListener('scroll', handleScroll);
         // Initially load all images
         window.addEventListener('load', function() {
-            linkItems.forEach(item => {
-                const img = item.querySelector('img');
+            document.querySelectorAll('.link-item img').forEach(img => {
                 img.onload = function() {
                     img.classList.add('loaded');
                 };

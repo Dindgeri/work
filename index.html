@@ -23,26 +23,45 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: #121212;
+            background-color: #333;
             display: flex;
             justify-content: center;
             align-items: center;
             z-index: 1000;
+            transition: opacity 0.6s ease-out; /* Added transition */
         }
-        .preloader.hidden {
-            display: none;
+        .hidden {
+            opacity: 0;
+            pointer-events: none;
         }
-        .loader {
-            width: 50px;
-            height: 50px;
-            border: 5px solid #e0e0e0;
-            border-top: 5px solid #1e1e1e;
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
+        /* Styles for the SVG sphere */
+        #sphere-container {
+            width: 100px;
+            height: 100px;
+            perspective: 1000px; /* Perspective for 3D effect */
+            position: relative;
         }
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
+        /* Keyframes for animating the lines */
+        @keyframes drawLines {
+            0%, 100% {
+                stroke-dashoffset: 150;
+            }
+            50% {
+                stroke-dashoffset: 0;
+            }
+        }
+        /* Styles for the lines */
+        .sphere-line {
+            stroke: rgba(255, 255, 255, 0.8);
+            stroke-width: 1.5;
+            stroke-dasharray: 150;
+            stroke-dashoffset: 150;
+            animation: drawLines 4s ease-in-out infinite;
+            transform-origin: center; /* Ensure transforms are centered */
+            transform-style: preserve-3d; /* Enable 3D transformations */
+            fill: rgba(255, 255, 255, 0.3); /* Fill color */
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.6); /* Shadow effect */
+            transition: fill 0.3s ease, box-shadow 0.3s ease; /* Transition for fill and shadow */
         }
         .section {
             margin-bottom: 40px;
@@ -112,15 +131,15 @@
 </head>
 <body>
     <div class="preloader">
-        <div class="loader"></div>
-    </div>
-    <div class="section">
-        <h2>Online Portfolio</h2>
-        <div class="link-list">
-            <iframe width="80%" height="540" src="https://www.loom.com/embed/d2943922118f424ca8558b39e510cfa5" frameborder="0" allowfullscreen></iframe>
-        </div>
-        <div class="link-list">
-            <a href="https://loom.com/share/d2943922118f424ca8558b39e510cfa5">Loom</a>
+        <div id="sphere-container">
+            <svg id="sphere" viewBox="0 0 100 100">
+                <circle class="sphere-line" cx="50" cy="50" r="40" fill="none" />
+                <circle class="sphere-line" cx="50" cy="50" r="30" fill="none" />
+                <circle class="sphere-line" cx="50" cy="50" r="20" fill="none" />
+
+                <line class="sphere-line" x1="10" y1="50" x2="90" y2="50" />
+                <line class="sphere-line" x1="50" y1="10" x2="50" y2="90" />
+            </svg>
         </div>
     </div>
 
@@ -265,7 +284,7 @@
     <img class="background-image" src="https://wallpapers.com/images/hd/black-grey-smooth-texture-cover-a6hcb7n3bfcj0fnv.jpg" alt="Background Image">
 
     <script>
-        window.addEventListener('load', function() {
+        document.addEventListener('DOMContentLoaded', function() {
             document.querySelector('.preloader').classList.add('hidden');
         });
 

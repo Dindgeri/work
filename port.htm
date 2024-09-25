@@ -4,7 +4,57 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>João's Portfolio</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles.css"> <!-- Link to your existing CSS -->
+    <style>
+        /* Additional inline styles if needed */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+        header {
+            background: #333;
+            color: #fff;
+            padding: 10px 20px;
+            text-align: center;
+        }
+        nav ul {
+            list-style: none;
+            padding: 0;
+        }
+        nav ul li {
+            display: inline;
+            margin: 0 15px;
+        }
+        .toggle {
+            display: none;
+            margin: 20px auto;
+            padding: 20px;
+            background: #fff;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .project img, .video-project img {
+            width: 100%;
+            max-width: 300px;
+            border-radius: 5px;
+            transition: transform 0.2s;
+        }
+        .project img:hover, .video-project img:hover {
+            transform: scale(1.05);
+        }
+        footer {
+            text-align: center;
+            padding: 20px;
+            background: #333;
+            color: #fff;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
 </head>
 <body>
     <header>
@@ -19,18 +69,18 @@
     </header>
 
     <main>
-        <section id="cv-section" class="toggle" style="display: none;">
+        <section id="cv-section" class="toggle">
             <h2>Loom Application & CV Details</h2>
-            <iframe src="https://www.loom.com/embed/d2943922118f424ca8558b39e510cfa5" frameborder="0" allowfullscreen></iframe>
-            <p>Check out my CV on <a href="https://linkedin.com/in/dindgeri">LinkedIn</a></p>
+            <iframe width="560" height="315" src="https://www.loom.com/embed/d2943922118f424ca8558b39e510cfa5" frameborder="0" allowfullscreen></iframe>
+            <p>Check out my CV on <a href="https://linkedin.com/in/dindgeri" target="_blank">LinkedIn</a></p>
             <ul>
-                <li><a href="https://cryptojobslist.com/@crescendoll">CryptoJobsList Profile</a></li>
-                <li><a href="https://web3.career/@joaodavid">Web3 Career Profile</a></li>
-                <li><a href="https://blockchain.works-hub.com/users/d542f0d9-61d5-4188-8561-4317f60091ca">Blockchain Works Profile</a></li>
+                <li><a href="https://cryptojobslist.com/@crescendoll" target="_blank">CryptoJobsList Profile</a></li>
+                <li><a href="https://web3.career/@joaodavid" target="_blank">Web3 Career Profile</a></li>
+                <li><a href="https://blockchain.works-hub.com/users/d542f0d9-61d5-4188-8561-4317f60091ca" target="_blank">Blockchain Works Profile</a></li>
             </ul>
         </section>
 
-        <section id="behance-section" class="toggle" style="display: none;">
+        <section id="behance-section" class="toggle">
             <h2>Behance Portfolio</h2>
             <div class="project">
                 <a href="https://be.net/joaodavid" target="_blank">
@@ -44,23 +94,23 @@
             </div>
         </section>
 
-        <section id="socials-section" class="toggle" style="display: none;">
+        <section id="socials-section" class="toggle">
             <h2>Social Media & Cover Letter</h2>
             <p>Follow me on:</p>
             <ul>
-                <li><a href="https://be.net/joaodavid">Behance</a></li>
-                <li><a href="https://cargocollective.com/joaodavid">Cargo Collective</a></li>
-                <li><a href="https://wa.me/351967739724">WhatsApp</a></li>
-                <li><a href="https://x.com/joao_david_g">X.com</a></li>
-                <li><a href="https://github.com/dindgeri">GitHub</a></li>
-                <li><a href="https://t.me/crescendoll">Telegram</a></li>
+                <li><a href="https://be.net/joaodavid" target="_blank">Behance</a></li>
+                <li><a href="https://cargocollective.com/joaodavid" target="_blank">Cargo Collective</a></li>
+                <li><a href="https://wa.me/351967739724" target="_blank">WhatsApp</a></li>
+                <li><a href="https://x.com/joao_david_g" target="_blank">X.com</a></li>
+                <li><a href="https://github.com/dindgeri" target="_blank">GitHub</a></li>
+                <li><a href="https://t.me/crescendoll" target="_blank">Telegram</a></li>
             </ul>
             <h3>Cover Letter</h3>
             <p>Dear Potential Client/Employer,</p>
             <p>[Your personalized cover letter text goes here.]</p>
         </section>
 
-        <section id="video-section" class="toggle" style="display: none;">
+        <section id="video-section" class="toggle">
             <h2>Video Production</h2>
             <div class="video-project">
                 <a href="https://player.vimeo.com/video/52943079" target="_blank">
@@ -82,16 +132,16 @@
         <section id="recent-experience">
             <h2>Recent Experience in the Field</h2>
             <ul>
-                <li><a href="https://x.com/LayerXlab/status/1631319074142576640">LayerX Twitter Post</a></li>
-                <li><a href="https://mega.nz/file/31F0FQgY#RtTiKkWl75apLNRrixCk3azIUyLYp-k1QJP7rF_ZlQE">TAIKAI Network</a></li>
+                <li><a href="https://x.com/LayerXlab/status/1631319074142576640" target="_blank">LayerX Twitter Post</a></li>
+                <li><a href="https://mega.nz/file/31F0FQgY#RtTiKkWl75apLNRrixCk3azIUyLYp-k1QJP7rF_ZlQE" target="_blank">TAIKAI Network</a></li>
             </ul>
         </section>
 
         <section id="recruitment-assessments">
             <h2>Recent Recruitment Assessments</h2>
             <ul>
-                <li><a href="https://drive.google.com/file/d/14NK2OaAk5XCn8gsOENu4esTQeeUyLtgO">Tatum.io</a></li>
-                <li><a href="https://mega.nz/file/PllRTaga#y1LwdDYd3IrqUrM_xhQfnslLlgvR_w5GoDRjfuHFEco">Shutter Network</a></li>
+                <li><a href="https://drive.google.com/file/d/14NK2OaAk5XCn8gsOENu4esTQeeUyLtgO" target="_blank">Tatum.io</a></li>
+                <li><a href="https://mega.nz/file/PllRTaga#y1LwdDYd3IrqUrM_xhQfnslLlgvR_w5GoDRjfuHFEco" target="_blank">Shutter Network</a></li>
             </ul>
         </section>
     </main>

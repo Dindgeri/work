@@ -226,16 +226,19 @@
         const section1 = params.get('section1');
         const section2 = params.get('section2');
         const section3 = params.get('section3');
+        // Toggle visibility of "Details" section (section1)
         if (section1 === 'show') {
-          document.getElementById('contact').classList.remove('hidden-section');
+          document.getElementById('details').classList.remove('hidden-section');
         } else if (section1 === 'hide') {
-          document.getElementById('contact').classList.add('hidden-section');
+          document.getElementById('details').classList.add('hidden-section');
         }
+        // Toggle visibility of "Portfolio" section (section2)
         if (section2 === 'show') {
           document.getElementById('portfolio').classList.remove('hidden-section');
         } else if (section2 === 'hide') {
           document.getElementById('portfolio').classList.add('hidden-section');
         }
+        // Toggle visibility of "Contact" section (section3)
         if (section3 === 'show') {
           document.getElementById('contact').classList.remove('hidden-section');
         } else if (section3 === 'hide') {

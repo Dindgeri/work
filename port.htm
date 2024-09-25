@@ -226,8 +226,10 @@
         const section1 = params.get('section1');
         const section2 = params.get('section2');
         const section3 = params.get('section3');
-        if (section1 === 'hide') {
-          document.getElementById('details').classList.add('hidden-section');
+        if (section1 === 'show') {
+          document.getElementById('contact').classList.remove('hidden-section');
+        } else if (section1 === 'hide') {
+          document.getElementById('contact').classList.add('hidden-section');
         }
         if (section2 === 'show') {
           document.getElementById('portfolio').classList.remove('hidden-section');

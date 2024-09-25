@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>João's Portfolio</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>João's Portfolio</h1>
+        <nav>
+            <ul>
+                <li><a href="?details=show">Loom Application & CV</a></li>
+                <li><a href="?links=show">Behance Portfolio & Socials</a></li>
+                <li><a href="?videos=show">Video Production</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="cv-section" class="toggle" style="display: none;">
+            <h2>Loom Application & CV Details</h2>
+            <iframe src="https://www.loom.com/embed/d2943922118f424ca8558b39e510cfa5" frameborder="0" allowfullscreen></iframe>
+            <p>Check out my CV on <a href="https://linkedin.com/in/dindgeri">LinkedIn</a></p>
+            <ul>
+                <li><a href="https://cryptojobslist.com/@crescendoll">CryptoJobsList Profile</a></li>
+                <li><a href="https://web3.career/@joaodavid">Web3 Career Profile</a></li>
+                <li><a href="https://blockchain.works-hub.com/users/d542f0d9-61d5-4188-8561-4317f60091ca">Blockchain Works Profile</a></li>
+            </ul>
+        </section>
+
+        <section id="behance-section" class="toggle" style="display: none;">
+            <h2>Behance Portfolio</h2>
+            <div class="project">
+                <a href="https://be.net/joaodavid" target="_blank">
+                    <img src="path/to/project1.gif" alt="Project 1">
+                </a>
+            </div>
+            <div class="project">
+                <a href="https://be.net/duji" target="_blank">
+                    <img src="path/to/project2.gif" alt="Project 2">
+                </a>
+            </div>
+        </section>
+
+        <section id="socials-section" class="toggle" style="display: none;">
+            <h2>Social Media & Cover Letter</h2>
+            <p>Follow me on:</p>
+            <ul>
+                <li><a href="https://be.net/joaodavid">Behance</a></li>
+                <li><a href="https://cargocollective.com/joaodavid">Cargo Collective</a></li>
+                <li><a href="https://wa.me/351967739724">WhatsApp</a></li>
+                <li><a href="https://x.com/joao_david_g">X.com</a></li>
+                <li><a href="https://github.com/dindgeri">GitHub</a></li>
+                <li><a href="https://t.me/crescendoll">Telegram</a></li>
+            </ul>
+            <h3>Cover Letter</h3>
+            <p>Dear Potential Client/Employer,</p>
+            <p>[Your personalized cover letter text goes here.]</p>
+        </section>
+
+        <section id="video-section" class="toggle" style="display: none;">
+            <h2>Video Production</h2>
+            <div class="video-project">
+                <a href="https://player.vimeo.com/video/52943079" target="_blank">
+                    <img src="path/to/video1.gif" alt="Projecto de Mestrado">
+                </a>
+            </div>
+            <div class="video-project">
+                <a href="https://youtu.be/720mp14vwtA" target="_blank">
+                    <img src="path/to/video2.gif" alt="Vídeo de Música 1">
+                </a>
+            </div>
+            <div class="video-project">
+                <a href="https://youtu.be/b50bbYtR-Zg" target="_blank">
+                    <img src="path/to/video3.gif" alt="Vídeo de Música 2">
+                </a>
+            </div>
+        </section>
+
+        <section id="recent-experience">
+            <h2>Recent Experience in the Field</h2>
+            <ul>
+                <li><a href="https://x.com/LayerXlab/status/1631319074142576640">LayerX Twitter Post</a></li>
+                <li><a href="https://mega.nz/file/31F0FQgY#RtTiKkWl75apLNRrixCk3azIUyLYp-k1QJP7rF_ZlQE">TAIKAI Network</a></li>
+            </ul>
+        </section>
+
+        <section id="recruitment-assessments">
+            <h2>Recent Recruitment Assessments</h2>
+            <ul>
+                <li><a href="https://drive.google.com/file/d/14NK2OaAk5XCn8gsOENu4esTQeeUyLtgO">Tatum.io</a></li>
+                <li><a href="https://mega.nz/file/PllRTaga#y1LwdDYd3IrqUrM_xhQfnslLlgvR_w5GoDRjfuHFEco">Shutter Network</a></li>
+            </ul>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 João's Portfolio. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const showDetails = urlParams.get('details') === 'show';
+        const showLinks = urlParams.get('links') === 'show';
+        const showVideos = urlParams.get('videos') === 'show';
+
+        if (showDetails) {
+            document.getElementById('cv-section').style.display = 'block';
+        }
+        if (showLinks) {
+            document.getElementById('behance-section').style.display = 'block';
+            document.getElementById('socials-section').style.display = 'block';
+        }
+        if (showVideos) {
+            document.getElementById('video-section').style.display = 'block';
+        }
+    </script>
+</body>
+</html>

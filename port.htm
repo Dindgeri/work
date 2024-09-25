@@ -1,223 +1,358 @@
-<!DOCTYPE html>
 <html lang="en">
-   <head>
-      <meta charset="UTF-8">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <title>João David's Portfolio</title>
-      <style>
-         body {
-            font-family: 'Roboto Condensed', Arial, sans-serif;
-            line-height: 1.6;
-            padding: 20px;
-            background-color: #121212;
-            color: #e0e0e0;
-            margin: 0;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            transition: background-color 0.3s;
-         }
-         .preloader {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: #333;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 1000;
-            transition: opacity 0.6s ease-out; 
-         }
-         .hidden {
-            opacity: 0;
-            pointer-events: none;
-         }
-         #sphere-container {
-            width: 100px;
-            height: 100px;
-            perspective: 1000px; 
-            position: relative;
-         }
-         @keyframes drawLines {
-            0%, 100% {
-               stroke-dashoffset: 150;
-            }
-            50% {
-               stroke-dashoffset: 0;
-            }
-         }
-         .sphere-line {
-            stroke: rgba(255, 255, 255, 0.8);
-            stroke-width: 1.5;
-            stroke-dasharray: 150;
-            stroke-dashoffset: 150;
-            animation: drawLines 4s ease-in-out infinite;
-            transform-origin: center; 
-            transform-style: preserve-3d; 
-            fill: rgba(255, 255, 255, 0.3); 
-            box-shadow: 0 0 10px rgba(255, 255, 255, 0.6); 
-            transition: fill 0.3s ease, box-shadow 0.3s ease; 
-         }
-         .section {
-            margin-bottom: 40px;
-            width: 100%;
-            max-width: 1200px;
-         }
-         .section h2 {
-            font-size: 1.5em;
-            margin-bottom: 15px;
-            text-transform: uppercase;
-            color: #bbb;
-            transition: color 0.3s;
-            text-align: center;
-         }
-         .link-list {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 40px;
-            justify-content: center;
-         }
-         .link-item {
-            flex: 0 1 calc(25% - 40px);
-            max-width: 200px;
-            text-align: center;
-            background-color: #1e1e1e;
-            padding: 20px;
-            border-radius: 12px;
-            box-shadow: 0 0 10px rgba(192, 192, 192, 0.5);
-            transition: transform 0.3s, box-shadow 0.3s;
-            position: relative;
-            overflow: hidden;
-         }
-         .link-item:hover {
-            transform: scale(1.1);
-            box-shadow: 0 0 15px rgba(192, 192, 192, 0.7);
-         }
-         .link-item-content {
-            opacity: 1;
-         }
-         .link-item img {
-            max-width: 100%;
-            height: auto;
-            margin-bottom: 10px;
-            opacity: 1;
-            transition: transform 0.3s;
-         }
-         .link-item a {
-            text-decoration: none;
-            color: #e0e0e0;
-            font-weight: bold;
-         }
-         iframe {
-            display: block;
-            margin: 0 auto;
-         }
-         .background-image {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            opacity: 0;
-            transition: opacity 0.6s ease-out;
-         }
-      </style>
-   </head>
-   <body>
-      <div class="preloader">
-         <div id="sphere-container">
-            <svg id="sphere" viewBox="0 0 100 100">
-               <circle class="sphere-line" cx="50" cy="50" r="40" fill="none" />
-               <circle class="sphere-line" cx="50" cy="50" r="30" fill="none" />
-               <circle class="sphere-line" cx="50" cy="50" r="20" fill="none" />
-               <line class="sphere-line" x1="10" y1="50" x2="90" y2="50" />
-               <line class="sphere-line" x1="50" y1="10" x2="50" y2="90" />
-            </svg>
-         </div>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>João David's Portfolio</title>
+    <style>
+      body {
+        font-family: 'Roboto Condensed', Arial, sans-serif;
+        line-height: 1.6;
+        padding: 20px;
+        background-color: #121212;
+        color: #e0e0e0;
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        transition: background-color 0.3s;
+      }
+
+      .preloader {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: #333;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 1000;
+        transition: opacity 0.6s ease-out;
+      }
+
+      .hidden {
+        opacity: 0;
+        pointer-events: none;
+      }
+
+      #sphere-container {
+        width: 100px;
+        height: 100px;
+        perspective: 1000px;
+        position: relative;
+      }
+
+      @keyframes drawLines {
+
+        0%,
+        100% {
+          stroke-dashoffset: 150;
+        }
+
+        50% {
+          stroke-dashoffset: 0;
+        }
+      }
+
+      .sphere-line {
+        stroke: rgba(255, 255, 255, 0.8);
+        stroke-width: 1.5;
+        stroke-dasharray: 150;
+        stroke-dashoffset: 150;
+        animation: drawLines 4s ease-in-out infinite;
+        transform-origin: center;
+        fill: rgba(255, 255, 255, 0.3);
+        box-shadow: 0 0 10px rgba(255, 255, 255, 0.6);
+      }
+
+      .section {
+        margin-bottom: 40px;
+        width: 100%;
+        max-width: 1200px;
+      }
+
+      .section h2 {
+        font-size: 1.5em;
+        margin-bottom: 15px;
+        text-transform: uppercase;
+        color: #bbb;
+        text-align: center;
+      }
+
+      .link-list {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 40px;
+        justify-content: center;
+      }
+
+      .link-item {
+        flex: 0 1 calc(25% - 40px);
+        max-width: 200px;
+        text-align: center;
+        background-color: #1e1e1e;
+        padding: 20px;
+        border-radius: 12px;
+        box-shadow: 0 0 10px rgba(192, 192, 192, 0.5);
+        transition: transform 0.3s, box-shadow 0.3s;
+        position: relative;
+      }
+
+      .link-item:hover {
+        transform: scale(1.1);
+        box-shadow: 0 0 15px rgba(192, 192, 192, 0.7);
+      }
+
+      .link-item img {
+        width: 40px;
+        /* Placeholder SVG size */
+        height: 40px;
+        /* Maintain aspect ratio */
+        margin-bottom: 10px;
+      }
+
+      .link-item a {
+        text-decoration: none;
+        color: #e0e0e0;
+        font-weight: bold;
+      }
+
+      iframe {
+        display: block;
+        margin: 0 auto;
+        width: 420px;
+        /* Resized to 420px width */
+        height: 315px;
+        /* Maintain aspect ratio */
+      }
+
+      .background-image {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+        opacity: 0;
+        transition: opacity 0.6s ease-out;
+      }
+
+      .hidden-section {
+        display: none;
+      }
+
+      .link-list li {
+        display: flex;
+        align-items: center;
+        margin-bottom: 10px;
+      }
+
+      .link-list img {
+        margin-right: 10px;
+        /* Space between icon and text */
+      }
+
+      /* Mobile Styles */
+      @media (max-width: 768px) {
+        body {
+          padding: 10px;
+        }
+
+        .section {
+          width: 100%;
+          /* Full width on mobile */
+          margin-bottom: 20px;
+        }
+
+        .link-list {
+          flex-direction: column;
+          /* Stack items vertically */
+          align-items: center;
+          /* Center align items */
+        }
+
+        .link-item {
+          flex: 1 1 100%;
+          /* Allow items to take full width */
+          max-width: none;
+          /* Remove max-width for mobile */
+          margin: 10px 0;
+          /* Add margin for spacing */
+        }
+
+        .link-item img {
+          width: 40px;
+          /* Smaller icon size for mobile */
+          height: 40px;
+          /* Maintain aspect ratio */
+        }
+
+        .link-list img {
+          max-width: 60%;
+          /* Reduce image size on mobile */
+        }
+
+        h2 {
+          font-size: 1.3em;
+          /* Smaller heading size */
+        }
+      }
+    </style>
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        // Minimum time the preloader should be displayed (in milliseconds)
+        const minimumDisplayTime = 2000; // 2 seconds
+        // Calculate when to hide the preloader
+        const startTime = performance.now();
+        // Function to hide the preloader
+        function hidePreloader() {
+          document.querySelector('.preloader').classList.add('hidden');
+        }
+        // Check if minimum display time has elapsed, then hide the preloader
+        function checkElapsedTime() {
+          const elapsedTime = performance.now() - startTime;
+          if (elapsedTime >= minimumDisplayTime) {
+            hidePreloader();
+          } else {
+            // If not enough time has passed, wait and check again
+            setTimeout(hidePreloader, minimumDisplayTime - elapsedTime);
+          }
+        }
+        // Call the function to start checking elapsed time
+        checkElapsedTime();
+        // Handle URL parameters to show/hide sections
+        const params = new URLSearchParams(window.location.search);
+        const section1 = params.get('section1');
+        const section2 = params.get('section2');
+        const section3 = params.get('section3');
+        if (section1 === 'hide') {
+          document.getElementById('details').classList.add('hidden-section');
+        }
+        if (section2 === 'show') {
+          document.getElementById('portfolio').classList.remove('hidden-section');
+        } else if (section2 === 'hide') {
+          document.getElementById('portfolio').classList.add('hidden-section');
+        }
+        if (section3 === 'show') {
+          document.getElementById('contact').classList.remove('hidden-section');
+        } else if (section3 === 'hide') {
+          document.getElementById('contact').classList.add('hidden-section');
+        }
+      });
+      window.addEventListener('scroll', function() {
+        let scrollPercent = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
+        let opacity = scrollPercent / 100;
+        document.querySelector('.background-image').style.opacity = opacity;
+      });
+    </script>
+  </head>
+  <body>
+    <!-- Preloader -->
+    <div class="preloader">
+      <div id="sphere-container">
+        <svg id="sphere" viewBox="0 0 100 100">
+          <circle class="sphere-line" cx="50" cy="50" r="40" fill="none" />
+          <circle class="sphere-line" cx="50" cy="50" r="30" fill="none" />
+          <circle class="sphere-line" cx="50" cy="50" r="20" fill="none" />
+          <line class="sphere-line" x1="10" y1="50" x2="90" y2="50" />
+          <line class="sphere-line" x1="50" y1="10" x2="50" y2="90" />
+        </svg>
       </div>
-      <div class="section">
-         <h2>Loom Application & CV Details</h2>
-         <div class="link-list">
-            <iframe width="80%" height="540" src="https://www.loom.com/embed/d2943922118f424ca8558b39e510cfa5" frameborder="0" allowfullscreen></iframe>
-         </div>
-         <div class="link-list">
-            <a href="https://linkedin.com/in/dindgeri">LinkedIn Profile</a><br>
-            <a href="https://loom.com/share/d2943922118f424ca8558b39e510cfa5">Loom Video</a><br>
-            <a href="https://cryptojobslist.com/@crescendoll">CryptoJobsList Profile</a><br>
-            <a href="https://web3.career/@joaodavid">Web3 Career Profile</a><br>
-            <a href="https://blockchain.works-hub.com/users/d542f0d9-61d5-4188-8561-4317f60091ca">Blockchain Works Profile</a>
-         </div>
+    </div>
+    <!-- Details Section -->
+    <div id="details" class="section">
+      <h2>Details</h2>
+      <iframe src="https://www.loom.com/embed/d2943922118f424ca8558b39e510cfa5" frameborder="0" allowfullscreen></iframe>
+      <ul class="link-list">
+        <li class="link-item">
+          <a href="https://linkedin.com/in/dindgeri">
+            <img src="https://www.svgrepo.com/show/107599/placeholder.svg" alt="LinkedIn"> LinkedIn </a>
+        </li>
+        <li class="link-item">
+          <a href="https://cryptojobslist.com/@crescendoll">
+            <img src="https://www.svgrepo.com/show/107599/placeholder.svg" alt="Crypto Jobs"> Crypto Jobs </a>
+        </li>
+        <li class="link-item">
+          <a href="https://cv.dindgeri.github.io">
+            <img src="https://www.svgrepo.com/show/107599/placeholder.svg" alt="CV"> CV </a>
+        </li>
+        <li class="link-item">
+          <a href="https://github.com/dindgeri">
+            <img src="https://www.svgrepo.com/show/107599/placeholder.svg" alt="GitHub"> GitHub </a>
+        </li>
+      </ul>
+    </div>
+    <!-- Portfolio Section -->
+    <div id="portfolio" class="section hidden-section">
+      <h2>Portfolio</h2>
+      <div class="link-list">
+        <!-- LayerX -->
+        <div class="link-item">
+          <a href="https://x.com/LayerXlab/status/1631319074142576640" target="_blank">
+            <img src="https://i.pinimg.com/originals/42/64/a4/4264a4ba598c17ef23685260a13bd849.gif" alt="LayerX">
+          </a>
+          <p>LayerX</p>
+          <a href="https://t.me/LayerX_Labs/301595/302312" target="_blank">Telegram</a> | <a href="https://open.spotify.com/show/4dCGQWq4SzBLc6RBYoTeKm" target="_blank">Spotify</a>
+        </div>
+        <!-- TAIKAI Network -->
+        <div class="link-item">
+          <a href="https://mega.nz/file/31F0FQgY#RtTiKkWl75apLNRrixCk3azrCcf4wrhsxr3C5KT0x5c" target="_blank">
+            <img src="https://i.pinimg.com/originals/42/64/a4/4264a4ba598c17ef23685260a13bd849.gif" alt="TAIKAI Network">
+          </a>
+          <p>TAIKAI Network</p>
+          <a href="https://t.me/TAIKAIteam/363" target="_blank">Telegram</a> | <a href="https://open.spotify.com/show/4dCGQWq4SzBLc6RBYoTeKm" target="_blank">Spotify</a>
+        </div>
+        <!-- Polkamarkets -->
+        <div class="link-item">
+          <a href="https://www.polkamarkets.com/" target="_blank">
+            <img src="https://i.pinimg.com/originals/42/64/a4/4264a4ba598c17ef23685260a13bd849.gif" alt="Polkamarkets">
+          </a>
+          <p>Polkamarkets</p>
+          <a href="https://t.me/Polkamarkets" target="_blank">Telegram</a> | <a href="https://www.instagram.com/polkamarkets" target="_blank">Instagram</a>
+        </div>
+        <!-- Bepro Network -->
+        <div class="link-item">
+          <a href="https://bepro.network/" target="_blank">
+            <img src="https://i.pinimg.com/originals/42/64/a4/4264a4ba598c17ef23685260a13bd849.gif" alt="Bepro Network">
+          </a>
+          <p>Bepro Network</p>
+          <a href="https://t.me/BeproNetwork" target="_blank">Telegram</a> | <a href="https://open.spotify.com/show/4dCGQWq4SzBLc6RBYoTeKm" target="_blank">Spotify</a>
+        </div>
+        <!-- Add more projects as needed -->
       </div>
-      <div class="section">
-         <h2>Behance Portfolio</h2>
-         <div class="link-list">
-            <div class="link-item">
-               <a href="https://be.net/joaodavid" target="_blank">
-                  <img src="path_to_your_gif_thumbnail.gif" alt="Project 1 GIF">
-               </a>
-               <p>Project Title 1</p>
-            </div>
-            <div class="link-item">
-               <a href="https://be.net/joaodavid" target="_blank">
-                  <img src="path_to_your_gif_thumbnail.gif" alt="Project 2 GIF">
-               </a>
-               <p>Project Title 2</p>
-            </div>
-            <div class="link-item">
-               <a href="https://be.net/joaodavid" target="_blank">
-                  <img src="path_to_your_gif_thumbnail.gif" alt="Project 3 GIF">
-               </a>
-               <p>Project Title 3</p>
-            </div>
-            <!-- Add more projects as needed -->
-         </div>
-      </div>
-      <div class="section">
-         <h2>Social Media & Cover Letter</h2>
-         <div class="link-list">
-            <p>Dear Potential Clients or Employers,</p>
-            <p>Welcome to my portfolio! I am excited to share my work and experiences with you.</p>
-            <p>For more insights, connect with me on social media:</p>
-            <div class="link-item">
-               <a href="https://x.com/joao_david_g">X.com</a><br>
-               <a href="https://linkedin.com/in/dindgeri">LinkedIn</a><br>
-               <a href="https://github.com/dindgeri">GitHub</a><br>
-               <a href="https://t.me/crescendoll">Telegram</a><br>
-               <a href="https://wa.me/351967739724">WhatsApp</a>
-            </div>
-         </div>
-      </div>
-      <div class="section">
-         <h2>Video Production</h2>
-         <div class="link-list">
-            <div class="link-item">
-               <a href="https://player.vimeo.com/video/52943079" target="_blank">
-                  <img src="path_to_your_video_thumbnail.gif" alt="Projecto de Mestrado GIF">
-               </a>
-               <p>Projecto de Mestrado</p>
-            </div>
-            <div class="link-item">
-               <a href="https://youtu.be/720mp14vwtA" target="_blank">
-                  <img src="path_to_your_video_thumbnail.gif" alt="Video 1 GIF">
-               </a>
-               <p>Vídeo de Música 1</p>
-            </div>
-            <div class="link-item">
-               <a href="https://youtu.be/b50bbYtR-Zg" target="_blank">
-                  <img src="path_to_your_video_thumbnail.gif" alt="Video 2 GIF">
-               </a>
-               <p>Vídeo de Música 2</p>
-            </div>
-         </div>
-      </div>
-      <script>
-         document.addEventListener("DOMContentLoaded", function () {
-            const preloader = document.querySelector('.preloader');
-            preloader.classList.add('hidden');
-         });
-      </script>
-   </body>
+    </div>
+    <!-- Contact Section -->
+    <div id="contact" class="section">
+      <h2>Contact Details</h2>
+      <ul class="link-list">
+        <li>
+          <a href="https://wa.me/351967739724">
+            <img src="https://www.svgrepo.com/show/106976/whatsapp.svg" alt="WhatsApp" width="64" height="64" /> WhatsApp </a>
+        </li>
+        <li>
+          <a href="https://x.com/joao_david_g">
+            <img src="https://www.svgrepo.com/show/106976/whatsapp.svg" alt="X.com" width="64" height="64" /> X.com </a>
+        </li>
+        <li>
+          <a href="https://t.me/crescendoll">
+            <img src="https://www.svgrepo.com/show/106976/whatsapp.svg" alt="Telegram" width="64" height="64" /> Telegram </a>
+        </li>
+        <li>
+          <a href="https://github.com/dindgeri">
+            <img src="https://www.svgrepo.com/show/106976/whatsapp.svg" alt="GitHub" width="64" height="64" /> GitHub </a>
+        </li>
+        <li>
+          <a href="mailto:joaodavid.org@gmail.com">
+            <img src="https://www.svgrepo.com/show/106976/whatsapp.svg" alt="Gmail" width="64" height="64" /> Gmail </a>
+        </li>
+        <li>
+          <a href="https://cargocollective.com/joaodavid">
+            <img src="https://www.svgrepo.com/show/106976/whatsapp.svg" alt="Cargo" width="64" height="64" /> Cargo </a>
+        </li>
+      </ul>
+    </div>
+    <!-- Background Image -->
+    <img class="background-image" src="https://i.postimg.cc/PrGXVDSw/601d0d1870920397ca33a8c84988c521.jpg" alt="Background">
+  </body>
 </html>

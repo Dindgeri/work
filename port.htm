@@ -98,6 +98,46 @@
     box-shadow: 0 0 15px rgba(192, 192, 192, 0.7);
   }
 
+  /* Contact Section Icons */
+  .link-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    list-style-type: none;
+    padding: 0;
+  }
+
+  .link-list li {
+    margin: 20px;
+    text-align: center;
+    flex: 1 1 45%; /* Two items per row */
+  }
+
+  .link-list a {
+    color: white;
+    text-decoration: none;
+    display: block;
+  }
+
+  .link-list a span {
+    display: block;
+    margin-top: 10px;
+  }
+
+  .link-list img {
+    height: 150px;
+    max-height: 200px;
+    width: auto;
+    margin: 0 auto;
+  }
+
+  /* Mobile Styles for Contact Section */
+  @media (max-width: 768px) {
+    .link-list li {
+      flex: 1 1 100%; /* Single column on mobile */
+    }
+  }
+
   /* Thumbnail and Overlay */
   .thumbnail-wrapper {
     position: relative;
@@ -151,16 +191,6 @@
 
   .hidden-section {
     display: none;
-  }
-
-  .link-list li {
-    display: flex;
-    align-items: center;
-    margin-bottom: 10px;
-  }
-
-  .link-list img {
-    margin-right: 10px;
   }
 
   /* Mobile Styles */
@@ -337,36 +367,49 @@
   </div>
 </div>
 
-    <!-- Contact Section -->
-    <div id="contact" class="section">
-      <h2>Contact Details</h2>
-      <ul class="link-list">
-        <li>
-          <a href="https://wa.me/351967739724">
-            <img src="https://www.svgrepo.com/show/106976/whatsapp.svg" alt="WhatsApp" width="64" height="64" /> WhatsApp </a>
-        </li>
-        <li>
-          <a href="https://x.com/joao_david_g">
-            <img src="https://www.svgrepo.com/show/106976/whatsapp.svg" alt="X.com" width="64" height="64" /> X.com </a>
-        </li>
-        <li>
-          <a href="https://t.me/crescendoll">
-            <img src="https://www.svgrepo.com/show/106976/whatsapp.svg" alt="Telegram" width="64" height="64" /> Telegram </a>
-        </li>
-        <li>
-          <a href="https://github.com/dindgeri">
-            <img src="https://www.svgrepo.com/show/106976/whatsapp.svg" alt="GitHub" width="64" height="64" /> GitHub </a>
-        </li>
-        <li>
-          <a href="mailto:joaodavid.org@gmail.com">
-            <img src="https://www.svgrepo.com/show/106976/whatsapp.svg" alt="Gmail" width="64" height="64" /> Gmail </a>
-        </li>
-        <li>
-          <a href="https://cargocollective.com/joaodavid">
-            <img src="https://www.svgrepo.com/show/106976/whatsapp.svg" alt="Cargo" width="64" height="64" /> Cargo </a>
-        </li>
-      </ul>
-    </div>
+<!-- Contact Section -->
+<div id="contact" class="section">
+  <h2>Contact Details</h2>
+  <ul class="link-list">
+    <li>
+      <a href="https://wa.me/351967739724">
+        <img src="https://www.svgrepo.com/show/349407/whatsapp.svg" alt="WhatsApp" class="icon" /> 
+        <span>WhatsApp</span>
+      </a>
+    </li>
+    <li>
+      <a href="https://x.com/joao_david_g">
+        <img src="https://www.svgrepo.com/show/511830/x-logo.svg" alt="X.com" class="icon" /> 
+        <span>X.com</span>
+      </a>
+    </li>
+    <li>
+      <a href="https://t.me/crescendoll">
+        <img src="https://www.svgrepo.com/show/354443/telegram.svg" alt="Telegram" class="icon" /> 
+        <span>Telegram</span>
+      </a>
+    </li>
+    <li>
+      <a href="https://github.com/dindgeri">
+        <img src="https://www.svgrepo.com/show/475654/github-color.svg" alt="GitHub" class="icon" /> 
+        <span>GitHub</span>
+      </a>
+    </li>
+    <li>
+      <a href="mailto:joaodavid.org@gmail.com">
+        <img src="https://www.svgrepo.com/show/349501/gmail.svg" alt="Gmail" class="icon" /> 
+        <span>Gmail</span>
+      </a>
+    </li>
+    <li>
+      <a href="https://cargocollective.com/joaodavid">
+        <img src="https://www.svgrepo.com/show/354375/cargo.svg" alt="Cargo" class="icon" /> 
+        <span>Cargo</span>
+      </a>
+    </li>
+  </ul>
+</div>
+    
     <!-- Background Image -->
     <img class="background-image" src="https://i.postimg.cc/PrGXVDSw/601d0d1870920397ca33a8c84988c521.jpg" alt="Background">
   </body>

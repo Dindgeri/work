@@ -44,12 +44,10 @@
       }
 
       @keyframes drawLines {
-
         0%,
         100% {
           stroke-dashoffset: 150;
         }
-
         50% {
           stroke-dashoffset: 0;
         }
@@ -83,13 +81,13 @@
       .link-list {
         display: flex;
         flex-wrap: wrap;
-        gap: 40px;
+        gap: 20px; /* Adjusted gap for better spacing */
         justify-content: center;
       }
 
       .link-item {
-        flex: 0 1 calc(25% - 40px);
-        max-width: 200px;
+        flex: 0 1 calc(50% - 20px); /* Adjusted to allow two items per row */
+        max-width: 300px; /* Optional: set a max width for items */
         text-align: center;
         background-color: #1e1e1e;
         padding: 20px;
@@ -105,10 +103,8 @@
       }
 
       .link-item img {
-        width: 40px;
-        /* Placeholder SVG size */
-        height: 40px;
-        /* Maintain aspect ratio */
+        width: 40px; /* Placeholder SVG size */
+        height: 40px; /* Maintain aspect ratio */
         margin-bottom: 10px;
       }
 
@@ -121,10 +117,8 @@
       iframe {
         display: block;
         margin: 0 auto;
-        width: 420px;
-        /* Resized to 420px width */
-        height: 315px;
-        /* Maintain aspect ratio */
+        width: 420px; /* Resized to 420px width */
+        height: 315px; /* Maintain aspect ratio */
       }
 
       .background-image {
@@ -149,8 +143,7 @@
       }
 
       .link-list img {
-        margin-right: 10px;
-        /* Space between icon and text */
+        margin-right: 10px; /* Space between icon and text */
       }
 
       /* Mobile Styles */
@@ -160,42 +153,32 @@
         }
 
         .section {
-          width: 100%;
-          /* Full width on mobile */
+          width: 100%; /* Full width on mobile */
           margin-bottom: 20px;
         }
 
         .link-list {
-          flex-direction: column;
-          /* Stack items vertically */
-          align-items: center;
-          /* Center align items */
+          flex-direction: column; /* Stack items vertically */
+          align-items: center; /* Center align items */
         }
 
         .link-item {
-          flex: 1 1 100%;
-          /* Allow items to take full width */
-          max-width: none;
-          /* Remove max-width for mobile */
-          margin: 10px 0;
-          /* Add margin for spacing */
+          flex: 1 1 100%; /* Allow items to take full width */
+          max-width: none; /* Remove max-width for mobile */
+          margin: 10px 0; /* Add margin for spacing */
         }
 
         .link-item img {
-          width: 40px;
-          /* Smaller icon size for mobile */
-          height: 40px;
-          /* Maintain aspect ratio */
+          width: 40px; /* Smaller icon size for mobile */
+          height: 40px; /* Maintain aspect ratio */
         }
 
         .link-list img {
-          max-width: 60%;
-          /* Reduce image size on mobile */
+          max-width: 60%; /* Reduce image size on mobile */
         }
 
         h2 {
-          font-size: 1.3em;
-          /* Smaller heading size */
+          font-size: 1.3em; /* Smaller heading size */
         }
       }
     </style>

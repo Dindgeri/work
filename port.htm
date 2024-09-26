@@ -4,375 +4,280 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>João David's Portfolio</title>
 
-<style>
-  body {
-    font-family: 'Roboto Condensed', Arial, sans-serif;
-    line-height: 1.6;
-    padding: 20px;
-    background-color: #121212;
-    color: #e0e0e0;
-    margin: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    transition: background-color 0.3s;
-  }
-
-  .preloader {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: #333;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 1000;
-    transition: opacity 0.6s ease-out;
-  }
-
-  .hidden {
-    opacity: 0;
-    pointer-events: none;
-  }
-
-  #sphere-container {
-    width: 100px;
-    height: 100px;
-    perspective: 1000px;
-    position: relative;
-  }
-
-  @keyframes drawLines {
-    0%, 100% { stroke-dashoffset: 150; }
-    50% { stroke-dashoffset: 0; }
-  }
-
-  .sphere-line {
-    stroke: rgba(255, 255, 255, 0.8);
-    stroke-width: 1.5;
-    stroke-dasharray: 150;
-    stroke-dashoffset: 150;
-    animation: drawLines 4s ease-in-out infinite;
-    transform-origin: center;
-    fill: rgba(255, 255, 255, 0.3);
-    box-shadow: 0 0 10px rgba(255, 255, 255, 0.6);
-  }
-
-  .section {
-    margin-bottom: 40px;
-    width: 100%;
-    max-width: 1200px;
-  }
-
-  .section h2 {
-    font-size: 1.5em;
-    margin-bottom: 15px;
-    text-transform: uppercase;
-    color: #bbb;
-    text-align: center;
-  }
-
-  .link-list {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 40px;
-    justify-content: center;
-  }
-
-  .link-item {
-    flex: 0 1 calc(25% - 40px);
-    max-width: 300px;
-    text-align: center;
-    background-color: #1e1e1e;
-    padding: 20px;
-    border-radius: 12px;
-    box-shadow: 0 0 10px rgba(192, 192, 192, 0.5);
-    transition: transform 0.3s, box-shadow 0.3s;
-    position: relative;
-  }
-
-  .link-item:hover {
-    transform: scale(1.1);
-    box-shadow: 0 0 15px rgba(192, 192, 192, 0.7);
-  }
-
-  /* Contact Section Icons */
-  .link-list {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
-    list-style-type: none;
-    padding: 0;
-  }
-
-  .link-list li {
-    margin: 20px;
-    text-align: center;
-    flex: 1 1 45%; /* Two items per row */
-  }
-
-  .link-list a {
-    color: white;
-    text-decoration: none;
-    display: block;
-  }
-
-  .link-list a span {
-    display: block;
-    margin-top: 10px;
-  }
-
-  .link-list img {
-    height: 150px;
-    max-height: 200px;
-    width: auto;
-    margin: 0 auto;
-  }
-
-  /* Mobile Styles for Contact Section */
-  @media (max-width: 768px) {
-    .link-list li {
-      flex: 1 1 100%; /* Single column on mobile */
-    }
-  }
-
-  /* Thumbnail and Overlay */
-  .thumbnail-wrapper {
-    position: relative;
-    display: inline-block;
-  }
-
-  .thumbnail {
-    width: 300px;
-    height: auto;
-    display: block;
-    transition: transform 0.3s ease;
-    border-radius: 10px;
-  }
-
-  .overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 300px;
-    height: 100%;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-    border-radius: 10px;
-  }
-
-  .thumbnail-wrapper:hover .thumbnail {
-    transform: scale(1.05);
-  }
-
-  .thumbnail-wrapper:hover .overlay {
-    opacity: 0.6;
-  }
-
-  iframe {
-    display: block;
-    margin: 0 auto;
-    width: 420px;
-    height: 315px;
-  }
-
-  .background-image {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: -1;
-    opacity: 0;
-    transition: opacity 0.6s ease-out;
-  }
-
-  .hidden-section {
-    display: none;
-  }
-
-  /* Mobile Styles */
-  @media (max-width: 768px) {
-    body {
-      padding: 10px;
-    }
-
-    .section {
-      width: 100%;
-      margin-bottom: 20px;
-    }
-
-    .link-list {
-      flex-direction: column;
-      align-items: center;
-    }
-
-    .link-item {
-      flex: 1 1 100%;
-      max-width: none;
-      margin: 10px 0;
-    }
-
-    .link-item img {
-      width: 40px;
-      height: 40px;
-    }
-
-    h2 {
-      font-size: 1.3em;
-    }
-  }
-</style>
-    
-<script>
-  document.addEventListener('DOMContentLoaded', function() {
-    // Minimum time the preloader should be displayed (in milliseconds)
-    const minimumDisplayTime = 2000; // 2 seconds
-    const startTime = performance.now();
-    
-    // Function to hide the preloader
-    function hidePreloader() {
-      document.querySelector('.preloader').classList.add('hidden');
-    }
-    
-    // Check if minimum display time has elapsed, then hide the preloader
-    function checkElapsedTime() {
-      const elapsedTime = performance.now() - startTime;
-      if (elapsedTime >= minimumDisplayTime) {
-        hidePreloader();
-      } else {
-        setTimeout(hidePreloader, minimumDisplayTime - elapsedTime);
+    <style>
+      body {
+        font-family: 'Roboto Condensed', Arial, sans-serif;
+        line-height: 1.6;
+        padding: 20px;
+        background-color: #121212;
+        color: #e0e0e0;
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        transition: background-color 0.3s;
       }
-    }
-    checkElapsedTime();
-    
-    // Handle URL parameters to show/hide sections using indices (0, 1, 2)
-    const params = new URLSearchParams(window.location.search);
-    
-    // Mapping parameter indices to section IDs
-    const sectionMap = {
-      0: 'details',
-      1: 'portfolio',
-      2: 'contact'
-    };
 
-    // Loop over sectionMap keys to toggle visibility based on URL parameters
-    Object.keys(sectionMap).forEach(index => {
-      const sectionState = params.get(index);
-      const sectionId = sectionMap[index];
-      
-      if (sectionState === 'show') {
-        document.getElementById(sectionId).classList.remove('hidden-section');
-      } else if (sectionState === 'hide') {
-        document.getElementById(sectionId).classList.add('hidden-section');
+      .preloader {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: #333;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 1000;
+        transition: opacity 0.6s ease-out;
       }
-    });
-  });
 
-  // Background opacity change on scroll
-  window.addEventListener('scroll', function() {
-    let scrollPercent = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
-    let opacity = scrollPercent / 100;
-    document.querySelector('.background-image').style.opacity = opacity;
-  });
-</script>
-    
-<!-- Portfolio Section -->
-<div id="portfolio" class="section">
-  <h2>Portfolio</h2>
-  <div class="link-list">
-    <!-- LayerX -->
-    <div class="link-item">
-      <a href="https://x.com/LayerXlab/status/1631319074142576640" target="_blank" class="thumbnail-wrapper">
-        <img class="thumbnail" src="https://i.pinimg.com/originals/42/64/a4/4264a4ba598c17ef23685260a13bd849.gif" alt="LayerX">
-        <img class="overlay" src="https://www.transparenttextures.com/patterns/45-degree-fabric-light.png" alt="Overlay">
-      </a>
-      <div class="platform-links">
-        <a href="https://t.me/LayerX_Labs/301595/302312" target="_blank">Telegram</a> | 
-        <a href="https://open.spotify.com/show/4dCGQWq4SzBLc6RBYoTeKm" target="_blank">Spotify</a>
-      </div>
-    </div>
-    <!-- TAIKAI Network -->
-    <div class="link-item">
-      <a href="https://mega.nz/file/31F0FQgY#RtTiKkWl75apLNRrixCk3azrCcf4wrhsxr3C5KT0x5c" target="_blank" class="thumbnail-wrapper">
-        <img class="thumbnail" src="https://i.pinimg.com/originals/42/64/a4/4264a4ba598c17ef23685260a13bd849.gif" alt="TAIKAI Network">
-        <img class="overlay" src="https://www.transparenttextures.com/patterns/45-degree-fabric-light.png" alt="Overlay">
-      </a>
-      <div class="platform-links">
-        <a href="https://t.me/TAIKAIteam/363" target="_blank">Telegram</a> | 
-        <a href="https://open.spotify.com/show/4dCGQWq4SzBLc6RBYoTeKm" target="_blank">Spotify</a>
-      </div>
-    </div>
-    <!-- Polkamarkets -->
-    <div class="link-item">
-      <a href="https://www.polkamarkets.com/" target="_blank" class="thumbnail-wrapper">
-        <img class="thumbnail" src="https://i.pinimg.com/originals/42/64/a4/4264a4ba598c17ef23685260a13bd849.gif" alt="Polkamarkets">
-        <img class="overlay" src="https://www.transparenttextures.com/patterns/45-degree-fabric-light.png" alt="Overlay">
-      </a>
-      <div class="platform-links">
-        <a href="https://t.me/Polkamarkets" target="_blank">Telegram</a> | 
-        <a href="https://www.instagram.com/polkamarkets" target="_blank">Instagram</a>
-      </div>
-    </div>
-    <!-- Bepro Network -->
-    <div class="link-item">
-      <a href="https://bepro.network/" target="_blank" class="thumbnail-wrapper">
-        <img class="thumbnail" src="https://i.pinimg.com/originals/42/64/a4/4264a4ba598c17ef23685260a13bd849.gif" alt="Bepro Network">
-        <img class="overlay" src="https://www.transparenttextures.com/patterns/45-degree-fabric-light.png" alt="Overlay">
-      </a>
-      <div class="platform-links">
-        <a href="https://t.me/BeproNetwork" target="_blank">Telegram</a> | 
-        <a href="https://open.spotify.com/show/4dCGQWq4SzBLc6RBYoTeKm" target="_blank">Spotify</a>
-      </div>
-    </div>
-  </div>
-</div>
+      .hidden {
+        opacity: 0;
+        pointer-events: none;
+      }
 
-<!-- Contact Section -->
-<div id="contact" class="section">
-  <h2>Contact Details</h2>
-  <ul class="link-list">
-    <li>
-      <a href="https://wa.me/351967739724">
-        <img src="https://www.svgrepo.com/show/349407/whatsapp.svg" alt="WhatsApp" class="icon" /> 
-        <span>WhatsApp</span>
-      </a>
-    </li>
-    <li>
-      <a href="https://x.com/joao_david_g">
-        <img src="https://www.svgrepo.com/show/511830/x-logo.svg" alt="X.com" class="icon" /> 
-        <span>X.com</span>
-      </a>
-    </li>
-    <li>
-      <a href="https://t.me/crescendoll">
-        <img src="https://www.svgrepo.com/show/354443/telegram.svg" alt="Telegram" class="icon" /> 
-        <span>Telegram</span>
-      </a>
-    </li>
-    <li>
-      <a href="https://github.com/dindgeri">
-        <img src="https://www.svgrepo.com/show/475654/github-color.svg" alt="GitHub" class="icon" /> 
-        <span>GitHub</span>
-      </a>
-    </li>
-    <li>
-      <a href="mailto:joaodavid.org@gmail.com">
-        <img src="https://www.svgrepo.com/show/349501/gmail.svg" alt="Gmail" class="icon" /> 
-        <span>Gmail</span>
-      </a>
-    </li>
-    <li>
-      <a href="https://cargocollective.com/joaodavid">
-        <img src="https://www.svgrepo.com/show/354375/cargo.svg" alt="Cargo" class="icon" /> 
-        <span>Cargo</span>
-      </a>
-    </li>
-  </ul>
-</div>
+      .section {
+        margin-bottom: 40px;
+        width: 100%;
+        max-width: 1200px;
+      }
+
+      .section h2 {
+        font-size: 1.5em;
+        margin-bottom: 15px;
+        text-transform: uppercase;
+        color: #bbb;
+        text-align: center;
+      }
+
+      /* Contact Section */
+      .link-list {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        list-style-type: none;
+        padding: 0;
+        gap: 20px;
+      }
+
+      .link-list li {
+        text-align: center;
+      }
+
+      .link-list a {
+        color: white;
+        text-decoration: none;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        width: 80px;
+        height: 80px;
+        background-color: #1e1e1e;
+        border-radius: 15px;
+        transition: transform 0.3s, box-shadow 0.3s;
+      }
+
+      .link-list a:hover {
+        transform: scale(1.1);
+        box-shadow: 0 0 10px rgba(192, 192, 192, 0.7);
+      }
+
+      .link-list img {
+        width: 40px;
+        height: 40px;
+      }
+
+      .link-list span {
+        margin-top: 8px;
+        font-size: 0.9em;
+      }
+
+      /* Portfolio Section */
+      .link-item {
+        text-align: center;
+        background-color: #1e1e1e;
+        padding: 20px;
+        border-radius: 12px;
+        box-shadow: 0 0 10px rgba(192, 192, 192, 0.5);
+        transition: transform 0.3s, box-shadow 0.3s;
+        position: relative;
+      }
+
+      .link-item:hover {
+        transform: scale(1.1);
+        box-shadow: 0 0 15px rgba(192, 192, 192, 0.7);
+      }
+
+      .thumbnail-wrapper {
+        position: relative;
+        display: inline-block;
+      }
+
+      .thumbnail {
+        width: 300px;
+        height: auto;
+        display: block;
+        transition: transform 0.3s ease;
+        border-radius: 10px;
+      }
+
+      .overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 300px;
+        height: 100%;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+        border-radius: 10px;
+      }
+
+      .thumbnail-wrapper:hover .thumbnail {
+        transform: scale(1.05);
+      }
+
+      .thumbnail-wrapper:hover .overlay {
+        opacity: 0.6;
+      }
+
+      iframe {
+        display: block;
+        margin: 0 auto;
+        width: 420px;
+        height: 315px;
+      }
+
+      .hidden-section {
+        display: none;
+      }
+
+      /* Mobile Styles */
+      @media (max-width: 768px) {
+        body {
+          padding: 10px;
+        }
+
+        .link-list {
+          flex-direction: column;
+          gap: 10px;
+        }
+
+        .link-list a {
+          width: 60px;
+          height: 60px;
+        }
+
+        .link-list img {
+          width: 30px;
+          height: 30px;
+        }
+
+        .link-list span {
+          font-size: 0.8em;
+        }
+      }
+    </style>
     
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        // Minimum time the preloader should be displayed (in milliseconds)
+        const minimumDisplayTime = 2000; // 2 seconds
+        const startTime = performance.now();
+
+        function hidePreloader() {
+          document.querySelector('.preloader').classList.add('hidden');
+        }
+
+        function checkElapsedTime() {
+          const elapsedTime = performance.now() - startTime;
+          if (elapsedTime >= minimumDisplayTime) {
+            hidePreloader();
+          } else {
+            setTimeout(hidePreloader, minimumDisplayTime - elapsedTime);
+          }
+        }
+
+        checkElapsedTime();
+
+        const params = new URLSearchParams(window.location.search);
+        const sectionMap = {
+          0: 'details',
+          1: 'portfolio',
+          2: 'contact'
+        };
+
+        Object.keys(sectionMap).forEach(index => {
+          const sectionState = params.get(index);
+          const sectionId = sectionMap[index];
+          
+          if (sectionState === 'show') {
+            document.getElementById(sectionId).classList.remove('hidden-section');
+          } else if (sectionState === 'hide') {
+            document.getElementById(sectionId).classList.add('hidden-section');
+          }
+        });
+      });
+
+      window.addEventListener('scroll', function() {
+        let scrollPercent = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
+        let opacity = scrollPercent / 100;
+        document.querySelector('.background-image').style.opacity = opacity;
+      });
+    </script>
+  </head>
+
+  <body>
+    <!-- Portfolio Section -->
+    <div id="portfolio" class="section">
+      <h2>Portfolio</h2>
+      <!-- Portfolio Items -->
+    </div>
+
+    <!-- Contact Section -->
+    <div id="contact" class="section">
+      <h2>Contact Details</h2>
+      <ul class="link-list">
+        <li>
+          <a href="https://wa.me/351967739724">
+            <img src="https://www.svgrepo.com/show/349407/whatsapp.svg" alt="WhatsApp" />
+            <span>WhatsApp</span>
+          </a>
+        </li>
+        <li>
+          <a href="https://x.com/joao_david_g">
+            <img src="https://www.svgrepo.com/show/511830/x-logo.svg" alt="X.com" />
+            <span>X.com</span>
+          </a>
+        </li>
+        <li>
+          <a href="https://t.me/crescendoll">
+            <img src="https://www.svgrepo.com/show/354443/telegram.svg" alt="Telegram" />
+            <span>Telegram</span>
+          </a>
+        </li>
+        <li>
+          <a href="https://github.com/dindgeri">
+            <img src="https://www.svgrepo.com/show/475654/github-color.svg" alt="GitHub" />
+            <span>GitHub</span>
+          </a>
+        </li>
+        <li>
+          <a href="mailto:joaodavid.org@gmail.com">
+            <img src="https://www.svgrepo.com/show/349501/gmail.svg" alt="Gmail" />
+            <span>Gmail</span>
+          </a>
+        </li>
+        <li>
+          <a href="https://cargocollective.com/joaodavid">
+            <img src="https://www.svgrepo.com/show/354375/cargo.svg" alt="Cargo" />
+            <span>Cargo</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+
     <!-- Background Image -->
     <img class="background-image" src="https://i.postimg.cc/PrGXVDSw/601d0d1870920397ca33a8c84988c521.jpg" alt="Background">
   </body>

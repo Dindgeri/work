@@ -226,95 +226,58 @@
   }
 </style>
     
-    <script>
-      document.addEventListener('DOMContentLoaded', function() {
-        // Minimum time the preloader should be displayed (in milliseconds)
-        const minimumDisplayTime = 2000; // 2 seconds
-        // Calculate when to hide the preloader
-        const startTime = performance.now();
-        // Function to hide the preloader
-        function hidePreloader() {
-          document.querySelector('.preloader').classList.add('hidden');
-        }
-        // Check if minimum display time has elapsed, then hide the preloader
-        function checkElapsedTime() {
-          const elapsedTime = performance.now() - startTime;
-          if (elapsedTime >= minimumDisplayTime) {
-            hidePreloader();
-          } else {
-            // If not enough time has passed, wait and check again
-            setTimeout(hidePreloader, minimumDisplayTime - elapsedTime);
-          }
-        }
-        // Call the function to start checking elapsed time
-        checkElapsedTime();
-        // Handle URL parameters to show/hide sections
-        const params = new URLSearchParams(window.location.search);
-        const section1 = params.get('section1');
-        const section2 = params.get('section2');
-        const section3 = params.get('section3');
-        // Toggle visibility of "Details" section (section1)
-        if (section1 === 'show') {
-          document.getElementById('details').classList.remove('hidden-section');
-        } else if (section1 === 'hide') {
-          document.getElementById('details').classList.add('hidden-section');
-        }
-        // Toggle visibility of "Portfolio" section (section2)
-        if (section2 === 'show') {
-          document.getElementById('portfolio').classList.remove('hidden-section');
-        } else if (section2 === 'hide') {
-          document.getElementById('portfolio').classList.add('hidden-section');
-        }
-        // Toggle visibility of "Contact" section (section3)
-        if (section3 === 'show') {
-          document.getElementById('contact').classList.remove('hidden-section');
-        } else if (section3 === 'hide') {
-          document.getElementById('contact').classList.add('hidden-section');
-        }
-      });
-      window.addEventListener('scroll', function() {
-        let scrollPercent = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
-        let opacity = scrollPercent / 100;
-        document.querySelector('.background-image').style.opacity = opacity;
-      });
-    </script>
-  </head>
-  <body>
-    <!-- Preloader -->
-    <div class="preloader">
-      <div id="sphere-container">
-        <svg id="sphere" viewBox="0 0 100 100">
-          <circle class="sphere-line" cx="50" cy="50" r="40" fill="none" />
-          <circle class="sphere-line" cx="50" cy="50" r="30" fill="none" />
-          <circle class="sphere-line" cx="50" cy="50" r="20" fill="none" />
-          <line class="sphere-line" x1="10" y1="50" x2="90" y2="50" />
-          <line class="sphere-line" x1="50" y1="10" x2="50" y2="90" />
-        </svg>
-      </div>
-    </div>
-    <!-- Details Section -->
-    <div id="details" class="section">
-      <h2>Details</h2>
-      <iframe src="https://www.loom.com/embed/d2943922118f424ca8558b39e510cfa5" frameborder="0" allowfullscreen></iframe>
-      <ul class="link-list">
-        <li class="link-item">
-          <a href="https://linkedin.com/in/dindgeri">
-            <img src="https://www.svgrepo.com/show/107599/placeholder.svg" alt="LinkedIn"> LinkedIn </a>
-        </li>
-        <li class="link-item">
-          <a href="https://cryptojobslist.com/@crescendoll">
-            <img src="https://www.svgrepo.com/show/107599/placeholder.svg" alt="Crypto Jobs"> Crypto Jobs </a>
-        </li>
-        <li class="link-item">
-          <a href="https://cv.dindgeri.github.io">
-            <img src="https://www.svgrepo.com/show/107599/placeholder.svg" alt="CV"> CV </a>
-        </li>
-        <li class="link-item">
-          <a href="https://github.com/dindgeri">
-            <img src="https://www.svgrepo.com/show/107599/placeholder.svg" alt="GitHub"> GitHub </a>
-        </li>
-      </ul>
-    </div>
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    // Minimum time the preloader should be displayed (in milliseconds)
+    const minimumDisplayTime = 2000; // 2 seconds
+    const startTime = performance.now();
+    
+    // Function to hide the preloader
+    function hidePreloader() {
+      document.querySelector('.preloader').classList.add('hidden');
+    }
+    
+    // Check if minimum display time has elapsed, then hide the preloader
+    function checkElapsedTime() {
+      const elapsedTime = performance.now() - startTime;
+      if (elapsedTime >= minimumDisplayTime) {
+        hidePreloader();
+      } else {
+        setTimeout(hidePreloader, minimumDisplayTime - elapsedTime);
+      }
+    }
+    checkElapsedTime();
+    
+    // Handle URL parameters to show/hide sections using indices (0, 1, 2)
+    const params = new URLSearchParams(window.location.search);
+    
+    // Mapping parameter indices to section IDs
+    const sectionMap = {
+      0: 'details',
+      1: 'portfolio',
+      2: 'contact'
+    };
+
+    // Loop over sectionMap keys to toggle visibility based on URL parameters
+    Object.keys(sectionMap).forEach(index => {
+      const sectionState = params.get(index);
+      const sectionId = sectionMap[index];
+      
+      if (sectionState === 'show') {
+        document.getElementById(sectionId).classList.remove('hidden-section');
+      } else if (sectionState === 'hide') {
+        document.getElementById(sectionId).classList.add('hidden-section');
+      }
+    });
+  });
+
+  // Background opacity change on scroll
+  window.addEventListener('scroll', function() {
+    let scrollPercent = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
+    let opacity = scrollPercent / 100;
+    document.querySelector('.background-image').style.opacity = opacity;
+  });
+</script>
     
 <!-- Portfolio Section -->
 <div id="portfolio" class="section">

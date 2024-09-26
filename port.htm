@@ -5,7 +5,7 @@
     <title>João David's Portfolio</title>
     <style>
       body {
-        font-family: 'Roboto Condensed', Arial, sans-serif;
+        font-family: 'Monaco', sans-serif;
         line-height: 1.6;
         padding: 20px;
         background-color: #121212;
@@ -84,15 +84,12 @@
         display: flex;
         flex-wrap: wrap;
         gap: 50px;
-        /* Adjusted gap for better spacing */
         justify-content: center;
       }
 
       .link-item {
         flex: 0 1 calc(50% - 20px);
-        /* Adjusted to allow two items per row */
         max-width: 500px;
-        /* Optional: set a max width for items */
         text-align: center;
         background-color: #1e1e1e;
         padding: 20px;
@@ -107,10 +104,19 @@
         box-shadow: 0 0 15px rgba(192, 192, 192, 0.7);
       }
 
-      .link-item img {
+      /* Details Section Image Styles */
+      .details-image {
         width: 100px;
-        /* Placeholder SVG size */
+        /* Custom size for details images */
         height: 100px;
+        margin-bottom: 10px;
+      }
+
+      /* Portfolio Section Image Styles */
+      .portfolio-image {
+        width: 75%;
+        /* Custom size for portfolio images */
+        height: auto;
         /* Maintain aspect ratio */
         margin-bottom: 10px;
       }
@@ -124,10 +130,8 @@
       iframe {
         display: block;
         margin: 0 auto;
-        width: 420px;
-        /* Resized to 420px width */
-        height: 315px;
-        /* Maintain aspect ratio */
+        width: 720;
+        height: 540;
       }
 
       .background-image {
@@ -153,7 +157,6 @@
 
       .link-list img {
         margin-right: 10px;
-        /* Space between icon and text */
       }
 
       /* Mobile Styles */
@@ -164,48 +167,39 @@
 
         .section {
           width: 100%;
-          /* Full width on mobile */
           margin-bottom: 20px;
         }
 
         .link-list {
           flex-direction: column;
-          /* Stack items vertically */
           align-items: center;
-          /* Center align items */
         }
 
         .link-item {
           flex: 1 1 100%;
-          /* Allow items to take full width */
           max-width: none;
-          /* Remove max-width for mobile */
           margin: 10px 0;
-          /* Add margin for spacing */
         }
 
         .link-item img {
           width: 40px;
           /* Smaller icon size for mobile */
           height: 40px;
-          /* Maintain aspect ratio */
         }
 
         .link-list img {
           max-width: 60%;
-          /* Reduce image size on mobile */
         }
 
         h2 {
           font-size: 1.3em;
-          /* Smaller heading size */
         }
       }
     </style>
     <script>
       document.addEventListener('DOMContentLoaded', function() {
         // Minimum time the preloader should be displayed (in milliseconds)
-        const minimumDisplayTime = 2000; // 2 seconds
+        const minimumDisplayTime = 1000;
         // Calculate when to hide the preloader
         const startTime = performance.now();
         // Function to hide the preloader
@@ -218,7 +212,6 @@
           if (elapsedTime >= minimumDisplayTime) {
             hidePreloader();
           } else {
-            // If not enough time has passed, wait and check again
             setTimeout(hidePreloader, minimumDisplayTime - elapsedTime);
           }
         }
@@ -230,26 +223,26 @@
         const s2 = params.get('s2');
         const s3 = params.get('s3');
         // Toggle visibility of "Details" section (s1)
-        if (s1 === 'show') {
+        if (s1 === '1') {
           document.getElementById('details').classList.remove('hidden-section');
-        } else if (s1 === 'hide') {
+        } else if (s1 === '0') {
           document.getElementById('details').classList.add('hidden-section');
         }
         // Toggle visibility of "Portfolio" section (s2)
-        if (s2 === 'show') {
+        if (s2 === '1') {
           document.getElementById('portfolio').classList.remove('hidden-section');
-        } else if (s2 === 'hide') {
+        } else if (s2 === '0') {
           document.getElementById('portfolio').classList.add('hidden-section');
         }
         // Toggle visibility of "Contact" section (s3)
-        if (s3 === 'show') {
+        if (s3 === '1') {
           document.getElementById('contact').classList.remove('hidden-section');
-        } else if (s3 === 'hide') {
+        } else if (s3 === '0') {
           document.getElementById('contact').classList.add('hidden-section');
         }
       });
       window.addEventListener('scroll', function() {
-        let scrollPercent = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
+        let scrollPercent = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 25;
         let opacity = scrollPercent / 100;
         document.querySelector('.background-image').style.opacity = opacity;
       });
@@ -275,92 +268,99 @@
       <ul class="link-list">
         <li class="link-item">
           <a href="https://linkedin.com/in/dindgeri">
-            <img src="https://www.svgrepo.com/show/107599/placeholder.svg" alt="LinkedIn"> LinkedIn </a>
+            <img src="https://www.svgrepo.com/show/303172/linkedin-logo.svg" alt="LinkedIn" class="details-image">
+            <br>LinkedIn </a>
         </li>
         <li class="link-item">
-          <a href="https://cryptojobslist.com/@crescendoll">
-            <img src="https://www.svgrepo.com/show/107599/placeholder.svg" alt="Crypto Jobs"> Crypto Jobs </a>
-        </li>
-        <li class="link-item">
-          <a href="https://cv.dindgeri.github.io">
-            <img src="https://www.svgrepo.com/show/107599/placeholder.svg" alt="CV"> CV </a>
-        </li>
-        <li class="link-item">
-          <a href="https://github.com/dindgeri">
-            <img src="https://www.svgrepo.com/show/107599/placeholder.svg" alt="GitHub"> GitHub </a>
+          <a href="https://www.coursera.org/user/dindgeri">
+            <img src="https://www.svgrepo.com/show/107599/placeholder.svg" alt="Coursera" class="details-image">
+            <br>Coursera </a>
         </li>
       </ul>
     </div>
     <!-- Portfolio Section -->
     <div id="portfolio" class="section">
       <h2>Portfolio</h2>
-      <div class="link-list">
-        <!-- LayerX -->
-        <div class="link-item">
-          <a href="https://x.com/LayerXlab/status/1631319074142576640" target="_blank">
-            <img src="https://i.pinimg.com/originals/42/64/a4/4264a4ba598c17ef23685260a13bd849.gif" alt="LayerX">
-          </a>
-          <p>LayerX</p>
-          <a href="https://t.me/LayerX_Labs/301595/302312" target="_blank">Telegram</a> | <a href="https://open.spotify.com/show/4dCGQWq4SzBLc6RBYoTeKm" target="_blank">Spotify</a>
-        </div>
-        <!-- TAIKAI Network -->
-        <div class="link-item">
-          <a href="https://mega.nz/file/31F0FQgY#RtTiKkWl75apLNRrixCk3azrCcf4wrhsxr3C5KT0x5c" target="_blank">
-            <img src="https://i.pinimg.com/originals/42/64/a4/4264a4ba598c17ef23685260a13bd849.gif" alt="TAIKAI Network">
-          </a>
-          <p>TAIKAI Network</p>
-          <a href="https://t.me/TAIKAIteam/363" target="_blank">Telegram</a> | <a href="https://open.spotify.com/show/4dCGQWq4SzBLc6RBYoTeKm" target="_blank">Spotify</a>
-        </div>
-        <!-- Polkamarkets -->
-        <div class="link-item">
-          <a href="https://www.polkamarkets.com/" target="_blank">
-            <img src="https://i.pinimg.com/originals/42/64/a4/4264a4ba598c17ef23685260a13bd849.gif" alt="Polkamarkets">
-          </a>
-          <p>Polkamarkets</p>
-          <a href="https://t.me/Polkamarkets" target="_blank">Telegram</a> | <a href="https://www.instagram.com/polkamarkets" target="_blank">Instagram</a>
-        </div>
-        <!-- Bepro Network -->
-        <div class="link-item">
-          <a href="https://bepro.network/" target="_blank">
-            <img src="https://i.pinimg.com/originals/42/64/a4/4264a4ba598c17ef23685260a13bd849.gif" alt="Bepro Network">
-          </a>
-          <p>Bepro Network</p>
-          <a href="https://t.me/BeproNetwork" target="_blank">Telegram</a> | <a href="https://open.spotify.com/show/4dCGQWq4SzBLc6RBYoTeKm" target="_blank">Spotify</a>
-        </div>
-        <!-- Add more projects as needed -->
-      </div>
+      <ul class="link-list">
+        <li class="link-item">
+          <a href="https://www.youtube.com/watch?v=BeproNetworkVideo">
+            <img src="https://media.giphy.com/media/xT1XGJ3KhpMQM2BpuI/giphy.gif" alt="Bepro Network" class="portfolio-image" />
+            <br>Bepro Network </a>
+        </li>
+        <li class="link-item">
+          <a href="https://www.youtube.com/watch?v=LayerXVideo">
+            <img src="https://media.giphy.com/media/3o7TKL9hQy50pouH6M/giphy.gif" alt="LayerX" class="portfolio-image" />
+            <br>LayerX </a>
+        </li>
+        <li class="link-item">
+          <a href="https://www.youtube.com/watch?v=TAIKAI_Network_Video">
+            <img src="https://media.giphy.com/media/3o6Ztbiuq8DiDgV8F6/giphy.gif" alt="TAIKAI Network" class="portfolio-image" />
+            <br>TAIKAI Network </a>
+        </li>
+        <li class="link-item">
+          <a href="https://www.youtube.com/watch?v=PolkamarketsVideo">
+            <img src="https://media.giphy.com/media/3o7TKlZB1D7tV6VQ6A/giphy.gif" alt="Polkamarkets" class="portfolio-image" />
+            <br>Polkamarkets </a>
+        </li>
+        <li class="link-item">
+          <a href="https://www.youtube.com/watch?v=TatumVideo">
+            <img src="https://media.giphy.com/media/3o7TKZVZpY7eKT7eyE/giphy.gif" alt="Tatum" class="portfolio-image" />
+            <br>Tatum </a>
+        </li>
+        <li class="link-item">
+          <a href="https://www.youtube.com/watch?v=ShutterNetworkVideo">
+            <img src="https://media.giphy.com/media/3o7TKMkeLlK9B0zW3O/giphy.gif" alt="Shutter Network" class="portfolio-image" />
+            <br>Shutter Network </a>
+        </li>
+        <li class="link-item">
+          <a href="https://www.youtube.com/watch?v=ClusterVideo">
+            <img src="https://media.giphy.com/media/3o7TKFYXEvE5dUtG6M/giphy.gif" alt="Cluster Protocol" class="portfolio-image" />
+            <br>Cluster Protocol </a>
+        </li>
+        <li class="link-item">
+          <a href="https://www.youtube.com/watch?v=TalismanVideo">
+            <img src="https://media.giphy.com/media/3o7TKH05z1uYYF8YgE/giphy.gif" alt="Talisman" class="portfolio-image" />
+            <br>Talisman </a>
+        </li>
+      </ul>
     </div>
     <!-- Contact Section -->
     <div id="contact" class="section">
       <h2>Contact Details</h2>
       <ul class="link-list">
-        <li>
+        <li class="link-item">
           <a href="https://wa.me/351967739724">
-            <img src="https://www.svgrepo.com/show/106976/whatsapp.svg" alt="WhatsApp" width="64" height="64" /> WhatsApp </a>
+            <img src="https://www.svgrepo.com/show/303150/whatsapp-symbol-logo.svg" alt="WhatsApp Contact" class="details-image">
+            <br>WhatsApp </a>
         </li>
-        <li>
+        <li class="link-item">
           <a href="https://x.com/joao_david_g">
-            <img src="https://www.svgrepo.com/show/106976/whatsapp.svg" alt="X.com" width="64" height="64" /> X.com </a>
+            <img src="https://uxwing.com/wp-content/themes/uxwing/download/brands-and-social-media/x-social-media-white-round-icon.png" alt="X.com Profile" class="details-image">
+            <br>X.com </a>
         </li>
-        <li>
+        <li class="link-item">
           <a href="https://t.me/crescendoll">
-            <img src="https://www.svgrepo.com/show/106976/whatsapp.svg" alt="Telegram" width="64" height="64" /> Telegram </a>
+            <img src="https://www.svgrepo.com/show/303292/telegram-logo.svg" alt="Telegram Chat" class="details-image">
+            <br>Telegram </a>
         </li>
-        <li>
+        <li class="link-item">
           <a href="https://github.com/dindgeri">
-            <img src="https://www.svgrepo.com/show/106976/whatsapp.svg" alt="GitHub" width="64" height="64" /> GitHub </a>
+            <img src="https://icones.pro/wp-content/uploads/2021/06/icone-github-bleu.png" alt="GitHub Profile" class="details-image">
+            <br>GitHub </a>
         </li>
-        <li>
+        <li class="link-item">
           <a href="mailto:joaodavid.org@gmail.com">
-            <img src="https://www.svgrepo.com/show/106976/whatsapp.svg" alt="Gmail" width="64" height="64" /> Gmail </a>
+            <img src="https://www.svgrepo.com/show/303161/gmail-icon-logo.svg" alt="Email Me" class="details-image">
+            <br>Gmail </a>
         </li>
-        <li>
+        <li class="link-item">
           <a href="https://cargocollective.com/joaodavid">
-            <img src="https://www.svgrepo.com/show/106976/whatsapp.svg" alt="Cargo" width="64" height="64" /> Cargo </a>
+            <img src="https://icons.veryicon.com/png/System/Cute%20Social%202014/Cargo%20Collective.png" alt="My Cargo Portfolio" class="details-image">
+            <br>Cargo </a>
         </li>
       </ul>
     </div>
     <!-- Background Image -->
-    <img class="background-image" src="https://i.postimg.cc/PrGXVDSw/601d0d1870920397ca33a8c84988c521.jpg" alt="Background">
+    <img src="https://wallpapercave.com/wp/wp2729921.gif" alt="Background" class="background-image" />
   </body>
 </html>

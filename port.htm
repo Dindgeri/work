@@ -3,7 +3,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>João David's Portfolio</title>
-
     <style>
       body {
         font-family: 'Roboto Condensed', Arial, sans-serif;
@@ -37,6 +36,36 @@
         pointer-events: none;
       }
 
+      #sphere-container {
+        width: 100px;
+        height: 100px;
+        perspective: 1000px;
+        position: relative;
+      }
+
+      @keyframes drawLines {
+
+        0%,
+        100% {
+          stroke-dashoffset: 150;
+        }
+
+        50% {
+          stroke-dashoffset: 0;
+        }
+      }
+
+      .sphere-line {
+        stroke: rgba(255, 255, 255, 0.8);
+        stroke-width: 1.5;
+        stroke-dasharray: 150;
+        stroke-dashoffset: 150;
+        animation: drawLines 4s ease-in-out infinite;
+        transform-origin: center;
+        fill: rgba(255, 255, 255, 0.3);
+        box-shadow: 0 0 10px rgba(255, 255, 255, 0.6);
+      }
+
       .section {
         margin-bottom: 40px;
         width: 100%;
@@ -51,51 +80,16 @@
         text-align: center;
       }
 
-      /* Contact Section */
       .link-list {
         display: flex;
         flex-wrap: wrap;
+        gap: 40px;
         justify-content: center;
-        list-style-type: none;
-        padding: 0;
-        gap: 20px;
       }
 
-      .link-list li {
-        text-align: center;
-      }
-
-      .link-list a {
-        color: white;
-        text-decoration: none;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        width: 80px;
-        height: 80px;
-        background-color: #1e1e1e;
-        border-radius: 15px;
-        transition: transform 0.3s, box-shadow 0.3s;
-      }
-
-      .link-list a:hover {
-        transform: scale(1.1);
-        box-shadow: 0 0 10px rgba(192, 192, 192, 0.7);
-      }
-
-      .link-list img {
-        width: 40px;
-        height: 40px;
-      }
-
-      .link-list span {
-        margin-top: 8px;
-        font-size: 0.9em;
-      }
-
-      /* Portfolio Section */
       .link-item {
+        flex: 0 1 calc(25% - 40px);
+        max-width: 200px;
         text-align: center;
         background-color: #1e1e1e;
         padding: 20px;
@@ -110,47 +104,53 @@
         box-shadow: 0 0 15px rgba(192, 192, 192, 0.7);
       }
 
-      .thumbnail-wrapper {
-        position: relative;
-        display: inline-block;
+      .link-item img {
+        width: 40px;
+        /* Placeholder SVG size */
+        height: 40px;
+        /* Maintain aspect ratio */
+        margin-bottom: 10px;
       }
 
-      .thumbnail {
-        width: 300px;
-        height: auto;
-        display: block;
-        transition: transform 0.3s ease;
-        border-radius: 10px;
-      }
-
-      .overlay {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 300px;
-        height: 100%;
-        opacity: 0;
-        transition: opacity 0.3s ease;
-        border-radius: 10px;
-      }
-
-      .thumbnail-wrapper:hover .thumbnail {
-        transform: scale(1.05);
-      }
-
-      .thumbnail-wrapper:hover .overlay {
-        opacity: 0.6;
+      .link-item a {
+        text-decoration: none;
+        color: #e0e0e0;
+        font-weight: bold;
       }
 
       iframe {
         display: block;
         margin: 0 auto;
         width: 420px;
+        /* Resized to 420px width */
         height: 315px;
+        /* Maintain aspect ratio */
+      }
+
+      .background-image {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+        opacity: 0;
+        transition: opacity 0.6s ease-out;
       }
 
       .hidden-section {
         display: none;
+      }
+
+      .link-list li {
+        display: flex;
+        align-items: center;
+        margin-bottom: 10px;
+      }
+
+      .link-list img {
+        margin-right: 10px;
+        /* Space between icon and text */
       }
 
       /* Mobile Styles */
@@ -159,67 +159,92 @@
           padding: 10px;
         }
 
-        .link-list {
-          flex-direction: column;
-          gap: 10px;
+        .section {
+          width: 100%;
+          /* Full width on mobile */
+          margin-bottom: 20px;
         }
 
-        .link-list a {
-          width: 60px;
-          height: 60px;
+        .link-list {
+          flex-direction: column;
+          /* Stack items vertically */
+          align-items: center;
+          /* Center align items */
+        }
+
+        .link-item {
+          flex: 1 1 100%;
+          /* Allow items to take full width */
+          max-width: none;
+          /* Remove max-width for mobile */
+          margin: 10px 0;
+          /* Add margin for spacing */
+        }
+
+        .link-item img {
+          width: 40px;
+          /* Smaller icon size for mobile */
+          height: 40px;
+          /* Maintain aspect ratio */
         }
 
         .link-list img {
-          width: 30px;
-          height: 30px;
+          max-width: 60%;
+          /* Reduce image size on mobile */
         }
 
-        .link-list span {
-          font-size: 0.8em;
+        h2 {
+          font-size: 1.3em;
+          /* Smaller heading size */
         }
       }
     </style>
-    
     <script>
       document.addEventListener('DOMContentLoaded', function() {
         // Minimum time the preloader should be displayed (in milliseconds)
         const minimumDisplayTime = 2000; // 2 seconds
+        // Calculate when to hide the preloader
         const startTime = performance.now();
-
+        // Function to hide the preloader
         function hidePreloader() {
           document.querySelector('.preloader').classList.add('hidden');
         }
-
+        // Check if minimum display time has elapsed, then hide the preloader
         function checkElapsedTime() {
           const elapsedTime = performance.now() - startTime;
           if (elapsedTime >= minimumDisplayTime) {
             hidePreloader();
           } else {
+            // If not enough time has passed, wait and check again
             setTimeout(hidePreloader, minimumDisplayTime - elapsedTime);
           }
         }
-
+        // Call the function to start checking elapsed time
         checkElapsedTime();
-
+        // Handle URL parameters to show/hide sections
         const params = new URLSearchParams(window.location.search);
-        const sectionMap = {
-          0: 'details',
-          1: 'portfolio',
-          2: 'contact'
-        };
-
-        Object.keys(sectionMap).forEach(index => {
-          const sectionState = params.get(index);
-          const sectionId = sectionMap[index];
-          
-          if (sectionState === 'show') {
-            document.getElementById(sectionId).classList.remove('hidden-section');
-          } else if (sectionState === 'hide') {
-            document.getElementById(sectionId).classList.add('hidden-section');
-          }
-        });
+        const section1 = params.get('section1');
+        const section2 = params.get('section2');
+        const section3 = params.get('section3');
+        // Toggle visibility of "Details" section (section1)
+        if (section1 === 'show') {
+          document.getElementById('details').classList.remove('hidden-section');
+        } else if (section1 === 'hide') {
+          document.getElementById('details').classList.add('hidden-section');
+        }
+        // Toggle visibility of "Portfolio" section (section2)
+        if (section2 === 'show') {
+          document.getElementById('portfolio').classList.remove('hidden-section');
+        } else if (section2 === 'hide') {
+          document.getElementById('portfolio').classList.add('hidden-section');
+        }
+        // Toggle visibility of "Contact" section (section3)
+        if (section3 === 'show') {
+          document.getElementById('contact').classList.remove('hidden-section');
+        } else if (section3 === 'hide') {
+          document.getElementById('contact').classList.add('hidden-section');
+        }
       });
-
       window.addEventListener('scroll', function() {
         let scrollPercent = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
         let opacity = scrollPercent / 100;
@@ -227,57 +252,111 @@
       });
     </script>
   </head>
-
   <body>
+    <!-- Preloader -->
+    <div class="preloader">
+      <div id="sphere-container">
+        <svg id="sphere" viewBox="0 0 100 100">
+          <circle class="sphere-line" cx="50" cy="50" r="40" fill="none" />
+          <circle class="sphere-line" cx="50" cy="50" r="30" fill="none" />
+          <circle class="sphere-line" cx="50" cy="50" r="20" fill="none" />
+          <line class="sphere-line" x1="10" y1="50" x2="90" y2="50" />
+          <line class="sphere-line" x1="50" y1="10" x2="50" y2="90" />
+        </svg>
+      </div>
+    </div>
+    <!-- Details Section -->
+    <div id="details" class="section">
+      <h2>Details</h2>
+      <iframe src="https://www.loom.com/embed/d2943922118f424ca8558b39e510cfa5" frameborder="0" allowfullscreen></iframe>
+      <ul class="link-list">
+        <li class="link-item">
+          <a href="https://linkedin.com/in/dindgeri">
+            <img src="https://www.svgrepo.com/show/107599/placeholder.svg" alt="LinkedIn"> LinkedIn </a>
+        </li>
+        <li class="link-item">
+          <a href="https://cryptojobslist.com/@crescendoll">
+            <img src="https://www.svgrepo.com/show/107599/placeholder.svg" alt="Crypto Jobs"> Crypto Jobs </a>
+        </li>
+        <li class="link-item">
+          <a href="https://cv.dindgeri.github.io">
+            <img src="https://www.svgrepo.com/show/107599/placeholder.svg" alt="CV"> CV </a>
+        </li>
+        <li class="link-item">
+          <a href="https://github.com/dindgeri">
+            <img src="https://www.svgrepo.com/show/107599/placeholder.svg" alt="GitHub"> GitHub </a>
+        </li>
+      </ul>
+    </div>
     <!-- Portfolio Section -->
     <div id="portfolio" class="section">
       <h2>Portfolio</h2>
-      <!-- Portfolio Items -->
+      <div class="link-list">
+        <!-- LayerX -->
+        <div class="link-item">
+          <a href="https://x.com/LayerXlab/status/1631319074142576640" target="_blank">
+            <img src="https://i.pinimg.com/originals/42/64/a4/4264a4ba598c17ef23685260a13bd849.gif" alt="LayerX">
+          </a>
+          <p>LayerX</p>
+          <a href="https://t.me/LayerX_Labs/301595/302312" target="_blank">Telegram</a> | <a href="https://open.spotify.com/show/4dCGQWq4SzBLc6RBYoTeKm" target="_blank">Spotify</a>
+        </div>
+        <!-- TAIKAI Network -->
+        <div class="link-item">
+          <a href="https://mega.nz/file/31F0FQgY#RtTiKkWl75apLNRrixCk3azrCcf4wrhsxr3C5KT0x5c" target="_blank">
+            <img src="https://i.pinimg.com/originals/42/64/a4/4264a4ba598c17ef23685260a13bd849.gif" alt="TAIKAI Network">
+          </a>
+          <p>TAIKAI Network</p>
+          <a href="https://t.me/TAIKAIteam/363" target="_blank">Telegram</a> | <a href="https://open.spotify.com/show/4dCGQWq4SzBLc6RBYoTeKm" target="_blank">Spotify</a>
+        </div>
+        <!-- Polkamarkets -->
+        <div class="link-item">
+          <a href="https://www.polkamarkets.com/" target="_blank">
+            <img src="https://i.pinimg.com/originals/42/64/a4/4264a4ba598c17ef23685260a13bd849.gif" alt="Polkamarkets">
+          </a>
+          <p>Polkamarkets</p>
+          <a href="https://t.me/Polkamarkets" target="_blank">Telegram</a> | <a href="https://www.instagram.com/polkamarkets" target="_blank">Instagram</a>
+        </div>
+        <!-- Bepro Network -->
+        <div class="link-item">
+          <a href="https://bepro.network/" target="_blank">
+            <img src="https://i.pinimg.com/originals/42/64/a4/4264a4ba598c17ef23685260a13bd849.gif" alt="Bepro Network">
+          </a>
+          <p>Bepro Network</p>
+          <a href="https://t.me/BeproNetwork" target="_blank">Telegram</a> | <a href="https://open.spotify.com/show/4dCGQWq4SzBLc6RBYoTeKm" target="_blank">Spotify</a>
+        </div>
+        <!-- Add more projects as needed -->
+      </div>
     </div>
-
     <!-- Contact Section -->
     <div id="contact" class="section">
       <h2>Contact Details</h2>
       <ul class="link-list">
         <li>
           <a href="https://wa.me/351967739724">
-            <img src="https://www.svgrepo.com/show/349407/whatsapp.svg" alt="WhatsApp" />
-            <span>WhatsApp</span>
-          </a>
+            <img src="https://www.svgrepo.com/show/106976/whatsapp.svg" alt="WhatsApp" width="64" height="64" /> WhatsApp </a>
         </li>
         <li>
           <a href="https://x.com/joao_david_g">
-            <img src="https://www.svgrepo.com/show/511830/x-logo.svg" alt="X.com" />
-            <span>X.com</span>
-          </a>
+            <img src="https://www.svgrepo.com/show/106976/whatsapp.svg" alt="X.com" width="64" height="64" /> X.com </a>
         </li>
         <li>
           <a href="https://t.me/crescendoll">
-            <img src="https://www.svgrepo.com/show/354443/telegram.svg" alt="Telegram" />
-            <span>Telegram</span>
-          </a>
+            <img src="https://www.svgrepo.com/show/106976/whatsapp.svg" alt="Telegram" width="64" height="64" /> Telegram </a>
         </li>
         <li>
           <a href="https://github.com/dindgeri">
-            <img src="https://www.svgrepo.com/show/475654/github-color.svg" alt="GitHub" />
-            <span>GitHub</span>
-          </a>
+            <img src="https://www.svgrepo.com/show/106976/whatsapp.svg" alt="GitHub" width="64" height="64" /> GitHub </a>
         </li>
         <li>
           <a href="mailto:joaodavid.org@gmail.com">
-            <img src="https://www.svgrepo.com/show/349501/gmail.svg" alt="Gmail" />
-            <span>Gmail</span>
-          </a>
+            <img src="https://www.svgrepo.com/show/106976/whatsapp.svg" alt="Gmail" width="64" height="64" /> Gmail </a>
         </li>
         <li>
           <a href="https://cargocollective.com/joaodavid">
-            <img src="https://www.svgrepo.com/show/354375/cargo.svg" alt="Cargo" />
-            <span>Cargo</span>
-          </a>
+            <img src="https://www.svgrepo.com/show/106976/whatsapp.svg" alt="Cargo" width="64" height="64" /> Cargo </a>
         </li>
       </ul>
     </div>
-
     <!-- Background Image -->
     <img class="background-image" src="https://i.postimg.cc/PrGXVDSw/601d0d1870920397ca33a8c84988c521.jpg" alt="Background">
   </body>

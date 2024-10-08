@@ -178,6 +178,24 @@
         margin-right: 10px;
       }
 
+      #contact .link-item {
+        flex: 0 1 160px;
+        /* Smaller size for the link-item box */
+        max-width: 160px;
+        /* Limit the max-width */
+        padding: 10px;
+        /* Reduced padding */
+      }
+
+      #contact .link-item img {
+        width: 50px;
+        /* Smaller width for the contact images */
+        height: 50px;
+        /* Ensure the height is proportional */
+        object-fit: contain;
+        /* Maintain the aspect ratio */
+      }
+
       /* Mobile Styles */
       @media (max-width: 768px) {
         body {

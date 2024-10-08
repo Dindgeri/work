@@ -1,322 +1,347 @@
 <!DOCTYPE html>
 <html lang="en">
-   <head>
-      <meta charset="UTF-8">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <title>João David's Portfolio</title>
-      <style>
-         body {
-         font-family: 'Roboto Condensed', Arial, sans-serif;
-         line-height: 1.6;
-         padding: 20px;
-         background-color: #121212;
-         color: #e0e0e0;
-         margin: 0;
-         display: flex;
-         flex-direction: column;
-         align-items: center;
-         transition: background-color 0.3s;
-         }
-         .preloader {
-         position: fixed;
-         top: 0;
-         left: 0;
-         width: 100%;
-         height: 100%;
-         background-color: #333;
-         display: flex;
-         justify-content: center;
-         align-items: center;
-         z-index: 1000;
-         transition: opacity 0.6s ease-out; /* Added transition */
-         }
-         .hidden {
-         opacity: 0;
-         pointer-events: none;
-         }
-         /* Styles for the SVG sphere */
-         #sphere-container {
-         width: 100px;
-         height: 100px;
-         perspective: 1000px; /* Perspective for 3D effect */
-         position: relative;
-         }
-         /* Keyframes for animating the lines */
-         @keyframes drawLines {
-         0%, 100% {
-         stroke-dashoffset: 150;
-         }
-         50% {
-         stroke-dashoffset: 0;
-         }
-         }
-         /* Styles for the lines */
-         .sphere-line {
-         stroke: rgba(255, 255, 255, 0.8);
-         stroke-width: 1.5;
-         stroke-dasharray: 150;
-         stroke-dashoffset: 150;
-         animation: drawLines 4s ease-in-out infinite;
-         transform-origin: center; /* Ensure transforms are centered */
-         transform-style: preserve-3d; /* Enable 3D transformations */
-         fill: rgba(255, 255, 255, 0.3); /* Fill color */
-         box-shadow: 0 0 10px rgba(255, 255, 255, 0.6); /* Shadow effect */
-         transition: fill 0.3s ease, box-shadow 0.3s ease; /* Transition for fill and shadow */
-         }
-         .section {
-         margin-bottom: 40px;
-         width: 100%;
-         max-width: 1200px;
-         }
-         .section h2 {
-         font-size: 1.5em;
-         margin-bottom: 15px;
-         text-transform: uppercase;
-         color: #bbb;
-         transition: color 0.3s;
-         text-align: center;
-         }
-         .link-list {
-         display: flex;
-         flex-wrap: wrap;
-         gap: 40px;
-         justify-content: center;
-         }
-         .link-item {
-         flex: 0 1 calc(25% - 40px);
-         max-width: 200px;
-         text-align: center;
-         background-color: #1e1e1e;
-         padding: 20px;
-         border-radius: 12px;
-         box-shadow: 0 0 10px rgba(192, 192, 192, 0.5);
-         transition: transform 0.3s, box-shadow 0.3s;
-         position: relative;
-         overflow: hidden;
-         }
-         .link-item:hover {
-         transform: scale(1.1);
-         box-shadow: 0 0 15px rgba(192, 192, 192, 0.7);
-         }
-         .link-item-content {
-         opacity: 1;
-         }
-         .link-item img {
-         max-width: 100%;
-         height: auto;
-         margin-bottom: 10px;
-         opacity: 1;
-         transition: transform 0.3s;
-         }
-         .link-item a {
-         text-decoration: none;
-         color: #e0e0e0;
-         font-weight: bold;
-         }
-         iframe {
-         display: block;
-         margin: 0 auto;
-         }
-         .background-image {
-         position: fixed;
-         top: 0;
-         left: 0;
-         width: 100%;
-         height: 100%;
-         z-index: -1;
-         opacity: 0;
-         transition: opacity 0.6s ease-out;
-         }
-      </style>
-   </head>
-   <body>
-      <div class="preloader">
-         <div id="sphere-container">
-            <svg id="sphere" viewBox="0 0 100 100">
-               <circle class="sphere-line" cx="50" cy="50" r="40" fill="none" />
-               <circle class="sphere-line" cx="50" cy="50" r="30" fill="none" />
-               <circle class="sphere-line" cx="50" cy="50" r="20" fill="none" />
-               <line class="sphere-line" x1="10" y1="50" x2="90" y2="50" />
-               <line class="sphere-line" x1="50" y1="10" x2="50" y2="90" />
-            </svg>
-         </div>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>João David's Portfolio</title>
+    <style>
+      body {
+        font-family: 'Archivo', 'Helvetica', sans-serif;
+        font-weight: 900;
+        line-height: 1.6;
+        padding: 20px;
+        background-color: #121212;
+        color: #e0e0e0;
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        transition: background-color 0.3s;
+      }
+
+      .preloader {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: #333;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 1000;
+        transition: opacity 0.6s ease-out;
+        /* Added transition */
+      }
+
+      .hidden {
+        opacity: 0;
+        pointer-events: none;
+      }
+
+      /* Styles for the SVG sphere */
+      #sphere-container {
+        width: 100px;
+        height: 100px;
+        perspective: 1000px;
+        /* Perspective for 3D effect */
+        position: relative;
+      }
+
+      /* Keyframes for animating the lines */
+      @keyframes drawLines {
+
+        0%,
+        100% {
+          stroke-dashoffset: 150;
+        }
+
+        50% {
+          stroke-dashoffset: 0;
+        }
+      }
+
+      /* Styles for the lines */
+      .sphere-line {
+        stroke: rgba(255, 255, 255, 0.8);
+        stroke-width: 1.5;
+        stroke-dasharray: 150;
+        stroke-dashoffset: 150;
+        animation: drawLines 4s ease-in-out infinite;
+        transform-origin: center;
+        /* Ensure transforms are centered */
+        transform-style: preserve-3d;
+        /* Enable 3D transformations */
+        fill: rgba(255, 255, 255, 0.3);
+        /* Fill color */
+        box-shadow: 0 0 10px rgba(255, 255, 255, 0.6);
+        /* Shadow effect */
+        transition: fill 0.3s ease, box-shadow 0.3s ease;
+        /* Transition for fill and shadow */
+      }
+
+      .section {
+        margin-bottom: 40px;
+        width: 100%;
+        max-width: 1200px;
+      }
+
+      .section h2 {
+        font-size: 1.5em;
+        margin-bottom: 15px;
+        text-transform: uppercase;
+        color: #bbb;
+        transition: color 0.3s;
+        text-align: center;
+      }
+
+      .link-list {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 40px;
+        justify-content: center;
+      }
+
+      .link-item {
+        flex: 0 1 calc(25% - 40px);
+        max-width: 200px;
+        text-align: center;
+        background-color: #1e1e1e;
+        padding: 20px;
+        border-radius: 12px;
+        box-shadow: 0 0 10px rgba(192, 192, 192, 0.5);
+        transition: transform 0.3s, box-shadow 0.3s;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .link-item:hover {
+        transform: scale(1.1);
+        box-shadow: 0 0 15px rgba(192, 192, 192, 0.7);
+      }
+
+      .link-item-content {
+        opacity: 1;
+      }
+
+      .link-item img {
+        max-width: 100%;
+        height: auto;
+        margin-bottom: 10px;
+        opacity: 1;
+        transition: transform 0.3s;
+      }
+
+      .link-item a {
+        text-decoration: none;
+        color: #e0e0e0;
+        font-weight: bold;
+      }
+
+      iframe {
+        display: block;
+        margin: 0 auto;
+      }
+
+      .background-image {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+        opacity: 0;
+        transition: opacity 0.6s ease-out;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="preloader">
+      <div id="sphere-container">
+        <svg id="sphere" viewBox="0 0 100 100">
+          <circle class="sphere-line" cx="50" cy="50" r="40" fill="none" />
+          <circle class="sphere-line" cx="50" cy="50" r="30" fill="none" />
+          <circle class="sphere-line" cx="50" cy="50" r="20" fill="none" />
+          <line class="sphere-line" x1="10" y1="50" x2="90" y2="50" />
+          <line class="sphere-line" x1="50" y1="10" x2="50" y2="90" />
+        </svg>
       </div>
-      <div class="section">
-         <h2>Online Portfolio</h2>
-         <div class="link-list">
-            <iframe width="80%" height="540" src="https://www.loom.com/embed/d2943922118f424ca8558b39e510cfa5" frameborder="0" allowfullscreen></iframe>
-         </div>
-         <div class="link-list">
-            <a href="https://loom.com/share/d2943922118f424ca8558b39e510cfa5">Loom</a>
-         </div>
+    </div>
+    <div class="section">
+      <h2>Online Portfolio</h2>
+      <div class="link-list">
+        <iframe width="80%" height="540" src="https://www.loom.com/embed/d2943922118f424ca8558b39e510cfa5" frameborder="0" allowfullscreen></iframe>
       </div>
-      <div class="section">
-         <h2>Social Outlets</h2>
-         <div class="link-list">
-            <div class="link-item">
-               <div class="link-item-content">
-                  <img src="https://i.postimg.cc/0yCqMwPg/image.png" alt="Behance Logo">
-                  <a href="https://be.net/joaodavid">Behance</a>
-               </div>
-            </div>
-            <div class="link-item">
-               <div class="link-item-content">
-                  <img src="https://i.postimg.cc/gjygS3Mm/image.png" alt="YouTube Logo">
-                  <a href="https://youtube.com/@lylatsys">YouTube</a>
-               </div>
-            </div>
-            <div class="link-item">
-               <div class="link-item-content">
-                  <img src="https://i.postimg.cc/sx2JcbZ9/image.png" alt="X.com Logo">
-                  <a href="https://x.com/joao_david_g">X.com</a>
-               </div>
-            </div>
-            <div class="link-item">
-               <div class="link-item-content">
-                  <img src="https://i.postimg.cc/SsbyQQVj/image.png" alt="LinkedIn Logo">
-                  <a href="https://linkedin.com/in/dindgeri">LinkedIn</a>
-               </div>
-            </div>
-            <div class="link-item">
-               <div class="link-item-content">
-                  <img src="https://i.postimg.cc/pdNqH0gR/image.png" alt="Instagram Logo">
-                  <a href="https://instagram.com/lylatsys">Instagram</a>
-               </div>
-            </div>
-            <div class="link-item">
-               <div class="link-item-content">
-                  <img src="https://i.postimg.cc/66RRsWB2/image.png" alt="Reddit Logo">
-                  <a href="https://www.reddit.com/u/instastella">Reddit</a>
-               </div>
-            </div>
-            <div class="link-item">
-               <div class="link-item-content">
-                  <img src="https://i.postimg.cc/159BRnCV/image.png" alt="Product Hunt Logo">
-                  <a href="https://producthunt.com/@crescendoll">Product Hunt</a>
-               </div>
-            </div>
-            <div class="link-item">
-               <div class="link-item-content">
-                  <img src="https://i.postimg.cc/7YKY1kPQ/image.png" alt="GitHub Logo">
-                  <a href="https://github.com/dindgeri">GitHub</a>
-               </div>
-            </div>
-         </div>
+      <div class="link-list">
+        <a href="https://loom.com/share/d2943922118f424ca8558b39e510cfa5">Loom</a>
       </div>
-      <div class="section">
-         <h2>Web3 Platforms</h2>
-         <div class="link-list">
-            <div class="link-item">
-               <div class="link-item-content">
-                  <img src="https://i.postimg.cc/SxnWjWWR/image.png" alt="Audius $AUDIO Logo">
-                  <a href="https://audius.co/joaodavid">Audius $AUDIO</a>
-               </div>
-            </div>
-            <div class="link-item">
-               <div class="link-item-content">
-                  <img src="https://i.postimg.cc/1t7mgN0R/image.png" alt="Blockchain Works Logo">
-                  <a href="https://blockchain.works-hub.com/users/d542f0d9-61d5-4188-8561-4317f60091ca">Blockchain Works</a>
-               </div>
-            </div>
-            <div class="link-item">
-               <div class="link-item-content">
-                  <img src="https://cryptojobslist.com/favicon.ico" alt="CryptoJobsList Logo">
-                  <a href="https://cryptojobslist.com/@crescendoll">CryptoJobsList</a>
-               </div>
-            </div>
-         </div>
+    </div>
+    <div class="section">
+      <h2>Social Outlets</h2>
+      <div class="link-list">
+        <div class="link-item">
+          <div class="link-item-content">
+            <img src="https://i.postimg.cc/0yCqMwPg/image.png" alt="Behance Logo">
+            <a href="https://be.net/joaodavid">Behance</a>
+          </div>
+        </div>
+        <div class="link-item">
+          <div class="link-item-content">
+            <img src="https://i.postimg.cc/gjygS3Mm/image.png" alt="YouTube Logo">
+            <a href="https://youtube.com/@lylatsys">YouTube</a>
+          </div>
+        </div>
+        <div class="link-item">
+          <div class="link-item-content">
+            <img src="https://i.postimg.cc/sx2JcbZ9/image.png" alt="X.com Logo">
+            <a href="https://x.com/joao_david_g">X.com</a>
+          </div>
+        </div>
+        <div class="link-item">
+          <div class="link-item-content">
+            <img src="https://i.postimg.cc/SsbyQQVj/image.png" alt="LinkedIn Logo">
+            <a href="https://linkedin.com/in/dindgeri">LinkedIn</a>
+          </div>
+        </div>
+        <div class="link-item">
+          <div class="link-item-content">
+            <img src="https://i.postimg.cc/pdNqH0gR/image.png" alt="Instagram Logo">
+            <a href="https://instagram.com/lylatsys">Instagram</a>
+          </div>
+        </div>
+        <div class="link-item">
+          <div class="link-item-content">
+            <img src="https://i.postimg.cc/66RRsWB2/image.png" alt="Reddit Logo">
+            <a href="https://www.reddit.com/u/instastella">Reddit</a>
+          </div>
+        </div>
+        <div class="link-item">
+          <div class="link-item-content">
+            <img src="https://i.postimg.cc/159BRnCV/image.png" alt="Product Hunt Logo">
+            <a href="https://producthunt.com/@crescendoll">Product Hunt</a>
+          </div>
+        </div>
+        <div class="link-item">
+          <div class="link-item-content">
+            <img src="https://i.postimg.cc/7YKY1kPQ/image.png" alt="GitHub Logo">
+            <a href="https://github.com/dindgeri">GitHub</a>
+          </div>
+        </div>
       </div>
-      <div class="section">
-         <h2>Contact Details</h2>
-         <div class="link-list">
-            <div class="link-item">
-               <div class="link-item-content">
-                  <img src="https://i.postimg.cc/25v9Lp41/image.png" alt="Telegram Logo">
-                  <a href="https://t.me/crescendoll">Telegram</a>
-               </div>
-            </div>
-            <div class="link-item">
-               <div class="link-item-content">
-                  <img src="https://i.postimg.cc/5yHx8NpB/image.png" alt="WhatsApp Logo">
-                  <a href="https://wa.me/351967739724">WhatsApp</a>
-               </div>
-            </div>
-         </div>
+    </div>
+    <div class="section">
+      <h2>Web3 Platforms</h2>
+      <div class="link-list">
+        <div class="link-item">
+          <div class="link-item-content">
+            <img src="https://i.postimg.cc/SxnWjWWR/image.png" alt="Audius $AUDIO Logo">
+            <a href="https://audius.co/joaodavid">Audius $AUDIO</a>
+          </div>
+        </div>
+        <div class="link-item">
+          <div class="link-item-content">
+            <img src="https://i.postimg.cc/1t7mgN0R/image.png" alt="Blockchain Works Logo">
+            <a href="https://blockchain.works-hub.com/users/d542f0d9-61d5-4188-8561-4317f60091ca">Blockchain Works</a>
+          </div>
+        </div>
+        <div class="link-item">
+          <div class="link-item-content">
+            <img src="https://cryptojobslist.com/favicon.ico" alt="CryptoJobsList Logo">
+            <a href="https://cryptojobslist.com/@crescendoll">CryptoJobsList</a>
+          </div>
+        </div>
       </div>
-      <div class="section">
-         <h2>Samples of meme content</h2>
-         <div class="link-list">
-            <div class="link-item">
-               <div class="link-item-content">
-                  <img src="https://i.postimg.cc/YSbG30NZ/image.png" alt="LayerX.xyz Logo">
-                  <a href="https://t.me/LayerX_Labs/301595/302312">LayerX.xyz</a>
-               </div>
-            </div>
-            <div class="link-item">
-               <div class="link-item-content">
-                  <img src="https://i.postimg.cc/HxnJPmBx/image.png" alt="Bepro Network $BEPRO Logo">
-                  <a href="https://instagram.com/p/CgUTvKntbGt">Bepro Network $BEPRO</a>
-               </div>
-            </div>
-            <div class="link-item">
-               <div class="link-item-content">
-                  <img src="https://i.postimg.cc/HxnJPmBx/image.png" alt="Bepro Network $BEPRO Logo">
-                  <a href="https://x.com/bepronet/status/1689236366595604481">Bepro Network $BEPRO</a>
-               </div>
-            </div>
-         </div>
+    </div>
+    <div class="section">
+      <h2>Contact Details</h2>
+      <div class="link-list">
+        <div class="link-item">
+          <div class="link-item-content">
+            <img src="https://i.postimg.cc/25v9Lp41/image.png" alt="Telegram Logo">
+            <a href="https://t.me/crescendoll">Telegram</a>
+          </div>
+        </div>
+        <div class="link-item">
+          <div class="link-item-content">
+            <img src="https://i.postimg.cc/5yHx8NpB/image.png" alt="WhatsApp Logo">
+            <a href="https://wa.me/351967739724">WhatsApp</a>
+          </div>
+        </div>
       </div>
-      <div class="section">
-         <h2>Samples of community engagement</h2>
-         <div class="link-list">
-            <div class="link-item">
-               <div class="link-item-content">
-                  <img src="https://i.postimg.cc/sx2JcbZ9/image.png" alt="Community Talk: Roadmap 2023 - TAIKAI Labs & Bepro Network Logo">
-                  <a href="https://x.com/i/spaces/1yNxaJmDweZx">Community Talk: Roadmap 2023 - TAIKAI Labs & Bepro Network</a>
-               </div>
-            </div>
-            <div class="link-item">
-               <div class="link-item-content">
-                  <img src="https://i.postimg.cc/bYGgZfpp/image.png" alt="Community Space talks: The Gritty Resurgence - TAIKAI Labs & Bepro Network Logo">
-                  <a href="https://x.com/i/spaces/1yNxaJmDweZx">Community Space talks: The Gritty Resurgence - TAIKAI Labs & Bepro Network</a>
-               </div>
-            </div>
-         </div>
+    </div>
+    <div class="section">
+      <h2>Samples of meme content</h2>
+      <div class="link-list">
+        <div class="link-item">
+          <div class="link-item-content">
+            <img src="https://i.postimg.cc/YSbG30NZ/image.png" alt="LayerX.xyz Logo">
+            <a href="https://t.me/LayerX_Labs/301595/302312">LayerX.xyz</a>
+          </div>
+        </div>
+        <div class="link-item">
+          <div class="link-item-content">
+            <img src="https://i.postimg.cc/HxnJPmBx/image.png" alt="Bepro Network $BEPRO Logo">
+            <a href="https://instagram.com/p/CgUTvKntbGt">Bepro Network $BEPRO</a>
+          </div>
+        </div>
+        <div class="link-item">
+          <div class="link-item-content">
+            <img src="https://i.postimg.cc/HxnJPmBx/image.png" alt="Bepro Network $BEPRO Logo">
+            <a href="https://x.com/bepronet/status/1689236366595604481">Bepro Network $BEPRO</a>
+          </div>
+        </div>
       </div>
-      <img class="background-image" src="https://i.postimg.cc/PrGXVDSw/601d0d1870920397ca33a8c84988c521.jpg" alt="Background Image">
-      <script>
-         document.addEventListener('DOMContentLoaded', function() {
-             // Minimum time the preloader should be displayed (in milliseconds)
-             const minimumDisplayTime = 2000; // 2 seconds
-         
-             // Calculate when to hide the preloader
-             const startTime = performance.now();
-         
-             // Function to hide the preloader
-             function hidePreloader() {
-                 document.querySelector('.preloader').classList.add('hidden');
-             }
-         
-             // Check if minimum display time has elapsed, then hide the preloader
-             function checkElapsedTime() {
-                 const elapsedTime = performance.now() - startTime;
-                 if (elapsedTime >= minimumDisplayTime) {
-                     hidePreloader();
-                 } else {
-                     // If not enough time has passed, wait and check again
-                     setTimeout(hidePreloader, minimumDisplayTime - elapsedTime);
-                 }
-             }
-         
-             // Call the function to start checking elapsed time
-             checkElapsedTime();
-         });
-         
-         window.addEventListener('scroll', function() {
-             let scrollPercent = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
-             let opacity = scrollPercent / 100;
-             document.querySelector('.background-image').style.opacity = opacity;
-         });
-      </script>
-   </body>
+    </div>
+    <div class="section">
+      <h2>Samples of community engagement</h2>
+      <div class="link-list">
+        <div class="link-item">
+          <div class="link-item-content">
+            <img src="https://i.postimg.cc/sx2JcbZ9/image.png" alt="Community Talk: Roadmap 2023 - TAIKAI Labs & Bepro Network Logo">
+            <a href="https://x.com/i/spaces/1yNxaJmDweZx">Community Talk: Roadmap 2023 - TAIKAI Labs & Bepro Network</a>
+          </div>
+        </div>
+        <div class="link-item">
+          <div class="link-item-content">
+            <img src="https://i.postimg.cc/bYGgZfpp/image.png" alt="Community Space talks: The Gritty Resurgence - TAIKAI Labs & Bepro Network Logo">
+            <a href="https://x.com/i/spaces/1yNxaJmDweZx">Community Space talks: The Gritty Resurgence - TAIKAI Labs & Bepro Network</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <img class="background-image" src="https://i.postimg.cc/PrGXVDSw/601d0d1870920397ca33a8c84988c521.jpg" alt="Background Image">
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        const minimumDisplayTime = 2000; // 2 seconds
+        const startTime = performance.now();
+        // Function to hide the preloader
+        function hidePreloader() {
+          document.querySelector('.preloader').classList.add('hidden');
+        }
+        // Check elapsed time and hide preloader when the minimum time and full loading have occurred
+        function checkElapsedTime() {
+          const elapsedTime = performance.now() - startTime;
+          if (elapsedTime >= minimumDisplayTime) {
+            hidePreloader();
+          } else {
+            setTimeout(hidePreloader, minimumDisplayTime - elapsedTime);
+          }
+        }
+        // Wait for full page load (including images and other resources)
+        window.onload = function() {
+          const elapsedTime = performance.now() - startTime;
+          if (elapsedTime >= minimumDisplayTime) {
+            hidePreloader(); // Hide immediately if time has passed
+          } else {
+            setTimeout(hidePreloader, minimumDisplayTime - elapsedTime); // Wait the remaining time
+          }
+        };
+      });
+      window.addEventListener('scroll', function() {
+        let scrollPercent = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
+        let opacity = scrollPercent / 100;
+        document.querySelector('.background-image').style.opacity = opacity;
+      });
+    </script>
+  </body>
 </html>

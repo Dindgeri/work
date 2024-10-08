@@ -250,6 +250,10 @@
           if (params.get('s1') === '0') {
             document.getElementById('details').classList.add('hidden-section');
           }
+          // Check if s2=0 in the URL
+          if (params.get('s2') === '0') {
+            document.getElementById('portfolio').classList.add('hidden-section');
+          }
           // Check if s3=0 in the URL
           if (params.get('s3') === '0') {
             document.getElementById('contact').classList.add('hidden-section');

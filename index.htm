@@ -146,9 +146,9 @@
       iframe {
         display: block;
         margin: auto auto;
-        width: 720px;
+        width: 100%;
         height: 540px;
-        max-width: 100%;
+        max-width: 720px;
         border-radius: 96px;
         overflow: hidden;
       }
@@ -243,13 +243,12 @@
       document.addEventListener('DOMContentLoaded', function() {
         // Minimum time the preloader should be displayed (in milliseconds)
         const minimumDisplayTime = 1000;
-        // Calculate when to hide the preloader
         const startTime = performance.now();
         // Function to hide the preloader
         function hidePreloader() {
           document.querySelector('.preloader').classList.add('hidden');
         }
-        // Check if minimum display time has elapsed, then hide the preloader
+        // Function to check the elapsed time and hide preloader
         function checkElapsedTime() {
           const elapsedTime = performance.now() - startTime;
           if (elapsedTime >= minimumDisplayTime) {
@@ -258,31 +257,11 @@
             setTimeout(hidePreloader, minimumDisplayTime - elapsedTime);
           }
         }
-        // Call the function to start checking elapsed time
-        checkElapsedTime();
-        // Handle URL parameters to show/hide sections
-        const params = new URLSearchParams(window.location.search);
-        const s1 = params.get('s1');
-        const s2 = params.get('s2');
-        const s3 = params.get('s3');
-        // Toggle visibility of "Details" section (s1)
-        if (s1 === '1') {
-          document.getElementById('details').classList.remove('hidden-section');
-        } else if (s1 === '0') {
-          document.getElementById('details').classList.add('hidden-section');
-        }
-        // Toggle visibility of "Portfolio" section (s2)
-        if (s2 === '1') {
-          document.getElementById('portfolio').classList.remove('hidden-section');
-        } else if (s2 === '0') {
-          document.getElementById('portfolio').classList.add('hidden-section');
-        }
-        // Toggle visibility of "Contact" section (s3)
-        if (s3 === '1') {
-          document.getElementById('contact').classList.remove('hidden-section');
-        } else if (s3 === '0') {
-          document.getElementById('contact').classList.add('hidden-section');
-        }
+        // Wait for window load before hiding the preloader
+        window.addEventListener('load', function() {
+          // Call the function to start checking elapsed time after the window has loaded
+          checkElapsedTime();
+        });
       });
       window.addEventListener('scroll', function() {
         let scrollPercent = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 25;

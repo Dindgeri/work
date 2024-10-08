@@ -241,6 +241,22 @@
     </style>
     <script>
       document.addEventListener('DOMContentLoaded', function() {
+        // Function to hide sections based on URL parameters
+        function hideSections() {
+          const params = new URLSearchParams(window.location.search);
+          // Check if s1=0 in the URL
+          if (params.get('s1') === '0') {
+            document.getElementById('details').classList.add('hidden-section');
+          }
+          // Check if s3=0 in the URL
+          if (params.get('s3') === '0') {
+            document.getElementById('contact').classList.add('hidden-section');
+          }
+        }
+        // Call the hideSections function when the page is loaded
+        hideSections();
+      });
+      document.addEventListener('DOMContentLoaded', function() {
         // Minimum time the preloader should be displayed (in milliseconds)
         const minimumDisplayTime = 1000;
         const startTime = performance.now();

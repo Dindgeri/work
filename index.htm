@@ -4,319 +4,273 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>João David's Portfolio</title>
     <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@900&display=swap?v=1" rel="stylesheet">
-    <style>
-      body {
-        font-family: 'Archivo', 'Helvetica', sans-serif;
-        font-weight: 900;
-        /* Ensure the black/bold weight */
-        line-height: 1.6;
-        padding: 20px;
-        background-color: #121212;
-        color: #e0e0e0;
-        margin: 0;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        transition: background-color 0.3s;
+<style>
+  body {
+    font-family: 'Archivo', 'Helvetica', sans-serif;
+    font-weight: 900;
+    line-height: 1.6;
+    padding: 20px;
+    background-color: #121212;
+    color: #e0e0e0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: background-color 0.3s;
+  }
+
+  .preloader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #333;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    transition: opacity 0.6s ease-out;
+  }
+
+  .hidden {
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  #sphere-container {
+    width: 100px;
+    height: 100px;
+    perspective: 1000px;
+    position: relative;
+  }
+
+  @keyframes drawLines {
+    0%, 100% {
+      stroke-dashoffset: 150;
+    }
+    50% {
+      stroke-dashoffset: 0;
+    }
+  }
+
+  .sphere-line {
+    stroke: rgba(255, 255, 255, 0.8);
+    stroke-width: 1.5;
+    stroke-dasharray: 150;
+    stroke-dashoffset: 150;
+    animation: drawLines 4s ease-in-out infinite;
+    transform-origin: center;
+    fill: rgba(255, 255, 255, 0.3);
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.6);
+  }
+
+  .section {
+    margin-bottom: 40px;
+    width: 100%;
+    max-width: 1200px;
+  }
+
+  .section h2 {
+    font-size: 1.5em;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+    color: #bbb;
+    text-align: center;
+  }
+
+  .link-item {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex: 0 1 240px;
+    max-width: 240px;
+    text-align: center;
+    background-color: #1e1e1e;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 0 10px rgba(192, 192, 192, 0.5);
+    transition: transform 0.3s, box-shadow 0.3s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .link-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding: 0;
+    justify-content: center;
+  }
+
+  .link-item:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 15px rgba(192, 192, 192, 0.7);
+  }
+
+  .details-image, .portfolio-image {
+    width: 60px;
+    height: 60px;
+    margin-bottom: 10px;
+    object-fit: cover;
+  }
+
+  .portfolio-image {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    object-fit: cover;
+  }
+
+  .link-item a {
+    text-decoration: none;
+    color: #e0e0e0;
+    font-weight: bold;
+  }
+
+  iframe {
+    display: block;
+    margin: auto auto;
+    width: 100%;
+    height: 540px;
+    max-width: 720px;
+    border-radius: 96px;
+    overflow: hidden;
+  }
+
+  .background-image {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    opacity: 0;
+    transition: opacity 0.6s ease-out;
+  }
+
+  .hidden-section {
+    display: none !important;
+  }
+
+  .link-list li {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+
+  .link-list img {
+    margin-right: 10px;
+  }
+
+  #contact .link-item {
+    flex: 0 1 160px;
+    max-width: 160px;
+    padding: 10px;
+    background-color: rgba(128, 128, 128, 0.1); /* 10% grey */
+    border-radius: 8px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  }
+
+  #contact .link-item img {
+    width: 50px;
+    height: 50px;
+    object-fit: contain;
+  }
+
+  #details, #contact {
+    background-color: rgba(128, 128, 128, 0.2); /* 20% grey */
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 0 10px rgba(192, 192, 192, 0.5);
+  }
+
+  /* Mobile Styles */
+  @media (max-width: 768px) {
+    body {
+      padding: 10px;
+    }
+
+    .section {
+      display: flex;
+      flex-wrap: wrap;
+      width: 100%;
+      margin-bottom: 20px;
+    }
+
+    .link-list {
+      flex-direction: row;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .link-item {
+      flex: 1 1 45%;
+      box-sizing: border-box;
+      margin: 10px 0;
+      padding: 15px;
+      max-width: 45%;
+      height: auto;
+    }
+
+    .link-item img {
+      width: 100%;
+      height: auto;
+      max-width: 100%;
+    }
+
+    .section h2 {
+      font-size: 1.4em;
+      margin-bottom: 10px;
+      text-transform: uppercase;
+      color: #bbb;
+      text-align: center;
+      width: 100%;
+    }
+  }
+</style>
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    // Function to hide sections based on URL parameters
+    function hideSections() {
+      const params = new URLSearchParams(window.location.search);
+      // Hide sections based on parameters
+      if (params.get('s1') === '0') document.getElementById('details').classList.add('hidden-section');
+      if (params.get('s2') === '0') document.getElementById('portfolio').classList.add('hidden-section');
+      if (params.get('s3') === '0') document.getElementById('contact').classList.add('hidden-section');
+    }
+
+    // Function to hide the preloader
+    function hidePreloader() {
+      document.querySelector('.preloader').classList.add('hidden');
+    }
+
+    const minimumDisplayTime = 1000; // Minimum time the preloader should be displayed (in milliseconds)
+    const startTime = performance.now();
+
+    function checkElapsedTime() {
+      const elapsedTime = performance.now() - startTime;
+      if (elapsedTime >= minimumDisplayTime) {
+        hidePreloader();
+      } else {
+        setTimeout(hidePreloader, minimumDisplayTime - elapsedTime);
       }
+    }
 
-      .preloader {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-color: #333;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        z-index: 1000;
-        transition: opacity 0.6s ease-out;
-      }
+    // Call the hideSections and preloader functions
+    hideSections();
+    window.addEventListener('load', checkElapsedTime);
+  });
 
-      .hidden {
-        opacity: 0;
-        pointer-events: none;
-      }
-
-      #sphere-container {
-        width: 100px;
-        height: 100px;
-        perspective: 1000px;
-        position: relative;
-      }
-
-      @keyframes drawLines {
-
-        0%,
-        100% {
-          stroke-dashoffset: 150;
-        }
-
-        50% {
-          stroke-dashoffset: 0;
-        }
-      }
-
-      .sphere-line {
-        stroke: rgba(255, 255, 255, 0.8);
-        stroke-width: 1.5;
-        stroke-dasharray: 150;
-        stroke-dashoffset: 150;
-        animation: drawLines 4s ease-in-out infinite;
-        transform-origin: center;
-        fill: rgba(255, 255, 255, 0.3);
-        box-shadow: 0 0 10px rgba(255, 255, 255, 0.6);
-      }
-
-      .section {
-        margin-bottom: 40px;
-        width: 100%;
-        max-width: 1200px;
-      }
-
-      .section h2 {
-        font-size: 1.5em;
-        margin-bottom: 15px;
-        text-transform: uppercase;
-        color: #bbb;
-        text-align: center;
-      }
-
-      .link-item {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        /* Ensure the content is centered */
-        flex: 0 1 240px;
-        max-width: 240px;
-        text-align: center;
-        background-color: #1e1e1e;
-        padding: 20px;
-        border-radius: 12px;
-        box-shadow: 0 0 10px rgba(192, 192, 192, 0.5);
-        transition: transform 0.3s, box-shadow 0.3s;
-        position: relative;
-        overflow: hidden;
-      }
-
-      .link-list {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 20px;
-        padding: 0;
-        /* Adjust gap between items */
-        justify-content: center;
-      }
-
-      .link-item:hover {
-        transform: scale(1.05);
-        box-shadow: 0 0 15px rgba(192, 192, 192, 0.7);
-      }
-
-      /* Details Section Image Styles */
-      .details-image {
-        width: 60px;
-        /* Set fixed width */
-        height: 60px;
-        /* Set fixed height */
-        margin-bottom: 10px;
-        object-fit: cover;
-        /* Ensures image fits without distortion */
-      }
-
-      /* Portfolio Section Image Styles */
-      .portfolio-image {
-        width: 100%;
-        /* Ensure images are responsive within the box */
-        max-width: 100%;
-        /* Prevents images from exceeding the box size */
-        height: auto;
-        /* Maintains the aspect ratio */
-        margin-bottom: 10px;
-        object-fit: cover;
-        /* Ensures the image fills the container appropriately */
-      }
-
-      .link-item a {
-        text-decoration: none;
-        color: #e0e0e0;
-        font-weight: bold;
-      }
-
-      iframe {
-        display: block;
-        margin: auto auto;
-        width: 100%;
-        height: 540px;
-        max-width: 720px;
-        border-radius: 96px;
-        overflow: hidden;
-      }
-
-      .background-image {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        z-index: -1;
-        opacity: 0;
-        transition: opacity 0.6s ease-out;
-      }
-
-      .hidden-section {
-        display: none !important;
-      }
-
-      .link-list li {
-        display: flex;
-        align-items: center;
-        margin-bottom: 10px;
-      }
-
-      .link-list img {
-        margin-right: 10px;
-      }
-
-      #contact .link-item {
-        flex: 0 1 160px;
-        /* Smaller size for the link-item box */
-        max-width: 160px;
-        /* Limit the max-width */
-        padding: 10px;
-        /* Reduced padding */
-        background-color: rgba(128, 128, 128, 0.1);
-        /* 10% grey */
-        border-radius: 8px;
-        /* Optional: to soften the box corners */
-        box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
-        /* Optional: a subtle shadow */
-      }
-
-      #contact .link-item img {
-        width: 50px;
-        /* Smaller width for the contact images */
-        height: 50px;
-        /* Ensure the height is proportional */
-        object-fit: contain;
-        /* Maintain the aspect ratio */
-      }
-
-      #details,
-      #contact {
-        background-color: rgba(128, 128, 128, 0.2);
-        /* 20% grey */
-        padding: 20px;
-        border-radius: 12px;
-        box-shadow: 0 0 10px rgba(192, 192, 192, 0.5);
-      }
-
-      /* Mobile Styles */
-      @media (max-width: 768px) {
-        body {
-          padding: 10px;
-        }
-
-        .section {
-          display: flex;
-          flex-wrap: wrap;
-          /* Allow boxes to wrap */
-          width: 100%;
-          margin-bottom: 20px;
-        }
-
-        .link-list {
-          flex-direction: row;
-          /* Ensure horizontal layout */
-          flex-wrap: wrap;
-          /* Allow items to wrap */
-          justify-content: space-between;
-          /* Space them evenly */
-          align-items: center;
-        }
-
-        .link-item {
-          flex: 1 1 45%;
-          /* Make each item take 45% of the width to stack 2 per row */
-          box-sizing: border-box;
-          margin: 10px 0;
-          padding: 10px;
-          max-width: 45%;
-          height: auto;
-          /* Remove fixed height to let the content define it */
-        }
-
-        .link-item img {
-          width: 100%;
-          height: auto;
-          max-width: 100%;
-          /* Adjust image sizing */
-        }
-
-        .section h2 {
-          font-size: 1.5em;
-          margin-bottom: 15px;
-          text-transform: uppercase;
-          color: #bbb;
-          text-align: center;
-          /* This will center the text */
-          width: 100%;
-          /* Ensures the heading spans full width */
-        }
-      }
-    </style>
-    <script>
-      document.addEventListener('DOMContentLoaded', function() {
-        // Function to hide sections based on URL parameters
-        function hideSections() {
-          const params = new URLSearchParams(window.location.search);
-          // Check if s1=0 in the URL
-          if (params.get('s1') === '0') {
-            document.getElementById('details').classList.add('hidden-section');
-          }
-          // Check if s2=0 in the URL
-          if (params.get('s2') === '0') {
-            document.getElementById('portfolio').classList.add('hidden-section');
-          }
-          // Check if s3=0 in the URL
-          if (params.get('s3') === '0') {
-            document.getElementById('contact').classList.add('hidden-section');
-          }
-        }
-        // Call the hideSections function when the page is loaded
-        hideSections();
-      });
-      document.addEventListener('DOMContentLoaded', function() {
-        // Minimum time the preloader should be displayed (in milliseconds)
-        const minimumDisplayTime = 1000;
-        const startTime = performance.now();
-        // Function to hide the preloader
-        function hidePreloader() {
-          document.querySelector('.preloader').classList.add('hidden');
-        }
-        // Function to check the elapsed time and hide preloader
-        function checkElapsedTime() {
-          const elapsedTime = performance.now() - startTime;
-          if (elapsedTime >= minimumDisplayTime) {
-            hidePreloader();
-          } else {
-            setTimeout(hidePreloader, minimumDisplayTime - elapsedTime);
-          }
-        }
-        // Wait for window load before hiding the preloader
-        window.addEventListener('load', function() {
-          // Call the function to start checking elapsed time after the window has loaded
-          checkElapsedTime();
-        });
-      });
-      window.addEventListener('scroll', function() {
-        let scrollPercent = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 25;
-        let opacity = scrollPercent / 100;
-        document.querySelector('.background-image').style.opacity = opacity;
-      });
-    </script>
+  // Scroll event listener to adjust background image opacity
+  window.addEventListener('scroll', function() {
+    let scrollPercent = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 25;
+    let opacity = scrollPercent / 100;
+    document.querySelector('.background-image').style.opacity = opacity;
+  });
+</script>
   </head>
   <body>
     <div class="preloader">

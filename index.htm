@@ -68,49 +68,17 @@
         box-shadow: 0 0 10px rgba(255, 255, 255, 0.6);
       }
 
-      .profile-container,
-      .profile,
       .section {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        margin-bottom: 40px;
         width: 100%;
         max-width: 1200px;
-        border: none;
-        box-shadow: none;
-      }
-
-      .profile-picture {
-        width: 120px;
-        height: 120px;
-        border-radius: 50%;
-        object-fit: cover;
-        border: 1px solid #e0e0e0;
-        box-shadow: 0 0 5px rgba(255, 255, 255, 0.3);
-        transition: box-shadow 0.3s;
-      }
-
-      .profile-picture:hover {
-        box-shadow: 0 0 25px rgba(255, 255, 255, 0.5);
-      }
-
-      .profile-heading {
-        font-size: 1em;
-        letter-spacing: 0.5em;
-        margin-top: 20px;
-        text-transform: uppercase;
-        text-align: center;
-        color: #e0e0e0;
       }
 
       .section h2 {
         font-size: 1.5em;
-        margin-bottom: 15px;
         text-transform: uppercase;
         color: #bbb;
         text-align: center;
-        letter-spacing: 0.25em;
+        letter-spacing: 0.5em;
       }
 
       .link-item {
@@ -118,7 +86,7 @@
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        flex: 1 1 240px;
+        flex: 0 1 240px;
         max-width: 240px;
         text-align: center;
         background-color: #1e1e1e;
@@ -145,10 +113,36 @@
 
       .details-image,
       .portfolio-image {
+        width: 60px;
+        height: 60px;
+        object-fit: cover;
+      }
+
+      .portfolio-image {
         width: 100%;
         max-width: 100%;
         height: auto;
         object-fit: cover;
+      }
+
+      .profile-picture {
+        width: 120px;
+        height: 120px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 1px solid #e0e0e0;
+        box-shadow: 0 0 5px rgba(255, 255, 255, 0.3);
+        transition: box-shadow 0.3s;
+      }
+
+      .profile-picture:hover {
+        box-shadow: 0 0 25px rgba(255, 255, 255, 0.5);
+      }
+
+      .profile-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
       }
 
       .link-item a {
@@ -159,7 +153,7 @@
 
       iframe {
         display: block;
-        margin: auto;
+        margin: auto auto;
         width: 100%;
         height: 270px;
         max-width: 480px;
@@ -186,11 +180,21 @@
         display: none !important;
       }
 
+      .link-list li {
+        display: flex;
+        align-items: center;
+      }
+
+      .link-list img {
+        margin-right: 10px;
+      }
+
       #contact .link-item {
-        flex: 1 1 160px;
+        flex: 0 1 160px;
         max-width: 160px;
         padding: 10px;
         background-color: rgba(128, 128, 128, 0.1);
+        /* 10% grey */
         border-radius: 8px;
         box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
       }
@@ -204,6 +208,7 @@
       #details,
       #contact {
         background-color: rgba(128, 128, 128, 0.2);
+        /* 20% grey */
         padding: 20px;
         border-radius: 12px;
         box-shadow: 0 0 10px rgba(192, 192, 192, 0.5);
@@ -215,6 +220,12 @@
           padding: 10px;
         }
 
+        .section {
+          display: flex;
+          flex-wrap: wrap;
+          width: 100%;
+        }
+
         .link-list {
           flex-direction: row;
           flex-wrap: wrap;
@@ -224,14 +235,21 @@
 
         .link-item {
           flex: 1 1 45%;
+          box-sizing: border-box;
           margin: 10px 0;
           padding: 15px;
           max-width: 45%;
+          height: auto;
+        }
+
+        .link-item img {
+          width: 100%;
+          height: auto;
+          max-width: 100%;
         }
 
         .section h2 {
           font-size: 1.4em;
-          margin-bottom: 10px;
           text-transform: uppercase;
           color: #bbb;
           text-align: center;
@@ -291,12 +309,15 @@
     <div id="details" class="section">
       <h2>Details</h2>
       <ul class="link-list">
-        <li class="link-item">
+        <li>
           <div class="profile-container">
             <img src="img/art.png" class="profile-picture">
-            <h1 class="profile-heading">João</h1>
-            <h1 class="profile-heading">David</h1>
+            <h2>João <br>
+              <span>David</span>
+            </h2>
           </div>
+        </li>
+        <li>
           <iframe src="https://loom.com/embed/f13623bb26d248b2bd71082cd0076c84?hideEmbedTopBar=true" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
         </li>
       </ul>

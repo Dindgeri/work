@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <title>Minterest Discord Mockup</title>
+      <style>
+         body {
+            display: flex;
+            font-family: Arial, sans-serif;
+            background-color: #2f3136;
+            color: white;
+            margin: 0;
+            height: 100vh;
+         }
+         .server-list {
+            width: 80px;
+            background-color: #202225;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 10px 0;
+         }
+         .server {
+            width: 50px;
+            height: 50px;
+            background-color: #5865f2;
+            border-radius: 50%;
+            margin: 10px 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: bold;
+            cursor: pointer;
+         }
+         .server.active {
+            border: 3px solid white;
+         }
+         .channel-list {
+            width: 250px;
+            background-color: #2f3136;
+            padding: 10px;
+            overflow-y: auto;
+            height: 100vh;
+         }
+         .channel {
+            padding: 8px 12px;
+            border-radius: 5px;
+            cursor: pointer;
+         }
+         .channel:hover,
+         .channel.active {
+            background-color: #40444b;
+         }
+         .chat-panel {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            background-color: #36393f;
+            padding: 20px;
+         }
+         .chat-history {
+            flex: 1;
+            background: #2f3136;
+            padding: 15px;
+            border-radius: 8px;
+            overflow-y: hidden;
+         }
+         .message {
+            background: #40444b;
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 10px;
+         }
+         .chat-input {
+            margin-top: 15px;
+            display: flex;
+         }
+         .chat-input input {
+            flex: 1;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            background-color: #40444b;
+            color: white;
+            font-size: 16px;
+         }
+
+         /* Mobile-specific styles */
+         @media (max-width: 768px) {
+            /* Server List */
+            .server-list {
+               width: 60px;
+               padding: 5px;
+               justify-content: flex-start;
+               flex-direction: row;
+               overflow-x: auto;
+            }
+
+            .server {
+               margin: 5px;
+               width: 40px;
+               height: 40px;
+            }
+
+            .server.active {
+               border: 2px solid white;
+            }
+
+            /* Channel List */
+            .channel-list {
+               width: 100%;
+               padding: 10px;
+               overflow-y: auto;
+               height: calc(100vh - 60px); /* Adjust height for mobile */
+               display: block;
+            }
+
+            .channel {
+               font-size: 14px;
+               padding: 6px;
+               border-radius: 5px;
+               cursor: pointer;
+               display: block;
+               width: 100%;
+            }
+
+            .channel:hover,
+            .channel.active {
+               background-color: #40444b;
+            }
+
+            .channel-list div strong {
+               font-size: 14px;
+            }
+
+            /* Chat Panel */
+            .chat-panel {
+               flex: 1;
+               display: flex;
+               flex-direction: column;
+               justify-content: space-between;
+               padding: 15px;
+               width: 100%;
+               background-color: #36393f;
+            }
+
+            .chat-history {
+               flex: 1;
+               background: #2f3136;
+               padding: 10px;
+               border-radius: 8px;
+               overflow-y: auto;
+               height: calc(100vh - 150px); /* Adjust height for mobile */
+            }
+
+            .message {
+               background: #40444b;
+               padding: 8px;
+               border-radius: 5px;
+               margin-bottom: 8px;
+            }
+
+            /* Chat Input */
+            .chat-input {
+               margin-top: 10px;
+               display: flex;
+            }
+
+            .chat-input input {
+               flex: 1;
+               padding: 10px;
+               font-size: 14px;
+               border-radius: 5px;
+               background-color: #40444b;
+               color: white;
+               border: none;
+            }
+         }
+
+         /* Small screen adjustments (portrait phones) */
+         @media (max-width: 480px) {
+            /* Server List (hidden or collapsed) */
+            .server-list {
+               width: 50px;
+               padding: 3px;
+               justify-content: flex-start;
+            }
+
+            .server {
+               width: 35px;
+               height: 35px;
+               margin: 3px;
+            }
+
+            /* Channel List */
+            .channel-list {
+               padding: 5px;
+               height: calc(100vh - 50px);
+               display: block;
+               font-size: 12px;
+            }
+
+            .channel {
+               font-size: 12px;
+               padding: 5px;
+            }
+
+            .chat-panel {
+               padding: 10px;
+            }
+
+            .chat-history {
+               padding: 8px;
+            }
+
+            .message {
+               padding: 6px;
+            }
+
+            .chat-input input {
+               padding: 8px;
+               font-size: 14px;
+            }
+         }
+      </style>
+   </head>
+   <body>
+      <div class="server-list">
+         <div class="server active" onclick="selectServer(this)">M</div>
+      </div>
+      <div class="channel-list">
+         <div class="channel" data-channel="town-hall" onclick="selectChannel(this)">🔊 Town Hall</div>
+
+         <div><strong>STATS</strong></div>
+         <div class="channel" data-channel="user-count" onclick="selectChannel(this)">🔊 User Count</div>
+         <div class="channel" data-channel="role-count" onclick="selectChannel(this)">🔊 Role Count</div>
+
+         <div><strong>WELCOME</strong></div>
+         <div class="channel" data-channel="read-the-rules" onclick="selectChannel(this)">#read-the-rules</div>
+         <div class="channel" data-channel="links-and-resources" onclick="selectChannel(this)">#links-and-resources</div>
+
+         <div><strong>PRIVATE</strong></div>
+         <div class="channel" data-channel="internal-chat" onclick="selectChannel(this)">#internal-chat</div>
+         <div class="channel" data-channel="new-joiners" onclick="selectChannel(this)">#new-joiners</div>
+         <div class="channel" data-channel="executive-ambassadors" onclick="selectChannel(this)">#executive-ambassadors</div>
+         <div class="channel" data-channel="inner-circle" onclick="selectChannel(this)">#inner-circle</div>
+         <div class="channel" data-channel="ambassadors" onclick="selectChannel(this)">#ambassadors</div>
+         <div class="channel" data-channel="nft-holder" onclick="selectChannel(this)">#nft-holder</div>
+
+         <div><strong>ANNOUNCEMENTS</strong></div>
+         <div class="channel" data-channel="updates" onclick="selectChannel(this)">#updates</div>
+         <div class="channel" data-channel="tweets" onclick="selectChannel(this)">#tweets</div>
+         <div class="channel" data-channel="tech-insights" onclick="selectChannel(this)">#tech-insights</div>
+
+         <div><strong>LOUNGE</strong></div>
+         <div class="channel" data-channel="senior-mintrepreneurs" onclick="selectChannel(this)">#senior-mintrepreneurs</div>
+         <div class="channel" data-channel="trouble-shooting" onclick="selectChannel(this)">#trouble-shooting</div>
+         <div class="channel" data-channel="message-board-chans" onclick="selectChannel(this)">#message-board-chans</div>
+         <div class="channel" data-channel="gm-gn" onclick="selectChannel(this)">#gm-gn</div>
+         <div class="channel" data-channel="general" onclick="selectChannel(this)">#general</div>
+         <div class="channel" data-channel="minty-meme" onclick="selectChannel(this)">#minty-meme</div>
+
+         <div><strong>SUPPORT</strong></div>
+         <div class="channel" data-channel="support" onclick="selectChannel(this)">#support</div>
+         <div class="channel" data-channel="private-help" onclick="selectChannel(this)">#private-help</div>
+         <div class="channel" data-channel="ticket-transcript" onclick="selectChannel(this)">#ticket-transcript</div>
+
+         <div><strong>INTERNATIONAL</strong></div>
+         <div class="channel" data-channel="russian" onclick="selectChannel(this)">#russian</div>
+         <div class="channel" data-channel="chinese" onclick="selectChannel(this)">#chinese</div>
+         <div class="channel" data-channel="korean" onclick="selectChannel(this)">#korean</div>
+
+         <div><strong>ARCHIVE</strong></div>
+         <div class="channel" data-channel="mnt-buyback-engine" onclick="selectChannel(this)">#mnt-buyback-engine</div>
+         <div class="channel" data-channel="onchain-liquidation-engine" onclick="selectChannel(this)">#onchain-liquidation-engine</div>
+         <div class="channel" data-channel="governance" onclick="selectChannel(this)">#governance</div>
+      </div>
+      <div class="chat-panel">
+         <div class="chat-history" id="chat-history">
+            <div class="message">Welcome to the chat! Select a channel.</div>
+         </div>
+         <div class="chat-input">
+            <input type="text" placeholder="Type a message..." />
+         </div>
+      </div>
+
+      <script>
+         const channelDescriptions = {
+            "town-hall": "Community talks",
+            "user-count": "Server stats",
+            "role-count": "Server stats",
+            "read-the-rules": "Server rules",
+            "links-and-resources": "Links (with descriptions)",
+            "internal-chat": "Bot interactions",
+            "new-joiners": "Bot logs (with Discord's welcome notifications)",
+            "executive-ambassadors": "Role-gated channel (ambassadors)",
+            "inner-circle": "Role-gated channel",
+            ambassadors: "Role-gated channel (ambassadors)",
+            "nft-holder": "Token-gated channel (booster holders)",
+            updates: "Announcement feed",
+            tweets: "𝕏 feed",
+            "tech-insights": "Minterest release notes",
+            "senior-mintrepreneurs": "Role-gated channel",
+            "trouble-shooting": "Forum channel",
+            "gm-gn": "🌤️ GM channel",
+            general: "General channel",
+            "minty-meme": "Internet memes (just for fun)",
+            support: "Support channel",
+            "private-help": "Ticketing channel",
+            "ticket-transcript": "Bot logs",
+            russian: "Russian-speaking members (no support or moderation)",
+            chinese: "Chinese-speaking members (no support or moderation)",
+            korean: "Korean-speaking members (no support or moderation)",
+            "mnt-buyback-engine": "Archived channel for Minterest's Buyback Engine",
+            "onchain-liquidation-engine": "Archived channel for Minterest's On-Chain Liquidation Engine",
+            governance: "Archived channel for ecosystem governance",
+         };
+
+         // Function to handle channel selection
+         function selectChannel(el) {
+            const channelName = el.getAttribute("data-channel"); // Get the channel's ID from the "data-channel" attribute
+            document.querySelectorAll(".channel").forEach((c) => c.classList.remove("active"));
+            el.classList.add("active");
+
+            // Use the channel ID to get the description from the `channelDescriptions` object
+            const description = channelDescriptions[channelName] || "No description available for this channel.";
+            document.getElementById("chat-history").innerHTML = `<div class='message'>${description}</div>`;
+         }
+      </script>
+   </body>
+</html>

@@ -145,3 +145,17 @@ footer {
     font-size: 14px;
     color: rgba(255, 255, 255, 0.7);
 }
+
+/* Mobile Breakpoint */
+@media (max-width: 768px) {
+    /* Adjust video grid to stack vertically on small screens */
+    .video-grid {
+        grid-template-columns: 1fr; /* Stack videos vertically */
+        width: 95%; /* Make it more mobile-friendly */
+    }
+
+    /* Adjust iframe size to fit mobile screens better */
+    iframe {
+        height: 180px; /* Adjust height for smaller screens */
+    }
+}

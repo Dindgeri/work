@@ -15,9 +15,8 @@ body {
     position: relative;
 }
 
-/* Overlay that stays in every section */
+/* Overlay that stays only within individual sections */
 .overlay {
-    content: '';
     position: absolute;
     top: 0;
     left: 0;

@@ -1,105 +1,212 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Specialized Video Editor with 10 years of experience in the Audiovisual field">
-    <meta name="author" content="Paulo Sousa">
-    <meta property="og:title" content="Paulo Sousa Edita | Video Editor Lisboa">
-    <meta property="og:description" content="Paulo Sousa Edita | Specialized Video Editor with 10 years of experience in the Audiovisual field. My experience covers the production of institutional videos, corporate videos, events, advertising, and documentaries.">
-    <meta property="og:image" content="https://static.wixstatic.com/media/4a8dc8_4614941a93d14a16817a8d8852acb6e4%7Emv2.png/v1/fit/w_2500,h_1330,al_c/4a8dc8_4614941a93d14a16817a8d8852acb6e4%7Emv2.png">
-    <meta property="og:url" content="https://paulosousaedita.wixsite.com/paulosousaedita">
-    <title>Paulo Sousa Edita | Video Editor Lisboa</title>
-    <link rel="stylesheet" href="styles.css">
-</head>
-<body>
-    <!-- Hamburger Menu -->
-    <div class="menu-toggle" onclick="toggleMenu()">
-        <span></span>
-        <span></span>
-        <span></span>
-    </div>
+/* Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Century Gothic', sans-serif;
+}
 
-    <!-- Navigation Menu -->
-    <nav>
-        <ul>
-            <li><a href="javascript:void(0);" onclick="showSection('bio')">Bio</a></li>
-            <li><a href="javascript:void(0);" onclick="showSection('videos')">Videos</a></li>
-            <li><a href="javascript:void(0);" onclick="showSection('contact')">Contact</a></li>
-        </ul>
-    </nav>
+/* Body */
+body {
+    color: #fff;
+    background-color: #000;
+    text-align: center;
+    overflow-x: hidden;
+}
 
-    <!-- Video Background Section -->
-    <div class="video-background">
-        <video id="background-video" autoplay muted loop playsinline>
-            <source src="https://video.wixstatic.com/video/4a8dc8_6b34b726dcba44109daff17281ff9572/1080p/mp4/file.mp4" type="video/mp4">
-        </video>
-        <!-- Overlay div with 80% transparent black background -->
-        <div class="overlay"></div>
-    </div>
+/* Video Background */
+.video-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: -1;
+}
 
-    <!-- Logo -->
-    <div class="logo">Paulo Sousa Edita</div>
+/* Overlay div with 80% transparent black background */
+.video-background .overlay {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    z-index: 1;
+}
 
-    <!-- Bio Section -->
-    <section id="bio" class="active">
-        <h2>Bio</h2>
-        <p>Paulo Sousa Edita | Specialized Video Editor with 10 years of experience in the Audiovisual field. My experience covers the production of institutional videos, corporate videos, events, advertising, and documentaries. Throughout my career, I have had the opportunity to work with a variety of renowned clients.</p>
-        <div class="circle-image">
-            <img src="https://static.wixstatic.com/media/11062b_5cc4d0122cc846e6bc3d54a74f196fe8~mv2.jpeg/v1/fill/w_1852,h_1804,al_c,q_90,usm_0.66_1.00_0.01,enc_avif,quality_auto/11062b_5cc4d0122cc846e6bc3d54a74f196fe8~mv2.jpeg" alt="Paulo Sousa" />
-        </div>
-    </section>
+/* Video Player */
+#background-video {
+    width: 100vw;
+    height: 100vh;
+    object-fit: cover;
+}
 
-    <!-- Videos Section -->
-    <section id="videos">
-        <h2>Videos</h2>
-        <div class="video-grid">
-            <iframe src="https://www.youtube.com/embed/JBmmzmO-o4I" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-            <iframe src="https://www.youtube.com/embed/qX78716Zttg" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-            <iframe src="https://www.youtube.com/embed/xMfmyRVnKl0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-            <iframe src="https://www.youtube.com/embed/AmuynWxJGk8" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-            <iframe src="https://www.youtube.com/embed/TfLlmF_bShM" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-            <iframe src="https://www.youtube.com/embed/CnnOu53_VPY" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-            <iframe src="https://www.youtube.com/embed/-OwdaD7HWQE" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-        </div>
-    </section>
+/* Video Background in Contact Section */
+.video-background-contact {
+    position: relative;
+}
 
-    <!-- Contact Section -->
-    <section id="contact">
-        <div class="video-background-contact">
-            <video autoplay muted loop playsinline>
-                <source src="https://video.wixstatic.com/video/4a8dc8_6b34b726dcba44109daff17281ff9572/1080p/mp4/file.mp4" type="video/mp4">
-            </video>
-            <div class="overlay"></div>
-        </div>
-        <div class="social-links">
-            <a href="mailto:linhosousa30@gmail.com" target="_blank">Email</a>
-            <a href="https://paulosousaedita.wixsite.com/paulosousaedita" target="_blank">Portfolio</a>
-            <a href="https://linkedin.com/in/linhosousa" target="_blank">LinkedIn</a>
-        </div>
-    </section>
+.video-background-contact video {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+}
 
-    <!-- Footer -->
-    <footer>
-        <p>&copy; 2025 Paulo Sousa Edita | All rights reserved.</p>
-    </footer>
+.video-background-contact .overlay {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    z-index: 1;
+}
 
-    <script>
-        // Toggle menu visibility on mobile
-        function toggleMenu() {
-            document.querySelector('nav ul').classList.toggle('active');
-        }
+/* Logo */
+.logo {
+    font-size: 3rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    margin: 2rem 0;
+}
 
-        // Show selected section
-        function showSection(sectionId) {
-            // Hide all sections
-            document.querySelectorAll('section').forEach(section => {
-                section.classList.remove('active');
-            });
+/* Navigation Menu */
+nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    padding: 20px;
+}
 
-            // Show the selected section
-            document.getElementById(sectionId).classList.add('active');
-        }
-    </script>
-</body>
-</html>
+nav ul li {
+    display: inline;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: #fff;
+    font-size: 1.2rem;
+    padding: 10px 20px;
+    border-radius: 5px;
+    transition: 0.3s;
+}
+
+nav ul li a:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+/* Section Display Toggle */
+section {
+    display: none;
+    padding: 5rem 2rem;
+}
+
+section.active {
+    display: block;
+}
+
+/* Bio Section */
+#bio {
+    text-align: center;
+}
+
+#bio p {
+    width: 60%;
+    margin: 0 auto;
+    line-height: 1.5;
+}
+
+#bio .circle-image {
+    width: 250px;
+    height: 250px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin: 20px auto;
+}
+
+#bio .circle-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Video Section */
+.video-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+    justify-items: center;
+    margin-top: 2rem;
+}
+
+.video-grid iframe {
+    width: 100%;
+    height: 200px;
+    border-radius: 12px;
+}
+
+/* Social Links */
+.social-links a {
+    color: #fff;
+    font-size: 1.1rem;
+    text-decoration: none;
+    padding: 10px 20px;
+    margin: 10px;
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.social-links a:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+/* Footer */
+footer {
+    padding: 1rem;
+    background: rgba(0, 0, 0, 0.8);
+    font-size: 0.9rem;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+}
+
+footer a {
+    color: #fff;
+    text-decoration: none;
+}
+
+footer a:hover {
+    text-decoration: underline;
+}
+
+/* Mobile Menu */
+@media screen and (max-width: 768px) {
+    nav ul {
+        display: none;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        position: absolute;
+        top: 60px;
+        background-color: rgba(0, 0, 0, 0.8);
+    }
+
+    nav ul li {
+        margin: 10px 0;
+    }
+
+    .menu-toggle {
+        display: flex;
+    }
+
+    nav ul.active {
+        display: flex;
+    }
+}

@@ -185,3 +185,12 @@ section.active {
         display: flex;
     }
 }
+
+/* Full-page Overlay for Sections with Background */
+.section-background .overlay {
+    z-index: 2; /* Make sure the overlay appears on top of the background image */
+}
+
+.video-background .overlay {
+    z-index: 2; /* Ensure overlay appears on top of video */
+}

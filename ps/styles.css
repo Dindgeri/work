@@ -45,14 +45,13 @@ body {
 }
 
 /* Video Background in Contact Section */
-.video-background-contact {
-    position: relative;
-}
-
 .video-background-contact video {
     width: 100%;
-    height: auto;
+    height: 100%;
     object-fit: cover;
+    position: absolute;
+    top: 0;
+    left: 0;
 }
 
 .video-background-contact .overlay {
@@ -150,22 +149,6 @@ section.active {
     border-radius: 12px;
 }
 
-/* Social Links */
-.social-links a {
-    color: #fff;
-    font-size: 1.1rem;
-    text-decoration: none;
-    padding: 10px 20px;
-    margin: 10px;
-    background-color: rgba(0, 0, 0, 0.5);
-    border-radius: 5px;
-    transition: background-color 0.3s;
-}
-
-.social-links a:hover {
-    background-color: rgba(255, 255, 255, 0.2);
-}
-
 /* Footer */
 footer {
     padding: 1rem;
@@ -205,17 +188,16 @@ footer a:hover {
         position: absolute;
         top: 60px;
         background-color: rgba(0, 0, 0, 0.8);
-    }
-
-    nav ul li {
-        margin: 10px 0;
-    }
-
-    .menu-toggle {
-        display: flex;
+        transition: transform 0.3s ease-out;
+        transform: translateY(-100%);
     }
 
     nav ul.active {
+        display: flex;
+        transform: translateY(0);
+    }
+
+    .menu-toggle {
         display: flex;
     }
 }

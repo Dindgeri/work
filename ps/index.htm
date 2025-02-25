@@ -34,7 +34,6 @@
         <video id="background-video" autoplay muted loop playsinline>
             <source src="https://video.wixstatic.com/video/4a8dc8_6b34b726dcba44109daff17281ff9572/1080p/mp4/file.mp4" type="video/mp4">
         </video>
-        <!-- Overlay div with 80% transparent black background -->
         <div class="overlay"></div>
     </div>
 
@@ -66,12 +65,6 @@
 
     <!-- Contact Section -->
     <section id="contact">
-        <div class="video-background-contact">
-            <video autoplay muted loop playsinline>
-                <source src="https://video.wixstatic.com/video/4a8dc8_6b34b726dcba44109daff17281ff9572/1080p/mp4/file.mp4" type="video/mp4">
-            </video>
-            <div class="overlay"></div>
-        </div>
         <div class="social-links">
             <a href="mailto:linhosousa30@gmail.com" target="_blank">Email</a>
             <a href="https://paulosousaedita.wixsite.com/paulosousaedita" target="_blank">Portfolio</a>
@@ -100,6 +93,36 @@
             // Show the selected section
             document.getElementById(sectionId).classList.add('active');
         }
+
+        // Change Background Video logic (no randomization anymore, just a constant video)
+        let videoSources = [
+            "https://video.wixstatic.com/video/4a8dc8_6b34b726dcba44109daff17281ff9572/1080p/mp4/file.mp4"
+        ];
+
+        let currentVideoIndex = 0;
+        const backgroundVideo = document.getElementById('background-video');
+
+        // The video will not change randomly anymore; it's static
+        backgroundVideo.src = videoSources[currentVideoIndex];
+
+        // Switch between video and image in Bio section
+        function toggleBackgroundForSection(sectionId) {
+            const bioImageDiv = document.getElementById('bio-image');
+            const bioVideoDiv = document.getElementById('bio-video');
+
+            if (sectionId === 'bio') {
+                bioImageDiv.style.display = 'block';
+                bioVideoDiv.style.display = 'none';
+            } else {
+                bioImageDiv.style.display = 'none';
+                bioVideoDiv.style.display = 'block';
+            }
+        }
+
+        // Call function for Bio section to load with image visible
+        window.onload = () => {
+            toggleBackgroundForSection('bio');
+        };
     </script>
 </body>
 </html>

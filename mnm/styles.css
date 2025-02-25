@@ -12,6 +12,19 @@ body {
     background-color: #000;
     text-align: center;
     overflow-x: hidden;
+    position: relative;
+}
+
+/* Overlay that stays in every section */
+.overlay {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    z-index: 1;
 }
 
 /* Background Video */
@@ -23,18 +36,6 @@ body {
     height: 100%;
     overflow: hidden;
     z-index: -1;
-}
-
-/* Overlay div with 80% transparent black background */
-.video-background .overlay {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.8);
-    z-index: 1; /* Ensure the overlay is above the iframe */
 }
 
 /* YouTube Video */
@@ -51,6 +52,7 @@ body {
     width: 100%;
     height: 100%;
     padding: 2rem;
+    position: relative;
 }
 
 /* Logo */
@@ -108,9 +110,9 @@ nav ul li a:hover {
 section {
     display: none; /* Initially hide all sections */
     padding: 5rem 2rem;
+    position: relative;
 }
 
-/* Show specific section when active */
 section.active {
     display: block;
 }
@@ -121,26 +123,27 @@ section.active {
     flex-direction: column;
     align-items: center;
     padding: 2rem;
+    position: relative;
 }
 
 #bio .bio-content {
     width: 60%;
-    margin-bottom: 20px; /* Space between the paragraph and image */
+    margin-bottom: 20px;
 }
 
 .circle-image {
     width: 250px;
     height: 250px;
-    border-radius: 50%; /* Creates the circular frame */
-    overflow: hidden; /* Ensures the image is cropped to the circle */
+    border-radius: 50%;
+    overflow: hidden;
     display: inline-block;
 }
 
 .circle-image img {
-    width: 100%; /* Ensure the image takes up the full width of the container */
-    height: 100%; /* Ensure the image takes up the full height of the container */
-    object-fit: cover; /* Crops the image while keeping it contained */
-    object-position: center; /* Centers the image inside the circle */
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
 }
 
 /* Mobile Menu */

@@ -68,7 +68,8 @@ video {
     position: absolute;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.8);
+    background: rgba(0, 0, 0, 0.8); /* 80% transparent overlay */
+    z-index: 1;
 }
 
 .content {
@@ -84,6 +85,10 @@ video {
     flex-direction: column;
     align-items: center;
     text-align: center;
+    position: relative;
+    z-index: 2;
+    max-width: 60%; /* Ensures proper alignment */
+    margin: auto;
 }
 
 .profile-pic {

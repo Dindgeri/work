@@ -1,170 +1,280 @@
-/* Reset */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: 'Century Gothic', sans-serif;
-}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Specialized Video Editor with 10 years of experience in the Audiovisual field">
+    <meta name="author" content="Paulo Sousa">
+    <meta property="og:title" content="Paulo Sousa Edita | Video Editor Lisboa">
+    <meta property="og:description" content="Paulo Sousa Edita | Specialized Video Editor with 10 years of experience in the Audiovisual field. My experience covers the production of institutional videos, corporate videos, events, advertising, and documentaries (Study Visit of António Zambujo and The Ziguais). Throughout my career, I have had the opportunity to work with a variety of renowned clients, including: Jerónimo Martins, FFMS, Sumol & Compal, VDA, MTP, Canal Panda and Biggs, MAKRO, Infinera, Google, and many others.">
+    <meta property="og:image" content="https://static.wixstatic.com/media/4a8dc8_4614941a93d14a16817a8d8852acb6e4%7Emv2.png/v1/fit/w_2500,h_1330,al_c/4a8dc8_4614941a93d14a16817a8d8852acb6e4%7Emv2.png">
+    <meta property="og:url" content="https://paulosousaedita.wixsite.com/paulosousaedita">
+    <title>Paulo Sousa Edita | Video Editor Lisboa</title>
+    <style>
+      /* Reset */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Century Gothic', sans-serif;
+      }
 
-/* Body */
-body {
-  color: #fff;
-  background-color: #000;
-  text-align: center;
-  overflow-x: hidden;
-  position: relative;
-  line-height: 1.6; /* Improved text readability */
-  padding-bottom: 60px; /* Prevent content from being hidden under footer */
-}
+      /* Body */
+      body {
+        color: #fff;
+        background-color: #000;
+        text-align: center;
+        overflow-x: hidden;
+        position: relative;
+        line-height: 1.6; /* Improved text readability */
+        padding-bottom: 60px; /* Prevent content from being hidden under footer */
+      }
 
-/* Overlay */
-.overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.8);
-  z-index: 2;
-}
+      /* Overlay */
+      .overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.8);
+        z-index: 2;
+      }
 
-/* Home and Sections Containers */
-.home {
-  width: 100%;
-  height: 100vh;
-  position: absolute;
-  top: 0;
-  left: 0;
-}
+      /* Home and Sections Containers */
+      .home {
+        width: 100%;
+        height: 100vh;
+        position: absolute;
+        top: 0;
+        left: 0;
+      }
 
-.sections {
-  width: 100%;
-  position: relative;
-  z-index: 2;
-  height: auto;
-  padding-top: 100vh;
-}
+      .sections {
+        width: 100%;
+        position: relative;
+        z-index: 2;
+        height: auto;
+        padding-top: 100vh;
+      }
 
-/* Video Background */
-.video-background {
-  display: none;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-  z-index: 1;
-}
+      /* Video Background */
+      .video-background {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        z-index: 1;
+      }
 
-.video-background video {
-  width: 100vw;
-  height: 100vh;
-  object-fit: cover;
-  object-position: center;
-}
+      .video-background video {
+        width: 100vw;
+        height: 100vh;
+        object-fit: cover;
+        object-position: center;
+      }
 
-/* Bio Section */
-#bio {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 2rem;
-  z-index: 3;
-  height: auto;
-  min-height: 100vh; /* Ensure it takes at least full height */
-}
+      /* Section Background Image */
+      .section-background {
+        background-image: url('https://static.wixstatic.com/media/11062b_5cc4d0122cc846e6bc3d54a74f196fe8~mv2.jpeg/v1/fill/w_1852,h_1804,al_c,q_90,usm_0.66_1.00_0.01,enc_avif,quality_auto/11062b_5cc4d0122cc846e6bc3d54a74f196fe8~mv2.jpeg');
+        background-size: cover;
+        background-position: center;
+        width: 100%;
+        height: 100%;
+      }
 
-.circle-image {
-  width: 250px;
-  height: 250px;
-  border-radius: 50%;
-  overflow: hidden;
-  display: block; /* Better block-level behavior */
-  margin-bottom: 1rem;
-}
+      /* Bio Section */
+      #bio {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 2rem;
+        z-index: 3;
+        height: auto;
+        min-height: 100vh; /* Ensure it takes at least full height */
+      }
 
-.circle-image img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center;
-}
+      .circle-image {
+        width: 250px;
+        height: 250px;
+        border-radius: 50%;
+        overflow: hidden;
+        display: block; /* Better block-level behavior */
+        margin-bottom: 1rem;
+      }
 
-/* Navigation Menu */
-nav ul {
-  list-style: none;
-  display: flex;
-  justify-content: center;
-  gap: 20px;
-  padding: 20px;
-  z-index: 4;
-}
+      .circle-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+      }
 
-nav ul li {
-  display: inline;
-}
+      /* Navigation Menu */
+      nav ul {
+        list-style: none;
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+        padding: 20px;
+        z-index: 4;
+      }
 
-nav ul li a {
-  text-decoration: none;
-  color: #fff;
-  font-size: 1.2rem;
-  padding: 10px 20px;
-  border-radius: 5px;
-  transition: 0.3s;
-}
+      nav ul li {
+        display: inline;
+      }
 
-nav ul li a:hover {
-  background: rgba(255, 255, 255, 0.2);
-}
+      nav ul li a {
+        text-decoration: none;
+        color: #fff;
+        font-size: 1.2rem;
+        padding: 10px 20px;
+        border-radius: 5px;
+        transition: 0.3s;
+      }
 
-/* Section Display Toggle */
-section {
-  display: none;
-  padding: 5rem 2rem;
-  position: relative;
-  z-index: 2;
-}
+      nav ul li a:hover {
+        background: rgba(255, 255, 255, 0.2);
+      }
 
-section.active {
-  display: block;
-}
+      /* Section Display Toggle */
+      section {
+        display: none;
+        padding: 5rem 2rem;
+        position: relative;
+        z-index: 2;
+      }
 
-/* Mobile Menu */
-@media screen and (max-width: 768px) {
-  nav ul {
-    display: none;
-    flex-direction: column;
-    align-items: center;
-    width: 100%;
-    position: absolute;
-    top: 60px;
-    background-color: rgba(0, 0, 0, 0.8);
-  }
+      section.active {
+        display: block;
+      }
 
-  nav ul li {
-    margin: 10px 0;
-  }
+      /* Mobile Menu */
+      @media screen and (max-width: 768px) {
+        nav ul {
+          display: none;
+          flex-direction: column;
+          align-items: center;
+          width: 100%;
+          position: absolute;
+          top: 60px;
+          background-color: rgba(0, 0, 0, 0.8);
+        }
 
-  .menu-toggle {
-    display: flex;
-  }
+        nav ul li {
+          margin: 10px 0;
+        }
 
-  nav ul.active {
-    display: flex;
-  }
-}
+        .menu-toggle {
+          display: flex;
+        }
 
-/* Footnote Bar */
-.footer-bar {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  background-color: #000;
-  color: #fff;
-  padding: 15px 0;
-  text-align: center;
-  font-size: 1rem;
-  z-index: 5;
-}
+        nav ul.active {
+          display: flex;
+        }
+      }
+
+      /* Footnote Bar */
+      .footer-bar {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        background-color: #000;
+        color: #fff;
+        padding: 15px 0;
+        text-align: center;
+        font-size: 1rem;
+        z-index: 5;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="menu-toggle" onclick="toggleMenu()">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+
+    <nav>
+      <ul>
+        <li><a href="javascript:void(0);" onclick="showSection('bio')">Bio</a></li>
+        <li><a href="javascript:void(0);" onclick="showSection('videos')">Videos</a></li>
+        <li><a href="javascript:void(0);" onclick="showSection('contact')">Contact</a></li>
+      </ul>
+    </nav>
+
+    <div class="home">
+      <div id="bio-background" class="video-background">
+        <video autoplay muted loop playsinline>
+          <source src="https://video.wixstatic.com/video/4a8dc8_6b34b726dcba44109daff17281ff9572/1080p/mp4/file.mp4" type="video/mp4">
+        </video>
+      </div>
+      <div class="overlay"></div>
+    </div>
+
+    <div class="sections">
+      <section id="bio">
+        <h2>Bio</h2>
+        <div class="bio-content">
+          <p>Paulo Sousa Edita | Specialized Video Editor with 10 years of experience in the Audiovisual field.</p>
+        </div>
+        <div class="circle-image">
+          <img src="https://static.wixstatic.com/media/4a8dc8_10f6c7a74a9b483e8c3a5287e192e349~mv2.jpg/v1/fill/w_664,h_1330,al_c,q_85,enc_avif,quality_auto/4a8dc8_10f6c7a74a9b483e8c3a5287e192e349~mv2.jpg">
+        </div>
+      </section>
+
+      <section id="videos">
+        <h2>Videos</h2>
+        <div class="video-grid">
+          <iframe src="https://www.youtube.com/embed/JBmmzmO-o4I" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+        </div>
+      </section>
+
+      <section id="contact" class="section-background">
+        <div class="social-links">
+          <a href="mailto:linhosousa30@gmail.com" target="_blank">Email</a>
+          <a href="https://paulosousaedita.wixsite.com/paulosousaedita" target="_blank">Portfolio</a>
+          <a href="https://linkedin.com/in/linhosousa" target="_blank">LinkedIn</a>
+        </div>
+      </section>
+    </div>
+
+    <div class="footer-bar">
+      <p>© 2025 Paulo Sousa Edita | All rights reserved.</p>
+    </div>
+
+    <script>
+      function toggleMenu() {
+        document.querySelector('nav ul').classList.toggle('active');
+      }
+
+      function showSection(sectionId) {
+        // Hide all sections
+        document.querySelectorAll('section').forEach(function (section) {
+          section.classList.remove('active');
+        });
+
+        // Remove active class from all nav links
+        document.querySelectorAll('nav ul li a').forEach(function (link) {
+          link.classList.remove('active');
+        });
+
+        // Show the selected section
+        document.getElementById(sectionId).classList.add('active');
+
+        // Add active class to the clicked nav link
+        const activeLink = document.querySelector(`nav ul li a[href="javascript:void(0);"][onclick="showSection('${sectionId}')"]`);
+        if (activeLink) {
+          activeLink.classList.add('active');
+        }
+      }
+
+      // Set bio as the default active section
+      showSection('bio');
+    </script>
+  </body>
+</html>

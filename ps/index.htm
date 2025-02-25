@@ -1,88 +1,66 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Paulo Sousa Edita | Video Editor Lisboa</title>
-  <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Century Gothic', sans-serif; }
-    body { color: #fff; background-color: #000; text-align: center; overflow: hidden; }
-    
-    .background-media { position: fixed; top: 0; left: 0; width: 100%; height: 100vh; z-index: -1; }
-    .background-media video, .background-media img { width: 100%; height: 100%; object-fit: cover; display: none; }
-    
-    .overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100vh; background: rgba(0, 0, 0, 0.8); z-index: 0; }
-    
-    .section { display: none; position: relative; width: 100%; height: 100vh; justify-content: center; align-items: center; flex-direction: column; }
-    .active { display: flex; }
-    
-    .circle-image img { width: 200px; height: 200px; border-radius: 50%; }
-    .videos-container { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
-    iframe { width: 100%; height: 200px; border-radius: 10px; }
-    
-    nav { position: fixed; top: 0; width: 100%; background: rgba(0, 0, 0, 0.8); padding: 10px; z-index: 2; }
-    nav ul { list-style: none; display: flex; justify-content: center; gap: 20px; }
-    nav ul li a { text-decoration: none; color: #fff; font-size: 1.2rem; padding: 10px 20px; border-radius: 5px; transition: 0.3s; }
-    nav ul li a:hover { background: rgba(255, 255, 255, 0.2); }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Paulo Sousa Edita</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <nav>
-    <ul>
-      <li><a href="#" onclick="showSection('bio')">Bio</a></li>
-      <li><a href="#" onclick="showSection('videos')">Videos</a></li>
-      <li><a href="#" onclick="showSection('contact')">Contact</a></li>
-    </ul>
-  </nav>
-  
-  <div class="background-media">
-    <video id="background-video" autoplay muted loop>
-      <source src="https://video.wixstatic.com/video/4a8dc8_6b34b726dcba44109daff17281ff9572/1080p/mp4/file.mp4" type="video/mp4">
-    </video>
-    <img id="background-image" src="https://static.wixstatic.com/media/4a8dc8_4614941a93d14a16817a8d8852acb6e4~mv2.png">
-  </div>
-  <div class="overlay"></div>
-  
-  <div id="bio" class="section active">
-    <div class="circle-image">
-      <img src="https://static.wixstatic.com/media/4a8dc8_10f6c7a74a9b483e8c3a5287e192e349~mv2.jpg">
-    </div>
-    <p>Paulo Sousa Edita | Specialized Video Editor with 10 years of experience in the Audiovisual field.</p>
-  </div>
-  
-    <section id="videos">
-        <h2>Videos</h2>
-        <div class="video-grid">
-            <iframe src="https://www.youtube.com/embed/JBmmzmO-o4I" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-            <iframe src="https://www.youtube.com/embed/qX78716Zttg" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-            <iframe src="https://www.youtube.com/embed/xMfmyRVnKl0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-            <iframe src="https://www.youtube.com/embed/AmuynWxJGk8" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-            <iframe src="https://www.youtube.com/embed/TfLlmF_bShM" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-            <iframe src="https://www.youtube.com/embed/CnnOu53_VPY" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-            <iframe src="https://www.youtube.com/embed/-OwdaD7HWQE" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+    <nav>
+        <ul>
+            <li><a href="#bio" onclick="showSection('bio')">Bio</a></li>
+            <li><a href="#videos" onclick="showSection('videos')">Videos</a></li>
+            <li><a href="#contact" onclick="showSection('contact')">Contact</a></li>
+        </ul>
+    </nav>
+
+    <section id="bio" class="section active">
+        <div class="background">
+            <video autoplay loop muted>
+                <source src="background-video.mp4" type="video/mp4">
+            </video>
+            <div class="overlay"></div>
+        </div>
+        <div class="content">
+            <img src="profile.jpg" alt="Profile Picture" class="profile-pic">
+            <h1>Paulo Sousa</h1>
+            <p>Professional video editor passionate about storytelling, post-production, and creative editing.</p>
         </div>
     </section>
 
-    <section id="contact" class="section-background">
-      <div class="social-links">
-        <a href="mailto:linhosousa30@gmail.com" target="_blank">Email</a>
-        <a href="https://paulosousaedita.wixsite.com/paulosousaedita" target="_blank">Portfolio</a>
-        <a href="https://linkedin.com/in/linhosousa" target="_blank">LinkedIn</a>
-      </div>
+    <section id="videos" class="section">
+        <div class="background" style="background-image: url('videos-bg.jpg');">
+            <div class="overlay"></div>
+        </div>
+        <div class="content video-grid">
+            <div class="video-box"><iframe src="https://www.youtube.com/embed/JBmmzmO-o4I" allowfullscreen></iframe></div>
+            <div class="video-box"><iframe src="https://www.youtube.com/embed/qX78716Zttg" allowfullscreen></iframe></div>
+            <div class="video-box"><iframe src="https://www.youtube.com/embed/xMfmyRVnKl0" allowfullscreen></iframe></div>
+            <div class="video-box"><iframe src="https://www.youtube.com/embed/AmuynWxJGk8" allowfullscreen></iframe></div>
+            <div class="video-box"><iframe src="https://www.youtube.com/embed/TfLlmF_bShM" allowfullscreen></iframe></div>
+            <div class="video-box"><iframe src="https://www.youtube.com/embed/CnnOu53_VPY" allowfullscreen></iframe></div>
+        </div>
     </section>
 
-    <div class="footer-bar">
-      <p>&copy; 2025 Paulo Sousa Edita | All rights reserved.</p>
-    </div>
-  
-  <script>
-    function showSection(section) {
-      document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
-      document.getElementById(section).classList.add('active');
-      
-      document.getElementById('background-video').style.display = (section === 'bio') ? 'block' : 'none';
-      document.getElementById('background-image').style.display = (section !== 'bio') ? 'block' : 'none';
-    }
-  </script>
+    <section id="contact" class="section">
+        <div class="background" style="background-image: url('contact-bg.jpg');">
+            <div class="overlay"></div>
+        </div>
+        <div class="content contact-links">
+            <a href="mailto:linhosousa30@gmail.com" class="contact-item">Email</a>
+            <a href="https://paulosousaedita.wixsite.com/paulosousaedita" class="contact-item">Portfolio</a>
+            <a href="https://linkedin.com/in/linhosousa" class="contact-item">LinkedIn</a>
+        </div>
+    </section>
+
+    <script>
+        function showSection(sectionId) {
+            document.querySelectorAll('.section').forEach(section => {
+                section.classList.remove('active');
+            });
+            document.getElementById(sectionId).classList.add('active');
+        }
+    </script>
 </body>
 </html>

@@ -1,203 +1,162 @@
 /* Reset */
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Century Gothic', sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Century Gothic', sans-serif;
 }
 
 /* Body */
 body {
-    color: #fff;
-    background-color: #000;
-    text-align: center;
-    overflow-x: hidden;
+  color: #fff;
+  background-color: #000;
+  text-align: center;
+  overflow-x: hidden;
+  position: relative;
 }
 
-/* Video Background */
+/* Overlay */
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  z-index: 1;
+}
+
+/* Video Background (only for bio section) */
 .video-background {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-    z-index: -1;
+  display: none;  /* Initially hidden */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  z-index: -1;
 }
 
-/* Overlay div with 80% transparent black background */
-.video-background .overlay {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.8);
-    z-index: 1;
+.video-background video {
+  width: 100vw;
+  height: 100vh;
 }
 
-/* Video Player */
-#background-video {
-    width: 100vw;
-    height: 100vh;
-    object-fit: cover;
-}
-
-/* Video Background in Contact Section */
-.video-background-contact video {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    position: absolute;
-    top: 0;
-    left: 0;
-}
-
-.video-background-contact .overlay {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.8);
-    z-index: 1;
-}
-
-/* Logo */
-.logo {
-    font-size: 3rem;
-    font-weight: bold;
-    text-transform: uppercase;
-    margin: 2rem 0;
-}
-
-/* Navigation Menu */
-nav ul {
-    list-style: none;
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-    padding: 20px;
-}
-
-nav ul li {
-    display: inline;
-}
-
-nav ul li a {
-    text-decoration: none;
-    color: #fff;
-    font-size: 1.2rem;
-    padding: 10px 20px;
-    border-radius: 5px;
-    transition: 0.3s;
-}
-
-nav ul li a:hover {
-    background: rgba(255, 255, 255, 0.2);
-}
-
-/* Section Display Toggle */
-section {
-    display: none;
-    padding: 5rem 2rem;
-}
-
-section.active {
-    display: block;
+/* Section Background Image */
+.section-background {
+  background-image: url('https://static.wixstatic.com/media/11062b_5cc4d0122cc846e6bc3d54a74f196fe8~mv2.jpeg/v1/fill/w_1852,h_1804,al_c,q_90,usm_0.66_1.00_0.01,enc_avif,quality_auto/11062b_5cc4d0122cc846e6bc3d54a74f196fe8~mv2.jpeg');
+  background-size: cover;
+  background-position: center;
+  width: 100%;
+  height: 100%;
+  padding: 2rem;
+  position: relative;
 }
 
 /* Bio Section */
 #bio {
-    text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem;
+  position: relative;
+  z-index: 3;  /* Ensure the bio section is on top */
 }
 
-#bio p {
-    width: 60%;
-    margin: 0 auto;
-    line-height: 1.5;
+#bio .bio-content {
+  width: 60%;
+  margin-bottom: 20px;
 }
 
-#bio .circle-image {
-    width: 250px;
-    height: 250px;
-    border-radius: 50%;
-    overflow: hidden;
-    margin: 20px auto;
+.circle-image {
+  width: 250px;
+  height: 250px;
+  border-radius: 50%;
+  overflow: hidden;
+  display: inline-block;
 }
 
-#bio .circle-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+.circle-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
 }
 
-/* Video Section */
-.video-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 20px;
-    justify-items: center;
-    margin-top: 2rem;
+/* Navigation Menu */
+nav ul {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  padding: 20px;
 }
 
-.video-grid iframe {
-    width: 100%;
-    height: 200px;
-    border-radius: 12px;
+nav ul li {
+  display: inline;
 }
 
-/* Footer */
-footer {
-    padding: 1rem;
-    background: rgba(0, 0, 0, 0.8);
-    font-size: 0.9rem;
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-    text-align: center;
+nav ul li a {
+  text-decoration: none;
+  color: #fff;
+  font-size: 1.2rem;
+  padding: 10px 20px;
+  border-radius: 5px;
+  transition: 0.3s;
 }
 
-footer a {
-    color: #fff;
-    text-decoration: none;
+nav ul li a:hover {
+  background: rgba(255, 255, 255, 0.2);
 }
 
-footer a:hover {
-    text-decoration: underline;
+/* Section Display Toggle */
+section {
+  display: none;  /* Initially hide all sections */
+  padding: 5rem 2rem;
+  position: relative;
+  z-index: 2;
 }
 
-/* Bio Image and Video Display */
-#bio-image {
-    display: block;
-}
-
-#bio-video {
-    display: none;
+section.active {
+  display: block;
 }
 
 /* Mobile Menu */
 @media screen and (max-width: 768px) {
-    nav ul {
-        display: none;
-        flex-direction: column;
-        align-items: center;
-        width: 100%;
-        position: absolute;
-        top: 60px;
-        background-color: rgba(0, 0, 0, 0.8);
-        transition: transform 0.3s ease-out;
-        transform: translateY(-100%);
-    }
+  nav ul {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    position: absolute;
+    top: 60px;
+    background-color: rgba(0, 0, 0, 0.8);
+  }
 
-    nav ul.active {
-        display: flex;
-        transform: translateY(0);
-    }
+  nav ul li {
+    margin: 10px 0;
+  }
 
-    .menu-toggle {
-        display: flex;
-    }
+  .menu-toggle {
+    display: flex;
+  }
+
+  nav ul.active {
+    display: flex;
+  }
+}
+
+/* Footnote Bar */
+.footer-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: #000;
+  color: #fff;
+  padding: 15px 0;
+  text-align: center;
+  font-size: 1rem;
+  z-index: 5;
 }

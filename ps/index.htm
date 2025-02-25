@@ -3,79 +3,76 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Specialized Video Editor with 10 years of experience in the Audiovisual field">
-    <meta name="author" content="Paulo Sousa">
-    <meta property="og:title" content="Paulo Sousa Edita | Video Editor Lisboa">
-    <meta property="og:description" content="Paulo Sousa Edita | Specialized Video Editor with 10 years of experience in the Audiovisual field. My experience covers the production of institutional videos, corporate videos, events, advertising, and documentaries.">
-    <meta property="og:image" content="https://static.wixstatic.com/media/4a8dc8_4614941a93d14a16817a8d8852acb6e4%7Emv2.png/v1/fit/w_2500,h_1330,al_c/4a8dc8_4614941a93d14a16817a8d8852acb6e4%7Emv2.png">
-    <meta property="og:url" content="https://paulosousaedita.wixsite.com/paulosousaedita">
-    <title>Paulo Sousa Edita | Video Editor Lisboa</title>
+    <title>Portfolio</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <!-- Hamburger Menu -->
-    <div class="menu-toggle" onclick="toggleMenu()">
-        <span></span>
-        <span></span>
-        <span></span>
-    </div>
-
-    <!-- Navigation Menu -->
-    <nav>
-        <ul>
-            <li><a href="javascript:void(0);" onclick="showSection('bio')">Bio</a></li>
-            <li><a href="javascript:void(0);" onclick="showSection('videos')">Videos</a></li>
-            <li><a href="javascript:void(0);" onclick="showSection('contact')">Contact</a></li>
-        </ul>
-    </nav>
-
-    <!-- Video Background Section -->
+    <!-- Background Video -->
     <div class="video-background">
-        <video id="background-video" autoplay muted loop playsinline>
+        <div class="overlay"></div>
+        <video id="background-video" autoplay loop muted>
             <source src="https://video.wixstatic.com/video/4a8dc8_6b34b726dcba44109daff17281ff9572/1080p/mp4/file.mp4" type="video/mp4">
         </video>
-        <div class="overlay"></div>
     </div>
 
-    <!-- Logo -->
-    <div class="logo">Paulo Sousa Edita</div>
-
-    <!-- Bio Section -->
-    <section id="bio" class="active">
-        <h2>Bio</h2>
-        <p>Paulo Sousa Edita | Specialized Video Editor with 10 years of experience in the Audiovisual field. My experience covers the production of institutional videos, corporate videos, events, advertising, and documentaries. Throughout my career, I have had the opportunity to work with a variety of renowned clients.</p>
-        <div class="circle-image">
-            <img src="https://static.wixstatic.com/media/11062b_5cc4d0122cc846e6bc3d54a74f196fe8~mv2.jpeg/v1/fill/w_1852,h_1804,al_c,q_90,usm_0.66_1.00_0.01,enc_avif,quality_auto/11062b_5cc4d0122cc846e6bc3d54a74f196fe8~mv2.jpeg" alt="Paulo Sousa" />
+    <!-- Main Content -->
+    <div class="content">
+        <!-- Logo -->
+        <div class="logo">
+            <h1>My Portfolio</h1>
         </div>
-    </section>
 
-    <!-- Videos Section -->
-    <section id="videos">
-        <h2>Videos</h2>
-        <div class="video-grid">
-            <iframe src="https://www.youtube.com/embed/JBmmzmO-o4I" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-            <iframe src="https://www.youtube.com/embed/qX78716Zttg" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-            <iframe src="https://www.youtube.com/embed/xMfmyRVnKl0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-            <iframe src="https://www.youtube.com/embed/AmuynWxJGk8" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-            <iframe src="https://www.youtube.com/embed/TfLlmF_bShM" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-            <iframe src="https://www.youtube.com/embed/CnnOu53_VPY" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-            <iframe src="https://www.youtube.com/embed/-OwdaD7HWQE" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-        </div>
-    </section>
+        <!-- Navigation Menu -->
+        <nav>
+            <ul>
+                <li><a href="javascript:void(0);" onclick="showSection('bio')">Bio</a></li>
+                <li><a href="javascript:void(0);" onclick="showSection('videos')">Videos</a></li>
+                <li><a href="javascript:void(0);" onclick="showSection('contact')">Contact</a></li>
+            </ul>
+        </nav>
 
-    <!-- Contact Section -->
-    <section id="contact">
-        <div class="social-links">
-            <a href="mailto:linhosousa30@gmail.com" target="_blank">Email</a>
-            <a href="https://paulosousaedita.wixsite.com/paulosousaedita" target="_blank">Portfolio</a>
-            <a href="https://linkedin.com/in/linhosousa" target="_blank">LinkedIn</a>
-        </div>
-    </section>
+        <!-- Sections -->
+        <section id="bio" class="active">
+            <h2>About Me</h2>
+            <div id="bio-image">
+                <div class="circle-image">
+                    <img src="https://static.wixstatic.com/media/11062b_5cc4d0122cc846e6bc3d54a74f196fe8~mv2.jpeg/v1/fill/w_1852,h_1804,al_c,q_90,usm_0.66_1.00_0.01,enc_avif,quality_auto/11062b_5cc4d0122cc846e6bc3d54a74f196fe8~mv2.jpeg" alt="Profile Image">
+                </div>
+                <p>Hi! I'm John Doe, a passionate web developer with experience in creating amazing user experiences. I love to work on dynamic projects that challenge my skills and help me grow.</p>
+            </div>
+            <div id="bio-video">
+                <video autoplay loop muted>
+                    <source src="https://video.wixstatic.com/video/4a8dc8_6b34b726dcba44109daff17281ff9572/1080p/mp4/file.mp4" type="video/mp4">
+                </video>
+            </div>
+        </section>
 
-    <!-- Footer -->
-    <footer>
-        <p>&copy; 2025 Paulo Sousa Edita | All rights reserved.</p>
-    </footer>
+        <section id="videos">
+            <h2>Videos</h2>
+            <div class="video-grid">
+                <iframe src="https://www.youtube.com/embed/JBmmzmO-o4I" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                <iframe src="https://www.youtube.com/embed/qX78716Zttg" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                <iframe src="https://www.youtube.com/embed/xMfmyRVnKl0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                <iframe src="https://www.youtube.com/embed/AmuynWxJGk8" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                <iframe src="https://www.youtube.com/embed/TfLlmF_bShM" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                <iframe src="https://www.youtube.com/embed/CnnOu53_VPY" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                <iframe src="https://www.youtube.com/embed/-OwdaD7HWQE" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+            </div>
+        </section>
+
+        <section id="contact">
+            <h2>Contact Me</h2>
+            <p>If you'd like to get in touch, feel free to reach out via email or social media!</p>
+        </section>
+
+        <!-- Footer -->
+        <footer>
+            <p>&copy; 2025 John Doe | <a href="#">Privacy Policy</a></p>
+        </footer>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div class="menu-toggle" onclick="toggleMenu()">☰</div>
 
     <script>
         // Toggle menu visibility on mobile
@@ -94,35 +91,20 @@
             document.getElementById(sectionId).classList.add('active');
         }
 
-        // Change Background Video logic (no randomization anymore, just a constant video)
+        // Change Background Video
         let videoSources = [
-            "https://video.wixstatic.com/video/4a8dc8_6b34b726dcba44109daff17281ff9572/1080p/mp4/file.mp4"
+            "https://video.wixstatic.com/video/4a8dc8_6b34b726dcba44109daff17281ff9572/1080p/mp4/file.mp4",
+            "https://video.wixstatic.com/video/4a8dc8_5b92cc73f9714fa4b3c2fba603e27d25/1080p/mp4/file.mp4",
+            "https://video.wixstatic.com/video/4a8dc8_4d4a8b7678a94acfbf2da477bc158a33/1080p/mp4/file.mp4"
         ];
 
         let currentVideoIndex = 0;
         const backgroundVideo = document.getElementById('background-video');
 
-        // The video will not change randomly anymore; it's static
-        backgroundVideo.src = videoSources[currentVideoIndex];
-
-        // Switch between video and image in Bio section
-        function toggleBackgroundForSection(sectionId) {
-            const bioImageDiv = document.getElementById('bio-image');
-            const bioVideoDiv = document.getElementById('bio-video');
-
-            if (sectionId === 'bio') {
-                bioImageDiv.style.display = 'block';
-                bioVideoDiv.style.display = 'none';
-            } else {
-                bioImageDiv.style.display = 'none';
-                bioVideoDiv.style.display = 'block';
-            }
-        }
-
-        // Call function for Bio section to load with image visible
-        window.onload = () => {
-            toggleBackgroundForSection('bio');
-        };
+        setInterval(function() {
+            currentVideoIndex = (currentVideoIndex + 1) % videoSources.length;
+            backgroundVideo.src = videoSources[currentVideoIndex];
+        }, 10000); // Change background every 10 seconds
     </script>
 </body>
 </html>

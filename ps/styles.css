@@ -186,6 +186,15 @@ footer a:hover {
     text-decoration: underline;
 }
 
+/* Bio Image and Video Display */
+#bio-image {
+    display: block;
+}
+
+#bio-video {
+    display: none;
+}
+
 /* Mobile Menu */
 @media screen and (max-width: 768px) {
     nav ul {

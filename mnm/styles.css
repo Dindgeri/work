@@ -153,20 +153,32 @@ footer a:hover {
     text-decoration: underline;
 }
 
-/* Circle Image */
+/* Bio Section */
+#bio {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem;
+}
+
+#bio .bio-content {
+    width: 60%;
+    margin-bottom: 20px;
+}
+
 .circle-image {
     width: 250px;
     height: 250px;
-    border-radius: 50%; /* Creates the circular frame */
-    overflow: hidden; /* Ensures the image is cropped to the circle */
+    border-radius: 50%;
+    overflow: hidden;
     display: inline-block;
 }
 
 .circle-image img {
-    width: 100%; /* Ensure the image takes up the full width of the container */
-    height: 100%; /* Ensure the image takes up the full height of the container */
-    object-fit: cover; /* Crops the image while keeping it contained */
-    object-position: center; /* Centers the image inside the circle */
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
 }
 
 /* Mobile Menu */

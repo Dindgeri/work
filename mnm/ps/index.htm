@@ -41,7 +41,7 @@
 
     <!-- Bio Section -->
     <section id="bio" class="active">
-        <div class="overlay"></div>
+        <div class="bio"></div>
         <h2>Bio</h2>
         <div class="bio-content">
             <p>Paulo Sousa Edita | Specialized Video Editor with 10 years of experience in the Audiovisual field. My experience covers the production of institutional videos, corporate videos, events, advertising, and documentaries (Study Visit of António Zambujo and The Ziguais). Throughout my career, I have had the opportunity to work with a variety of renowned clients, including: Jerónimo Martins, FFMS, Sumol & Compal, VDA, MTP, Canal Panda and Biggs, MAKRO, Infinera, Google, and many others.</p>
@@ -82,20 +82,19 @@
     </div>
 
     <script>
-        // Toggle menu visibility on mobile
         function toggleMenu() {
             document.querySelector('nav ul').classList.toggle('active');
         }
 
-        // Show selected section
         function showSection(sectionId) {
-            // Hide all sections except bio
             document.querySelectorAll('section').forEach(section => {
                 section.classList.remove('active');
             });
 
-            // Add the 'active' class to the selected section
-            document.getElementById(sectionId).classList.add('active');
+            const selectedSection = document.getElementById(sectionId);
+            if (selectedSection) {
+                selectedSection.classList.add('active');
+            }
         }
     </script>
 </body>

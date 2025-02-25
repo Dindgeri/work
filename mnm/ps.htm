@@ -29,18 +29,18 @@
         </ul>
     </nav>
 
-    <!-- Video Background Section -->
-    <div class="video-background">
+    <!-- Video Background Section (Only for Bio) -->
+    <div id="bio-background" class="video-background">
         <video autoplay muted loop playsinline>
             <source src="https://video.wixstatic.com/video/4a8dc8_6b34b726dcba44109daff17281ff9572/1080p/mp4/file.mp4" type="video/mp4">
         </video>
-        <!-- Overlay div with 80% transparent black background -->
         <div class="overlay"></div>
     </div>
 
     <!-- Logo -->
     <div class="logo">Paulo Sousa Edita</div>
 
+    <!-- Bio Section -->
     <section id="bio" class="active">
         <h2>Bio</h2>
         <div class="bio-content">
@@ -52,15 +52,21 @@
     </section>
 
     <!-- Videos Section -->
-    <section id="videos">
+    <section id="videos" class="section-background">
         <h2>Videos</h2>
         <div class="video-grid">
-            <!-- Your iframe videos here -->
+            <iframe src="https://www.youtube.com/embed/JBmmzmO-o4I" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+            <iframe src="https://www.youtube.com/embed/qX78716Zttg" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+            <iframe src="https://www.youtube.com/embed/xMfmyRVnKl0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+            <iframe src="https://www.youtube.com/embed/AmuynWxJGk8" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+            <iframe src="https://www.youtube.com/embed/TfLlmF_bShM" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+            <iframe src="https://www.youtube.com/embed/CnnOu53_VPY" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+            <iframe src="https://www.youtube.com/embed/-OwdaD7HWQE" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
         </div>
     </section>
 
     <!-- Social Media Links -->
-    <section id="social">
+    <section id="social" class="section-background">
         <div class="social-links">
             <a href="mailto:linhosousa30@gmail.com" target="_blank">Email</a>
             <a href="https://paulosousaedita.wixsite.com/paulosousaedita" target="_blank">Portfolio</a>
@@ -90,8 +96,16 @@
                 section.classList.remove('active');
             });
 
+            // Remove background video for bio section
+            document.getElementById("bio-background").style.display = 'none';
+
             // Show the selected section
             document.getElementById(sectionId).classList.add('active');
+
+            // Show the video for bio section
+            if (sectionId === "bio") {
+                document.getElementById("bio-background").style.display = 'block';
+            }
         }
     </script>
 </body>

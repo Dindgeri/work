@@ -46,7 +46,7 @@
         <h2>Bio</h2>
         <p>Paulo Sousa Edita | Specialized Video Editor with 10 years of experience in the Audiovisual field. My experience covers the production of institutional videos, corporate videos, events, advertising, and documentaries. Throughout my career, I have had the opportunity to work with a variety of renowned clients.</p>
         <div class="circle-image">
-            <img src="https://static.wixstatic.com/media/4a8dc8_10f6c7a74a9b483e8c3a5287e192e349~mv2.jpg/v1/fill/w_664,h_1330,al_c,q_85,enc_avif,quality_auto/4a8dc8_10f6c7a74a9b483e8c3a5287e192e349~mv2.jpg" alt="Paulo Sousa" />
+            <img src="https://static.wixstatic.com/media/11062b_5cc4d0122cc846e6bc3d54a74f196fe8~mv2.jpeg/v1/fill/w_1852,h_1804,al_c,q_90,usm_0.66_1.00_0.01,enc_avif,quality_auto/11062b_5cc4d0122cc846e6bc3d54a74f196fe8~mv2.jpeg" alt="Paulo Sousa" />
         </div>
     </section>
 
@@ -66,6 +66,12 @@
 
     <!-- Contact Section -->
     <section id="contact">
+        <div class="video-background-contact">
+            <video autoplay muted loop playsinline>
+                <source src="https://video.wixstatic.com/video/4a8dc8_6b34b726dcba44109daff17281ff9572/1080p/mp4/file.mp4" type="video/mp4">
+            </video>
+            <div class="overlay"></div>
+        </div>
         <div class="social-links">
             <a href="mailto:linhosousa30@gmail.com" target="_blank">Email</a>
             <a href="https://paulosousaedita.wixsite.com/paulosousaedita" target="_blank">Portfolio</a>
@@ -94,21 +100,6 @@
             // Show the selected section
             document.getElementById(sectionId).classList.add('active');
         }
-
-        // Change Background Video
-        let videoSources = [
-            "https://video.wixstatic.com/video/4a8dc8_6b34b726dcba44109daff17281ff9572/1080p/mp4/file.mp4",
-            "https://video.wixstatic.com/video/4a8dc8_5b92cc73f9714fa4b3c2fba603e27d25/1080p/mp4/file.mp4",
-            "https://video.wixstatic.com/video/4a8dc8_4d4a8b7678a94acfbf2da477bc158a33/1080p/mp4/file.mp4"
-        ];
-
-        let currentVideoIndex = 0;
-        const backgroundVideo = document.getElementById('background-video');
-
-        setInterval(function() {
-            currentVideoIndex = (currentVideoIndex + 1) % videoSources.length;
-            backgroundVideo.src = videoSources[currentVideoIndex];
-        }, 10000); // Change background every 10 seconds
     </script>
 </body>
 </html>

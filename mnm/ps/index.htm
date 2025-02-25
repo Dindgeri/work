@@ -22,15 +22,9 @@
     <!-- Navigation Menu -->
     <nav>
       <ul>
-        <li>
-          <a href="javascript:void(0);" onclick="showSection('bio')">Bio</a>
-        </li>
-        <li>
-          <a href="javascript:void(0);" onclick="showSection('videos')">Videos</a>
-        </li>
-        <li>
-          <a href="javascript:void(0);" onclick="showSection('contact')">Contact</a>
-        </li>
+        <li><a href="javascript:void(0);" onclick="showSection('bio')">Bio</a></li>
+        <li><a href="javascript:void(0);" onclick="showSection('videos')">Videos</a></li>
+        <li><a href="javascript:void(0);" onclick="showSection('contact')">Contact</a></li>
       </ul>
     </nav>
     <!-- Video Background Section (Only for Bio) -->
@@ -46,7 +40,7 @@
       <div class="bio"></div>
       <h2>Bio</h2>
       <div class="bio-content">
-        <p>Paulo Sousa Edita | Specialized Video Editor with 10 years of experience in the Audiovisual field. My experience covers the production of institutional videos, corporate videos, events, advertising, and documentaries (Study Visit of António Zambujo and The Ziguais). Throughout my career, I have had the opportunity to work with a variety of renowned clients, including: Jerónimo Martins, FFMS, Sumol & Compal, VDA, MTP, Canal Panda and Biggs, MAKRO, Infinera, Google, and many others.</p>
+        <p>Paulo Sousa Edita | Specialized Video Editor with 10 years of experience in the Audiovisual field...</p>
       </div>
       <div class="circle-image">
         <img src="https://static.wixstatic.com/media/4a8dc8_10f6c7a74a9b483e8c3a5287e192e349~mv2.jpg/v1/fill/w_664,h_1330,al_c,q_85,enc_avif,quality_auto/4a8dc8_10f6c7a74a9b483e8c3a5287e192e349~mv2.jpg">
@@ -58,12 +52,7 @@
       <h2>Videos</h2>
       <div class="video-grid">
         <iframe src="https://www.youtube.com/embed/JBmmzmO-o4I" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-        <iframe src="https://www.youtube.com/embed/qX78716Zttg" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-        <iframe src="https://www.youtube.com/embed/xMfmyRVnKl0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-        <iframe src="https://www.youtube.com/embed/AmuynWxJGk8" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-        <iframe src="https://www.youtube.com/embed/TfLlmF_bShM" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-        <iframe src="https://www.youtube.com/embed/CnnOu53_VPY" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-        <iframe src="https://www.youtube.com/embed/-OwdaD7HWQE" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+        <!-- Other videos -->
       </div>
     </section>
     <!-- Contact Section -->
@@ -85,9 +74,24 @@
       }
 
       function showSection(sectionId) {
+        // Hide all sections
         document.querySelectorAll('section').forEach(section => {
           section.classList.remove('active');
         });
+
+        // Change background based on section
+        const sections = document.querySelectorAll('.section-background');
+        sections.forEach((section) => {
+          section.style.backgroundImage = "url('https://static.wixstatic.com/media/11062b_5cc4d0122cc846e6bc3d54a74f196fe8~mv2.jpeg/v1/fill/w_1852,h_1804,al_c,q_90,usm_0.66_1.00_0.01,enc_avif,quality_auto/11062b_5cc4d0122cc846e6bc3d54a74f196fe8~mv2.jpeg')";
+        });
+
+        // If Bio section, show video background
+        if (sectionId === 'bio') {
+          document.getElementById('bio-background').style.display = "block";
+        } else {
+          document.getElementById('bio-background').style.display = "none";
+        }
+
         const selectedSection = document.getElementById(sectionId);
         if (selectedSection) {
           selectedSection.classList.add('active');

@@ -111,6 +111,7 @@ section {
     display: none; /* Initially hide all sections */
     padding: 5rem 2rem;
     position: relative;
+    z-index: 2;
 }
 
 section.active {
@@ -124,6 +125,7 @@ section.active {
     align-items: center;
     padding: 2rem;
     position: relative;
+    z-index: 3; /* Make sure the bio section is on top */
 }
 
 #bio .bio-content {
@@ -144,6 +146,20 @@ section.active {
     height: 100%;
     object-fit: cover;
     object-position: center;
+}
+
+/* Footnote Bar */
+.footer-bar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: #000;
+    color: #fff;
+    padding: 15px 0;
+    text-align: center;
+    font-size: 1rem;
+    z-index: 5;
 }
 
 /* Mobile Menu */

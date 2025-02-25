@@ -36,7 +36,7 @@
         width: 100%;
         height: 100%;
         background: rgba(0, 0, 0, 0.8);
-        z-index: 2; /* Overlay on top of background images/videos */
+        z-index: 2;
       }
 
       /* Video Background (only for bio section) */
@@ -48,7 +48,7 @@
         width: 100%;
         height: 100%;
         overflow: hidden;
-        z-index: 1; /* Background video below overlay */
+        z-index: 1;
       }
 
       .video-background video {
@@ -63,11 +63,11 @@
         background-image: url('https://static.wixstatic.com/media/11062b_5cc4d0122cc846e6bc3d54a74f196fe8~mv2.jpeg/v1/fill/w_1852,h_1804,al_c,q_90,usm_0.66_1.00_0.01,enc_avif,quality_auto/11062b_5cc4d0122cc846e6bc3d54a74f196fe8~mv2.jpeg');
         background-size: cover;
         background-position: center;
-        width: 100vw;  /* Full viewport width */
-        height: 100vh; /* Full viewport height */
+        width: 100vw;
+        height: 100vh;
         padding: 2rem;
         position: relative;
-        z-index: 0;  /* Background image below overlay */
+        z-index: 0;
       }
 
       /* Bio Section */
@@ -77,7 +77,7 @@
         align-items: center;
         padding: 2rem;
         position: relative;
-        z-index: 3;  /* Ensure the bio section is on top */
+        z-index: 3;
       }
 
       #bio .bio-content {
@@ -91,6 +91,7 @@
         border-radius: 50%;
         overflow: hidden;
         display: inline-block;
+        margin-bottom: 1rem;
       }
 
       .circle-image img {
@@ -107,7 +108,7 @@
         justify-content: center;
         gap: 20px;
         padding: 20px;
-        z-index: 4; /* Above sections */
+        z-index: 4;
       }
 
       nav ul li {
@@ -129,7 +130,7 @@
 
       /* Section Display Toggle */
       section {
-        display: none;  /* Initially hide all sections */
+        display: none;
         padding: 5rem 2rem;
         position: relative;
         z-index: 2;
@@ -181,7 +182,7 @@
       /* Responsive video grid */
       .video-grid iframe {
         width: 100%;
-        height: 300px;  /* Adjust height as needed */
+        height: 300px;
         max-width: 100%;
         border: none;
       }
@@ -209,7 +210,7 @@
       </video>
     </div>
 
-    <div class="overlay"></div> <!-- Overlay on top of background -->
+    <div class="overlay"></div>
 
     <section id="bio" class="bio-background">
       <div class="bio"></div>
@@ -223,16 +224,16 @@
     </section>
 
     <section id="videos">
-        <h2>Videos</h2>
-        <div class="video-grid">
-            <iframe src="https://www.youtube.com/embed/JBmmzmO-o4I" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-            <iframe src="https://www.youtube.com/embed/qX78716Zttg" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-            <iframe src="https://www.youtube.com/embed/xMfmyRVnKl0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-            <iframe src="https://www.youtube.com/embed/AmuynWxJGk8" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-            <iframe src="https://www.youtube.com/embed/TfLlmF_bShM" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-            <iframe src="https://www.youtube.com/embed/CnnOu53_VPY" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-            <iframe src="https://www.youtube.com/embed/-OwdaD7HWQE" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-        </div>
+      <h2>Videos</h2>
+      <div class="video-grid">
+        <iframe src="https://www.youtube.com/embed/JBmmzmO-o4I" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+        <iframe src="https://www.youtube.com/embed/qX78716Zttg" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+        <iframe src="https://www.youtube.com/embed/xMfmyRVnKl0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+        <iframe src="https://www.youtube.com/embed/AmuynWxJGk8" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+        <iframe src="https://www.youtube.com/embed/TfLlmF_bShM" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+        <iframe src="https://www.youtube.com/embed/CnnOu53_VPY" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+        <iframe src="https://www.youtube.com/embed/-OwdaD7HWQE" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+      </div>
     </section>
 
     <section id="contact" class="section-background">

@@ -31,7 +31,7 @@
 
     <!-- Video Background Section -->
     <div class="video-background">
-        <video autoplay muted loop playsinline>
+        <video id="background-video" autoplay muted loop playsinline>
             <source src="https://video.wixstatic.com/video/4a8dc8_6b34b726dcba44109daff17281ff9572/1080p/mp4/file.mp4" type="video/mp4">
         </video>
         <!-- Overlay div with 80% transparent black background -->
@@ -54,7 +54,13 @@
     <section id="videos">
         <h2>Videos</h2>
         <div class="video-grid">
-            <iframe src="https://video.wixstatic.com/video/4a8dc8_6b34b726dcba44109daff17281ff9572/1080p/mp4/file.mp4" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+            <iframe src="https://www.youtube.com/embed/JBmmzmO-o4I" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+            <iframe src="https://www.youtube.com/embed/qX78716Zttg" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+            <iframe src="https://www.youtube.com/embed/xMfmyRVnKl0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+            <iframe src="https://www.youtube.com/embed/AmuynWxJGk8" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+            <iframe src="https://www.youtube.com/embed/TfLlmF_bShM" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+            <iframe src="https://www.youtube.com/embed/CnnOu53_VPY" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+            <iframe src="https://www.youtube.com/embed/-OwdaD7HWQE" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
         </div>
     </section>
 
@@ -88,6 +94,21 @@
             // Show the selected section
             document.getElementById(sectionId).classList.add('active');
         }
+
+        // Change Background Video
+        let videoSources = [
+            "https://video.wixstatic.com/video/4a8dc8_6b34b726dcba44109daff17281ff9572/1080p/mp4/file.mp4",
+            "https://video.wixstatic.com/video/4a8dc8_5b92cc73f9714fa4b3c2fba603e27d25/1080p/mp4/file.mp4",
+            "https://video.wixstatic.com/video/4a8dc8_4d4a8b7678a94acfbf2da477bc158a33/1080p/mp4/file.mp4"
+        ];
+
+        let currentVideoIndex = 0;
+        const backgroundVideo = document.getElementById('background-video');
+
+        setInterval(function() {
+            currentVideoIndex = (currentVideoIndex + 1) % videoSources.length;
+            backgroundVideo.src = videoSources[currentVideoIndex];
+        }, 10000); // Change background every 10 seconds
     </script>
 </body>
 </html>

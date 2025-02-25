@@ -1,94 +1,93 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Specialized Video Editor with 10 years of experience in the Audiovisual field">
     <meta name="author" content="Paulo Sousa">
     <meta property="og:title" content="Paulo Sousa Edita | Video Editor Lisboa">
-    <meta property="og:description" content="Paulo Sousa Edita | Specialized Video Editor with 10 years of experience in the Audiovisual field. My experience covers the production of institutional videos, corporate videos, events, advertising, and documentaries (Study Visit of António Zambujo and The Ziguais). Throughout my career, I have had the opportunity to work with a variety of renowned clients, including: Jerónimo Martins, FFMS, Sumol & Compal, VDA, MTP, Canal Panda and Biggs, MAKRO, Infinera, Google, and many others.">
+    <meta property="og:description" content="Paulo Sousa Edita | Specialized Video Editor with 10 years of experience in the Audiovisual field. My experience covers the production of institutional videos, corporate videos, events, advertising, and documentaries.">
     <meta property="og:image" content="https://static.wixstatic.com/media/4a8dc8_4614941a93d14a16817a8d8852acb6e4%7Emv2.png/v1/fit/w_2500,h_1330,al_c/4a8dc8_4614941a93d14a16817a8d8852acb6e4%7Emv2.png">
     <meta property="og:url" content="https://paulosousaedita.wixsite.com/paulosousaedita">
     <title>Paulo Sousa Edita | Video Editor Lisboa</title>
     <link rel="stylesheet" href="styles.css">
-  </head>
-  <body>
+</head>
+<body>
+    <!-- Hamburger Menu -->
     <div class="menu-toggle" onclick="toggleMenu()">
-      <span></span>
-      <span></span>
-      <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
     </div>
 
+    <!-- Navigation Menu -->
     <nav>
-      <ul>
-        <li><a href="javascript:void(0);" onclick="showSection('bio')">Bio</a></li>
-        <li><a href="javascript:void(0);" onclick="showSection('videos')">Videos</a></li>
-        <li><a href="javascript:void(0);" onclick="showSection('contact')">Contact</a></li>
-      </ul>
+        <ul>
+            <li><a href="javascript:void(0);" onclick="showSection('bio')">Bio</a></li>
+            <li><a href="javascript:void(0);" onclick="showSection('videos')">Videos</a></li>
+            <li><a href="javascript:void(0);" onclick="showSection('contact')">Contact</a></li>
+        </ul>
     </nav>
 
-    <!-- Video Background Section (Only for Bio) -->
-    <div id="bio-background" class="video-background">
-      <video autoplay muted loop playsinline>
-        <source src="https://video.wixstatic.com/video/4a8dc8_6b34b726dcba44109daff17281ff9572/1080p/mp4/file.mp4" type="video/mp4">
-      </video>
+    <!-- Video Background Section -->
+    <div class="video-background">
+        <video autoplay muted loop playsinline>
+            <source src="https://video.wixstatic.com/video/4a8dc8_6b34b726dcba44109daff17281ff9572/1080p/mp4/file.mp4" type="video/mp4">
+        </video>
+        <!-- Overlay div with 80% transparent black background -->
+        <div class="overlay"></div>
     </div>
 
+    <!-- Logo -->
     <div class="logo">Paulo Sousa Edita</div>
 
-    <section id="bio" class="bio-background">
-      <div class="bio"></div>
-      <h2>Bio</h2>
-      <div class="bio-content">
-        <p>Paulo Sousa Edita | Specialized Video Editor with 10 years of experience in the Audiovisual field.</p>
-      </div>
-      <div class="circle-image">
-        <img src="https://static.wixstatic.com/media/4a8dc8_10f6c7a74a9b483e8c3a5287e192e349~mv2.jpg/v1/fill/w_664,h_1330,al_c,q_85,enc_avif,quality_auto/4a8dc8_10f6c7a74a9b483e8c3a5287e192e349~mv2.jpg">
-      </div>
+    <!-- Bio Section -->
+    <section id="bio" class="active">
+        <h2>Bio</h2>
+        <p>Paulo Sousa Edita | Specialized Video Editor with 10 years of experience in the Audiovisual field. My experience covers the production of institutional videos, corporate videos, events, advertising, and documentaries. Throughout my career, I have had the opportunity to work with a variety of renowned clients.</p>
+        <div class="circle-image">
+            <img src="https://static.wixstatic.com/media/4a8dc8_10f6c7a74a9b483e8c3a5287e192e349~mv2.jpg/v1/fill/w_664,h_1330,al_c,q_85,enc_avif,quality_auto/4a8dc8_10f6c7a74a9b483e8c3a5287e192e349~mv2.jpg" alt="Paulo Sousa" />
+        </div>
     </section>
 
-    <section id="videos" class="section-background">
-      <h2>Videos</h2>
-      <!-- Video content here -->
+    <!-- Videos Section -->
+    <section id="videos">
+        <h2>Videos</h2>
+        <div class="video-grid">
+            <iframe src="https://video.wixstatic.com/video/4a8dc8_6b34b726dcba44109daff17281ff9572/1080p/mp4/file.mp4" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+        </div>
     </section>
 
-    <section id="contact" class="section-background">
-      <div class="social-links">
-        <a href="mailto:linhosousa30@gmail.com" target="_blank">Email</a>
-        <a href="https://paulosousaedita.wixsite.com/paulosousaedita" target="_blank">Portfolio</a>
-        <a href="https://linkedin.com/in/linhosousa" target="_blank">LinkedIn</a>
-      </div>
+    <!-- Contact Section -->
+    <section id="contact">
+        <div class="social-links">
+            <a href="mailto:linhosousa30@gmail.com" target="_blank">Email</a>
+            <a href="https://paulosousaedita.wixsite.com/paulosousaedita" target="_blank">Portfolio</a>
+            <a href="https://linkedin.com/in/linhosousa" target="_blank">LinkedIn</a>
+        </div>
     </section>
 
-    <div class="footer-bar">
-      <p>© 2025 Paulo Sousa Edita | All rights reserved.</p>
-    </div>
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 Paulo Sousa Edita | All rights reserved.</p>
+    </footer>
 
     <script>
-      function toggleMenu() {
-        document.querySelector('nav ul').classList.toggle('active');
-      }
-
-      function showSection(sectionId) {
-        // Hide all sections
-        document.querySelectorAll('section').forEach(section => {
-          section.style.display = 'none';
-        });
-
-        // Show the selected section
-        const selectedSection = document.getElementById(sectionId);
-        if (selectedSection) {
-          selectedSection.style.display = 'block';
+        // Toggle menu visibility on mobile
+        function toggleMenu() {
+            document.querySelector('nav ul').classList.toggle('active');
         }
 
-        // Hide video background when navigating away from the Bio section
-        const bioBackground = document.getElementById('bio-background');
-        if (sectionId === 'bio') {
-          bioBackground.style.display = 'block';
-        } else {
-          bioBackground.style.display = 'none';
+        // Show selected section
+        function showSection(sectionId) {
+            // Hide all sections
+            document.querySelectorAll('section').forEach(section => {
+                section.classList.remove('active');
+            });
+
+            // Show the selected section
+            document.getElementById(sectionId).classList.add('active');
         }
-      }
     </script>
-  </body>
+</body>
 </html>

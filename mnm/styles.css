@@ -43,6 +43,16 @@ body {
     height: 100vh;
 }
 
+/* Section Background Image */
+.section-background {
+    background-image: url('https://static.wixstatic.com/media/11062b_5cc4d0122cc846e6bc3d54a74f196fe8~mv2.jpeg/v1/fill/w_1852,h_1804,al_c,q_90,usm_0.66_1.00_0.01,enc_avif,quality_auto/11062b_5cc4d0122cc846e6bc3d54a74f196fe8~mv2.jpeg');
+    background-size: cover;
+    background-position: center;
+    width: 100%;
+    height: 100%;
+    padding: 2rem;
+}
+
 /* Logo */
 .logo {
     font-size: 3rem;
@@ -105,54 +115,6 @@ section.active {
     display: block;
 }
 
-/* Music Section */
-.spotify-grid iframe {
-    border-radius: 12px;
-}
-
-/* Video Section */
-.video-grid iframe {
-    width: 100%;
-    height: 500px;
-    border-radius: 12px;
-}
-
-/* Social Links */
-.social-links a {
-    color: #fff;
-    font-size: 1.1rem;
-    text-decoration: none;
-    padding: 10px 20px;
-    margin: 10px;
-    background-color: rgba(0, 0, 0, 0.5);
-    border-radius: 5px;
-    transition: background-color 0.3s;
-}
-
-.social-links a:hover {
-    background-color: rgba(255, 255, 255, 0.2);
-}
-
-/* Footer */
-footer {
-    padding: 1rem;
-    background: rgba(0, 0, 0, 0.8);
-    font-size: 0.9rem;
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-    text-align: center;
-}
-
-footer a {
-    color: #fff;
-    text-decoration: none;
-}
-
-footer a:hover {
-    text-decoration: underline;
-}
-
 /* Bio Section */
 #bio {
     display: flex;
@@ -163,22 +125,22 @@ footer a:hover {
 
 #bio .bio-content {
     width: 60%;
-    margin-bottom: 20px;
+    margin-bottom: 20px; /* Space between the paragraph and image */
 }
 
 .circle-image {
     width: 250px;
     height: 250px;
-    border-radius: 50%;
-    overflow: hidden;
+    border-radius: 50%; /* Creates the circular frame */
+    overflow: hidden; /* Ensures the image is cropped to the circle */
     display: inline-block;
 }
 
 .circle-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center;
+    width: 100%; /* Ensure the image takes up the full width of the container */
+    height: 100%; /* Ensure the image takes up the full height of the container */
+    object-fit: cover; /* Crops the image while keeping it contained */
+    object-position: center; /* Centers the image inside the circle */
 }
 
 /* Mobile Menu */
@@ -203,12 +165,5 @@ footer a:hover {
 
     nav ul.active {
         display: flex;
-    }
-}
-
-/* Desktop Layout */
-@media screen and (min-width: 1024px) {
-    .spotify-grid iframe {
-        width: 45%;
     }
 }

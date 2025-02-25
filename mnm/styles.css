@@ -153,6 +153,14 @@ footer a:hover {
     text-decoration: underline;
 }
 
+.circle-image {
+    width: 250px;
+    height: 250px;
+    border-radius: 50%; /* Creates the circular frame */
+    object-fit: cover; /* Crops the image while keeping it contained */
+    object-position: center; /* Centers the image inside the circle */
+}
+
 /* Mobile Menu */
 @media screen and (max-width: 768px) {
     nav ul {

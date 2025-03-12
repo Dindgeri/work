@@ -1,0 +1,141 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Music Gallery</title>
+    <link rel="stylesheet" href="styles.css">
+    <style type="text/css">
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #fff;
+            font-size: 16px;
+            font-family: Arial, sans-serif;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+        }
+
+        #header {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        #header h1 {
+            font-size: 36px;
+            color: #505050;
+        }
+
+        #music-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+            padding: 20px;
+        }
+
+        .music-item {
+            border-radius: 12px;
+            border: 1px solid #eee;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            padding: 15px;
+            max-width: 300px;
+            min-width: 250px;
+            text-align: center;
+            transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+            background-color: #fff;
+        }
+
+        .music-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            background-color: #f8f8f8;
+        }
+
+        .music-item audio {
+            width: 100%;
+            border-radius: 8px;
+            margin-top: 10px;
+        }
+
+        .music-item .title {
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+
+        .music-item .artist {
+            font-size: 14px;
+            color: #666;
+        }
+
+        @media (max-width: 768px) {
+            .music-item {
+                max-width: 90%;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .music-item {
+                max-width: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div id="header">
+        <h1>Music Gallery</h1>
+        <p>Explore and enjoy the latest tracks:</p>
+    </div>
+
+    <div id="music-container">
+        <div class="music-item">
+            <div class="title">Track 1</div>
+            <div class="artist">Artist Name</div>
+            <audio controls>
+                <source src="audio/track1.mp3" type="audio/mp3">
+                Your browser does not support the audio element.
+            </audio>
+        </div>
+
+        <div class="music-item">
+            <div class="title">Track 2</div>
+            <div class="artist">Artist Name</div>
+            <audio controls>
+                <source src="audio/track2.mp3" type="audio/mp3">
+                Your browser does not support the audio element.
+            </audio>
+        </div>
+
+        <div class="music-item">
+            <div class="title">Track 3</div>
+            <div class="artist">Artist Name</div>
+            <audio controls>
+                <source src="audio/track3.mp3" type="audio/mp3">
+                Your browser does not support the audio element.
+            </audio>
+        </div>
+
+        <div class="music-item">
+            <div class="title">Track 4</div>
+            <div class="artist">Artist Name</div>
+            <audio controls>
+                <source src="audio/track4.mp3" type="audio/mp3">
+                Your browser does not support the audio element.
+            </audio>
+        </div>
+    </div>
+
+</body>
+
+</html>

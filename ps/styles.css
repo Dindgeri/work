@@ -105,17 +105,19 @@ video {
 
 .video-grid {
     display: grid;
-    grid-template-columns: repeat(2, minmax(300px, 1fr));
+    grid-template-columns: repeat(2, 1fr);
     gap: 15px;
     width: 80%;
+    margin: 0 auto;
 }
 
 .video-box {
     background: rgba(255, 255, 255, 0.1);
     padding: 10px;
     border-radius: 20px;
-    height: 225px;
-    width: 400px;
+    position: relative;
+    overflow: hidden;
+    aspect-ratio: 16 / 9; /* Maintain 16:9 aspect ratio */
 }
 
 .video-box iframe,
@@ -166,9 +168,12 @@ footer {
         width: 95%; /* Make it more mobile-friendly */
     }
 
+    .video-box {
+        aspect-ratio: 16 / 9; /* Keep the aspect ratio consistent */
+    }
+
     .video-box iframe,
     .video-box video {
-        height: 180px;
-        width: 320px;
+        height: auto; /* Let the height adjust based on aspect ratio */
     }
 }

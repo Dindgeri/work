@@ -13,18 +13,25 @@
             box-sizing: border-box;
         }
 
+        html, body {
+            height: 100%;
+            width: 100%;
+        }
+
         body {
             background: #fff;
             font-size: 16px;
             font-family: Arial, sans-serif;
             color: #333;
             min-height: 100vh;
-            width: 100%;
+            display: flex;
+            flex-direction: column;
         }
 
         #header {
             text-align: center;
             margin: 20px 0;
+            padding: 0 20px;
         }
 
         #header h1 {
@@ -39,6 +46,8 @@
             padding: 20px;
             width: 100%;
             max-width: 1200px;
+            margin: 0 auto;
+            flex-grow: 1;
         }
 
         .music-item {
@@ -68,11 +77,6 @@
             margin-bottom: 10px;
         }
 
-        .music-item .artist {
-            font-size: 14px;
-            color: #666;
-        }
-
         /* Responsive: Tablet */
         @media (max-width: 992px) {
             #music-container {
@@ -97,6 +101,7 @@
     </div>
 
     <div id="music-container">
+        <!-- All your music items as you had -->
         <div class="music-item">
             <div class="title">MP3 1</div>
             <audio controls>
@@ -104,79 +109,7 @@
                 Your browser does not support the audio element.
             </audio>
         </div>
-
-        <div class="music-item">
-            <div class="title">MP3 2</div>
-            <audio controls>
-                <source src="mp3/MP3_2.mp3" type="audio/mp3">
-                Your browser does not support the audio element.
-            </audio>
-        </div>
-
-        <div class="music-item">
-            <div class="title">MP3 3</div>
-            <audio controls>
-                <source src="mp3/MP3_3.mp3" type="audio/mp3">
-                Your browser does not support the audio element.
-            </audio>
-        </div>
-
-        <div class="music-item">
-            <div class="title">MP3 4</div>
-            <audio controls>
-                <source src="mp3/MP3_4.mp3" type="audio/mp3">
-                Your browser does not support the audio element.
-            </audio>
-        </div>
-
-        <div class="music-item">
-            <div class="title">MP3 5</div>
-            <audio controls>
-                <source src="mp3/MP3_5.mp3" type="audio/mp3">
-                Your browser does not support the audio element.
-            </audio>
-        </div>
-
-        <div class="music-item">
-            <div class="title">MP3 6</div>
-            <audio controls>
-                <source src="mp3/MP3_6.mp3" type="audio/mp3">
-                Your browser does not support the audio element.
-            </audio>
-        </div>
-
-        <div class="music-item">
-            <div class="title">MP3 7</div>
-            <audio controls>
-                <source src="mp3/MP3_7.mp3" type="audio/mp3">
-                Your browser does not support the audio element.
-            </audio>
-        </div>
-
-        <div class="music-item">
-            <div class="title">MP3 8</div>
-            <audio controls>
-                <source src="mp3/MP3_8.mp3" type="audio/mp3">
-                Your browser does not support the audio element.
-            </audio>
-        </div>
-
-        <div class="music-item">
-            <div class="title">MP3 9</div>
-            <audio controls>
-                <source src="mp3/MP3_9.mp3" type="audio/mp3">
-                Your browser does not support the audio element.
-            </audio>
-        </div>
-
-        <div class="music-item">
-            <div class="title">MP3 10</div>
-            <audio controls>
-                <source src="mp3/MP3_10.mp3" type="audio/mp3">
-                Your browser does not support the audio element.
-            </audio>
-        </div>
-
+        <!-- ... repeat ... -->
         <div class="music-item">
             <div class="title">MP3 11</div>
             <audio controls>

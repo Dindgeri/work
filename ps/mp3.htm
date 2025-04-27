@@ -13,19 +13,14 @@
             box-sizing: border-box;
         }
 
-        html, body {
-            height: 100%;
-            width: 100%;
-        }
-
         body {
             background: #fff;
             font-size: 16px;
             font-family: Arial, sans-serif;
             color: #333;
             min-height: 100vh;
-            display: flex;
-            flex-direction: column;
+            width: 100%;
+            overflow-x: hidden; /* this prevents sideways scrolling */
         }
 
         #header {
@@ -47,7 +42,6 @@
             width: 100%;
             max-width: 1200px;
             margin: 0 auto;
-            flex-grow: 1;
         }
 
         .music-item {
@@ -101,7 +95,6 @@
     </div>
 
     <div id="music-container">
-        <!-- All your music items as you had -->
         <div class="music-item">
             <div class="title">MP3 1</div>
             <audio controls>
@@ -109,7 +102,17 @@
                 Your browser does not support the audio element.
             </audio>
         </div>
-        <!-- ... repeat ... -->
+
+        <div class="music-item">
+            <div class="title">MP3 2</div>
+            <audio controls>
+                <source src="mp3/MP3_2.mp3" type="audio/mp3">
+                Your browser does not support the audio element.
+            </audio>
+        </div>
+
+        <!-- continue for all items as you had -->
+        
         <div class="music-item">
             <div class="title">MP3 11</div>
             <audio controls>
@@ -117,6 +120,7 @@
                 Your browser does not support the audio element.
             </audio>
         </div>
+
     </div>
 
 </body>

@@ -1,12 +1,12 @@
 <!DOCTYPE HTML>
-<html>
+<html lang="en">
 
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <title>Music Gallery</title>
     <link rel="stylesheet" href="styles.css">
-    <style type="text/css">
+    <style>
         * {
             padding: 0;
             margin: 0;
@@ -18,16 +18,15 @@
             font-size: 16px;
             font-family: Arial, sans-serif;
             color: #333;
+            min-height: 100vh;
             display: flex;
             flex-direction: column;
-            min-height: 100vh;
             align-items: center;
-            height: 100%;
         }
 
         #header {
             text-align: center;
-            margin-top: 20px;
+            margin: 20px 0;
         }
 
         #header h1 {
@@ -36,23 +35,22 @@
         }
 
         #music-container {
-            display: flex;
-            flex-wrap: column;
-            align-items: center;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
             gap: 30px;
             padding: 20px;
+            width: 100%;
+            max-width: 1200px;
         }
 
         .music-item {
-            border-radius: 12px;
+            background-color: #fff;
             border: 1px solid #eee;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            border-radius: 12px;
             padding: 15px;
-            max-width: 300px;
-            min-width: 250px;
             text-align: center;
             transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
-            background-color: #fff;
         }
 
         .music-item:hover {
@@ -77,21 +75,24 @@
             color: #666;
         }
 
-        @media (max-width: 768px) {
-            .music-item {
-                max-width: 90%;
+        /* Responsive: Tablet */
+        @media (max-width: 992px) {
+            #music-container {
+                grid-template-columns: repeat(2, 1fr);
             }
         }
 
-        @media (max-width: 480px) {
-            .music-item {
-                max-width: 100%;
+        /* Responsive: Mobile */
+        @media (max-width: 600px) {
+            #music-container {
+                grid-template-columns: 1fr;
             }
         }
     </style>
 </head>
 
 <body>
+
     <div id="header">
         <h1>Music Gallery</h1>
         <p>Explore and enjoy the latest tracks:</p>

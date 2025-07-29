@@ -1,322 +1,165 @@
-<!DOCTYPE html>
+<script type="text/javascript">
+        var gk_isXlsx = false;
+        var gk_xlsxFileLookup = {};
+        var gk_fileData = {};
+        function filledCell(cell) {
+          return cell !== '' && cell != null;
+        }
+        function loadFileData(filename) {
+        if (gk_isXlsx && gk_xlsxFileLookup[filename]) {
+            try {
+                var workbook = XLSX.read(gk_fileData[filename], { type: 'base64' });
+                var firstSheetName = workbook.SheetNames[0];
+                var worksheet = workbook.Sheets[firstSheetName];
+
+                // Convert sheet to JSON to filter blank rows
+                var jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1, blankrows: false, defval: '' });
+                // Filter out blank rows (rows where all cells are empty, null, or undefined)
+                var filteredData = jsonData.filter(row => row.some(filledCell));
+
+                // Heuristic to find the header row by ignoring rows with fewer filled cells than the next row
+                var headerRowIndex = filteredData.findIndex((row, index) =>
+                  row.filter(filledCell).length >= filteredData[index + 1]?.filter(filledCell).length
+                );
+                // Fallback
+                if (headerRowIndex === -1 || headerRowIndex > 25) {
+                  headerRowIndex = 0;
+                }
+
+                // Convert filtered JSON back to CSV
+                var csv = XLSX.utils.aoa_to_sheet(filteredData.slice(headerRowIndex)); // Create a new sheet from filtered array of arrays
+                csv = XLSX.utils.sheet_to_csv(csv, { header: 1 });
+                return csv;
+            } catch (e) {
+                console.error(e);
+                return "";
+            }
+        }
+        return gk_fileData[filename] || "";
+        }
+        </script><!DOCTYPE html>
 <html lang="en">
-   <head>
-      <meta charset="UTF-8">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <title>João David's Portfolio</title>
-      <style>
-         body {
-         font-family: 'Roboto Condensed', Arial, sans-serif;
-         line-height: 1.6;
-         padding: 20px;
-         background-color: #121212;
-         color: #e0e0e0;
-         margin: 0;
-         display: flex;
-         flex-direction: column;
-         align-items: center;
-         transition: background-color 0.3s;
-         }
-         .preloader {
-         position: fixed;
-         top: 0;
-         left: 0;
-         width: 100%;
-         height: 100%;
-         background-color: #333;
-         display: flex;
-         justify-content: center;
-         align-items: center;
-         z-index: 1000;
-         transition: opacity 0.6s ease-out; /* Added transition */
-         }
-         .hidden {
-         opacity: 0;
-         pointer-events: none;
-         }
-         /* Styles for the SVG sphere */
-         #sphere-container {
-         width: 100px;
-         height: 100px;
-         perspective: 1000px; /* Perspective for 3D effect */
-         position: relative;
-         }
-         /* Keyframes for animating the lines */
-         @keyframes drawLines {
-         0%, 100% {
-         stroke-dashoffset: 150;
-         }
-         50% {
-         stroke-dashoffset: 0;
-         }
-         }
-         /* Styles for the lines */
-         .sphere-line {
-         stroke: rgba(255, 255, 255, 0.8);
-         stroke-width: 1.5;
-         stroke-dasharray: 150;
-         stroke-dashoffset: 150;
-         animation: drawLines 4s ease-in-out infinite;
-         transform-origin: center; /* Ensure transforms are centered */
-         transform-style: preserve-3d; /* Enable 3D transformations */
-         fill: rgba(255, 255, 255, 0.3); /* Fill color */
-         box-shadow: 0 0 10px rgba(255, 255, 255, 0.6); /* Shadow effect */
-         transition: fill 0.3s ease, box-shadow 0.3s ease; /* Transition for fill and shadow */
-         }
-         .section {
-         margin-bottom: 40px;
-         width: 100%;
-         max-width: 1200px;
-         }
-         .section h2 {
-         font-size: 1.5em;
-         margin-bottom: 15px;
-         text-transform: uppercase;
-         color: #bbb;
-         transition: color 0.3s;
-         text-align: center;
-         }
-         .link-list {
-         display: flex;
-         flex-wrap: wrap;
-         gap: 40px;
-         justify-content: center;
-         }
-         .link-item {
-         flex: 0 1 calc(25% - 40px);
-         max-width: 200px;
-         text-align: center;
-         background-color: #1e1e1e;
-         padding: 20px;
-         border-radius: 12px;
-         box-shadow: 0 0 10px rgba(192, 192, 192, 0.5);
-         transition: transform 0.3s, box-shadow 0.3s;
-         position: relative;
-         overflow: hidden;
-         }
-         .link-item:hover {
-         transform: scale(1.1);
-         box-shadow: 0 0 15px rgba(192, 192, 192, 0.7);
-         }
-         .link-item-content {
-         opacity: 1;
-         }
-         .link-item img {
-         max-width: 100%;
-         height: auto;
-         margin-bottom: 10px;
-         opacity: 1;
-         transition: transform 0.3s;
-         }
-         .link-item a {
-         text-decoration: none;
-         color: #e0e0e0;
-         font-weight: bold;
-         }
-         iframe {
-         display: block;
-         margin: 0 auto;
-         }
-         .background-image {
-         position: fixed;
-         top: 0;
-         left: 0;
-         width: 100%;
-         height: 100%;
-         z-index: -1;
-         opacity: 0;
-         transition: opacity 0.6s ease-out;
-         }
-      </style>
-   </head>
-   <body>
-      <div class="preloader">
-         <div id="sphere-container">
-            <svg id="sphere" viewBox="0 0 100 100">
-               <circle class="sphere-line" cx="50" cy="50" r="40" fill="none" />
-               <circle class="sphere-line" cx="50" cy="50" r="30" fill="none" />
-               <circle class="sphere-line" cx="50" cy="50" r="20" fill="none" />
-               <line class="sphere-line" x1="10" y1="50" x2="90" y2="50" />
-               <line class="sphere-line" x1="50" y1="10" x2="50" y2="90" />
-            </svg>
-         </div>
-      </div>
-      <div class="section">
-         <h2>Online Portfolio</h2>
-         <div class="link-list">
-            <iframe width="80%" height="540" src="https://www.loom.com/embed/d2943922118f424ca8558b39e510cfa5" frameborder="0" allowfullscreen></iframe>
-         </div>
-         <div class="link-list">
-            <a href="https://loom.com/share/d2943922118f424ca8558b39e510cfa5">Loom</a>
-         </div>
-      </div>
-      <div class="section">
-         <h2>Social Outlets</h2>
-         <div class="link-list">
-            <div class="link-item">
-               <div class="link-item-content">
-                  <img src="https://i.postimg.cc/0yCqMwPg/image.png" alt="Behance Logo">
-                  <a href="https://be.net/joaodavid">Behance</a>
-               </div>
-            </div>
-            <div class="link-item">
-               <div class="link-item-content">
-                  <img src="https://i.postimg.cc/gjygS3Mm/image.png" alt="YouTube Logo">
-                  <a href="https://youtube.com/@lylatsys">YouTube</a>
-               </div>
-            </div>
-            <div class="link-item">
-               <div class="link-item-content">
-                  <img src="https://i.postimg.cc/sx2JcbZ9/image.png" alt="X.com Logo">
-                  <a href="https://x.com/joao_david_g">X.com</a>
-               </div>
-            </div>
-            <div class="link-item">
-               <div class="link-item-content">
-                  <img src="https://i.postimg.cc/SsbyQQVj/image.png" alt="LinkedIn Logo">
-                  <a href="https://linkedin.com/in/dindgeri">LinkedIn</a>
-               </div>
-            </div>
-            <div class="link-item">
-               <div class="link-item-content">
-                  <img src="https://i.postimg.cc/pdNqH0gR/image.png" alt="Instagram Logo">
-                  <a href="https://instagram.com/lylatsys">Instagram</a>
-               </div>
-            </div>
-            <div class="link-item">
-               <div class="link-item-content">
-                  <img src="https://i.postimg.cc/66RRsWB2/image.png" alt="Reddit Logo">
-                  <a href="https://www.reddit.com/u/instastella">Reddit</a>
-               </div>
-            </div>
-            <div class="link-item">
-               <div class="link-item-content">
-                  <img src="https://i.postimg.cc/159BRnCV/image.png" alt="Product Hunt Logo">
-                  <a href="https://producthunt.com/@crescendoll">Product Hunt</a>
-               </div>
-            </div>
-            <div class="link-item">
-               <div class="link-item-content">
-                  <img src="https://i.postimg.cc/7YKY1kPQ/image.png" alt="GitHub Logo">
-                  <a href="https://github.com/dindgeri">GitHub</a>
-               </div>
-            </div>
-         </div>
-      </div>
-      <div class="section">
-         <h2>Web3 Platforms</h2>
-         <div class="link-list">
-            <div class="link-item">
-               <div class="link-item-content">
-                  <img src="https://i.postimg.cc/SxnWjWWR/image.png" alt="Audius $AUDIO Logo">
-                  <a href="https://audius.co/joaodavid">Audius $AUDIO</a>
-               </div>
-            </div>
-            <div class="link-item">
-               <div class="link-item-content">
-                  <img src="https://i.postimg.cc/1t7mgN0R/image.png" alt="Blockchain Works Logo">
-                  <a href="https://blockchain.works-hub.com/users/d542f0d9-61d5-4188-8561-4317f60091ca">Blockchain Works</a>
-               </div>
-            </div>
-            <div class="link-item">
-               <div class="link-item-content">
-                  <img src="https://cryptojobslist.com/favicon.ico" alt="CryptoJobsList Logo">
-                  <a href="https://cryptojobslist.com/@crescendoll">CryptoJobsList</a>
-               </div>
-            </div>
-         </div>
-      </div>
-      <div class="section">
-         <h2>Contact Details</h2>
-         <div class="link-list">
-            <div class="link-item">
-               <div class="link-item-content">
-                  <img src="https://i.postimg.cc/25v9Lp41/image.png" alt="Telegram Logo">
-                  <a href="https://t.me/crescendoll">Telegram</a>
-               </div>
-            </div>
-            <div class="link-item">
-               <div class="link-item-content">
-                  <img src="https://i.postimg.cc/5yHx8NpB/image.png" alt="WhatsApp Logo">
-                  <a href="https://wa.me/351967739724">WhatsApp</a>
-               </div>
-            </div>
-         </div>
-      </div>
-      <div class="section">
-         <h2>Samples of meme content</h2>
-         <div class="link-list">
-            <div class="link-item">
-               <div class="link-item-content">
-                  <img src="https://i.postimg.cc/YSbG30NZ/image.png" alt="LayerX.xyz Logo">
-                  <a href="https://t.me/LayerX_Labs/301595/302312">LayerX.xyz</a>
-               </div>
-            </div>
-            <div class="link-item">
-               <div class="link-item-content">
-                  <img src="https://i.postimg.cc/HxnJPmBx/image.png" alt="Bepro Network $BEPRO Logo">
-                  <a href="https://instagram.com/p/CgUTvKntbGt">Bepro Network $BEPRO</a>
-               </div>
-            </div>
-            <div class="link-item">
-               <div class="link-item-content">
-                  <img src="https://i.postimg.cc/HxnJPmBx/image.png" alt="Bepro Network $BEPRO Logo">
-                  <a href="https://x.com/bepronet/status/1689236366595604481">Bepro Network $BEPRO</a>
-               </div>
-            </div>
-         </div>
-      </div>
-      <div class="section">
-         <h2>Samples of community engagement</h2>
-         <div class="link-list">
-            <div class="link-item">
-               <div class="link-item-content">
-                  <img src="https://i.postimg.cc/sx2JcbZ9/image.png" alt="Community Talk: Roadmap 2023 - TAIKAI Labs & Bepro Network Logo">
-                  <a href="https://x.com/i/spaces/1yNxaJmDweZx">Community Talk: Roadmap 2023 - TAIKAI Labs & Bepro Network</a>
-               </div>
-            </div>
-            <div class="link-item">
-               <div class="link-item-content">
-                  <img src="https://i.postimg.cc/bYGgZfpp/image.png" alt="Community Space talks: The Gritty Resurgence - TAIKAI Labs & Bepro Network Logo">
-                  <a href="https://x.com/i/spaces/1yNxaJmDweZx">Community Space talks: The Gritty Resurgence - TAIKAI Labs & Bepro Network</a>
-               </div>
-            </div>
-         </div>
-      </div>
-      <img class="background-image" src="https://i.postimg.cc/PrGXVDSw/601d0d1870920397ca33a8c84988c521.jpg" alt="Background Image">
-      <script>
-         document.addEventListener('DOMContentLoaded', function() {
-             // Minimum time the preloader should be displayed (in milliseconds)
-             const minimumDisplayTime = 2000; // 2 seconds
-         
-             // Calculate when to hide the preloader
-             const startTime = performance.now();
-         
-             // Function to hide the preloader
-             function hidePreloader() {
-                 document.querySelector('.preloader').classList.add('hidden');
-             }
-         
-             // Check if minimum display time has elapsed, then hide the preloader
-             function checkElapsedTime() {
-                 const elapsedTime = performance.now() - startTime;
-                 if (elapsedTime >= minimumDisplayTime) {
-                     hidePreloader();
-                 } else {
-                     // If not enough time has passed, wait and check again
-                     setTimeout(hidePreloader, minimumDisplayTime - elapsedTime);
-                 }
-             }
-         
-             // Call the function to start checking elapsed time
-             checkElapsedTime();
-         });
-         
-         window.addEventListener('scroll', function() {
-             let scrollPercent = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
-             let opacity = scrollPercent / 100;
-             document.querySelector('.background-image').style.opacity = opacity;
-         });
-      </script>
-   </body>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pluno Knowledge Base</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 20px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        h1, h2, h3 {
+            color: #333;
+        }
+        a {
+            color: #0066cc;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        ul, ol {
+            margin: 15px 0;
+            padding-left: 20px;
+        }
+        code {
+            background-color: #f4f4f4;
+            padding: 2px 5px;
+            border-radius: 3px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Knowledge Base</h1>
+    <h2>Community Engagement and Transparency</h2>
+    <p>Pluno is committed to maintaining an open and collaborative environment. We encourage constructive discussions about project goals, milestones, and challenges while keeping conversations friendly and focused. Personal attacks or off-topic messages may be removed to ensure productive dialogue. Learn more in our <a href="https://minterest.com/ama-recap-product-market-fit">AMA Recap on Product-Market Fit</a>.</p>
+    <p>Pluno is a legitimate project, not a scam or rug pull. We’ve implemented robust transparency measures, including public audit reports and detailed documentation. Check out our <a href="https://minterest.com/security-incident-post-mortem">Security Incident Post-Mortem Report</a> and <a href="https://docs.minterest.com">official documentation</a> for more details on our safety protocols.</p>
+    <p>Our community team, spread across multiple time zones, works to provide clear updates and grow the Pluno brand. While we aim to respond promptly, responses may be delayed during weekends or holidays due to limited moderation availability. We appreciate your patience. Please adhere to our <a href="https://discord.com/channels/@minterest/rules">Discord rules</a> and avoid spamming or promoting unrelated projects to maintain chat integrity.</p>
+
+    <h2>Project Milestones and Challenges</h2>
+    <p>Pluno has achieved significant milestones, including a peak Total Value Locked (TVL) of $16M and 100,000 followers in 2024. Despite challenges in the competitive DeFi landscape, our focus remains on sustainable growth and delivering long-term value. Progress may feel slow, but we prioritize stability over rushed launches that could harm the ecosystem. Read more about our journey in <a href="https://minterest.com/navigating-product-market-fit">Navigating Toward Product-Market Fit</a>.</p>
+    <p>Our goal is to achieve a $50M borrow TVL to ensure liquidity and a stable token launch for PLUNO (formerly MINTY). This milestone supports borrowing, lending, and fee generation, driving ecosystem growth. Delays are influenced by market volatility and competition among 500+ lending protocols, but we’re actively addressing these through strategic partnerships and chain expansions. Learn more in our <a href="https://minterest.com/ama-recap-product-market-fit">AMA Recap</a>.</p>
+
+    <h2>Tokenomics and Distribution</h2>
+    <p>The PLUNO token is designed to drive long-term value through fees, buybacks, and utility within the lending ecosystem. While the token is not yet tradable and no launch date is confirmed, we’re working toward a $50M borrow TVL to ensure a stable and impactful launch. For details, visit the <a href="https://minterest.com/minty-token">PLUNO Token Homepage</a> and <a href="https://minterest.com/public-distribution">Public Distribution Guide</a>.</p>
+    <p>Pluno has introduced <strong>Fan Card NFTs</strong>, which represent PLUNO token allocations and can be traded on the <a href="https://dagora.io">Dagora marketplace</a>. Available in Pluno and Starship Editions, these NFTs integrate with the <a href="https://starship.app">Starship dashboard</a> for vesting schedules (KYC required via OneID). They also offer boosted lending rates and governance power. Explore the <a href="https://docs.minterest.com/fan-card-nft">Fan Card NFT Documentation</a> or check collections on <a href="https://opensea.io">OpenSea</a> and <a href="https://mintle.com">Mintle</a>.</p>
+
+    <h2>Platform Operations</h2>
+    <p>Pluno’s lending platform allows users to borrow assets like stablecoins by locking tokens as collateral in an overcollateralized model. Interest rates are dynamic, based on market supply and demand, and protocol earnings are redistributed to users for a rewarding experience. If collateral value drops, partial liquidation may occur to maintain stability. Learn more in <a href="https://minterest.com/crypto-borrowing-101">Crypto Borrowing 101</a>.</p>
+    <p>Pluno operates on Ethereum, Mantle, Taiko, and Morph (via adaptiFi) to maximize liquidity. We’ve partnered with AGNI, mETH Protocol, and Coin98 for campaigns like Methamorphosis and Morph Zoo, and launched Fan Card NFTs on the Viction network. See our <a href="https://minterest.com/ama-recap-product-market-fit">AMA Recap</a> for details.</p>
+
+    <h2>Checking Your Balance</h2>
+    <p>To check your PLUNO balance from the Community Allocation Event (CAE) or Liquidity Bootstrapping Pool (LBP):</p>
+    <ol>
+        <li>Visit <a href="https://ethereum.minterest.com">ethereum.minterest.com</a>.</li>
+        <li>Connect the wallet used during CAE/LBP events.</li>
+        <li>Navigate to the Dashboard and scroll to “Pluno Supporters” to view your balance.</li>
+    </ol>
+    <p>If your balance isn’t displayed, try these steps:</p>
+    <ul>
+        <li>Ensure you’re on the Ethereum network.</li>
+        <li>Verify the correct MetaMask account is connected.</li>
+        <li>Clear your browser cache and reconnect.</li>
+        <li>Try a different browser or device.</li>
+        <li>If MetaMask isn’t listed, follow this <a href="https://docs.minterest.com/wallet-setup">wallet setup guide</a>.</li>
+    </ul>
+    <p>For CAE/LBP balance calculations, use the <a href="https://docs.google.com/spreadsheets/d/1RQ2hIVSAZPDDIeZ_gpK-MmT9824TDomU">CAE Balance Calculator</a> or <a href="https://minterest.com/lbp-calculator">LBP Calculator</a>. For dashboard access, use <a href="https://impersonator.xyz">impersonator.xyz</a> with WalletConnect.</p>
+
+    <h2>Technical Support</h2>
+    <h3>Checking Contributions</h3>
+    <p>To verify contributions on Binance Smart Chain or Ethereum:</p>
+    <ol>
+        <li>Visit <a href="https://bscscan.com">bscscan.com</a> or <a href="https://etherscan.io">etherscan.io</a>.</li>
+        <li>Enter the destination address:
+            <ul>
+                <li>Binance: <code>0x985e9951fF1627363473c720D903f8734aaA5410</code></li>
+                <li>Ethereum: <code>0x57d9F8A25C312fAA89b2F3beD4ddD86124A9eF9b</code></li>
+            </ul>
+        </li>
+        <li>Select BEP-20 or ERC-20 token transactions.</li>
+        <li>Download the transaction list (from November 1, 2023).</li>
+        <li>Search by your wallet address.</li>
+        <li>If issues persist, provide your Wallet Address, Transaction ID, and Email/Handle to <a href="mailto:nextlevel@minterest.com">nextlevel@minterest.com</a>.</li>
+    </ol>
+
+    <h3>Checking NFTs</h3>
+    <p>To verify NFT ownership:</p>
+    <ul>
+        <li>Mantle: <a href="https://mantle.minterest.com/api/user/nft/0xcc69D786042077865CC86CDF5e1524830114e67E">API on Mantle</a></li>
+        <li>Ethereum: <a href="https://app.minterest.com/api/user/nft/0xcc69D786042077865CC86CDF5e1524830114e67E">API on Ethereum</a></li>
+    </ul>
+
+    <h3>Withdrawing Assets</h3>
+    <p>To withdraw assets:</p>
+    <ol>
+        <li>Repay any borrow position in full.</li>
+        <li>Ensure sufficient MNT for transaction fees.</li>
+        <li>Turn off the collateral toggle.</li>
+        <li>Select the asset, click “Withdraw,” choose the amount, and confirm.</li>
+    </ol>
+
+    <h3>Compromised Wallets</h3>
+    <p>PLUNO tokens are distributed to CAE/LBP wallets and cannot be reassigned. If your wallet is compromised, ensure borrow positions are repaid and follow withdrawal steps. Contact <a href="mailto:nextlevel@minterest.com">nextlevel@minterest.com</a> for support.</p>
+
+    <h2>Community Support and Feedback</h2>
+    <p>We value your input! Share feedback via <a href="https://t.me/minterest">Telegram</a>, <a href="https://discord.com/channels/@minterest">Discord</a>, or <a href="mailto:nextlevel@minterest.com">nextlevel@minterest.com</a>. Visit our <a href="https://minterest.com">official homepage</a> for updates.</p>
+    <p>Moderation is handled by our team, including @KynChaturvedi and @JimmyEds on Discord, and @KynChaturvedi on Telegram. To manage admin roles or address compromised accounts:</p>
+    <ul>
+        <li><strong>Discord:</strong> Right-click the Discord icon, select Roles > Manage Members, and remove or adjust roles. Use the Time Out feature to mute bad actors.</li>
+        <li><strong>Telegram:</strong> Access Group Info, go to Administrators, and dismiss or restrict users as needed.</li>
+        <li>To remove webhooks (e.g., for phishing prevention), go to the #updates channel’s Integrations, select the webhook, and delete.</li>
+    </ul>
+
+    <h2>Roadmap and Future Plans</h2>
+    <p>Our 2025 roadmap focuses on simplifying the platform, forming partnerships, and hitting the $50M borrow TVL goal. We’re exploring stablecoin markets and additional chain expansions to ensure a robust launch. Check the <a href="https://minterest.com/roadmap-2025">public roadmap</a> for details.</p>
+    <p>Pluno is redefining DeFi by building a lending platform with low onboarding friction and sustainable growth. We’re adapting to market trends, mitigating risks like volatility and competition, and prioritizing product-market fit. Stay updated via our <a href="https://minterest.com/navigating-product-market-fit">blog</a> and <a href="https://minterest.com/ama-recap-product-market-fit">AMA recaps</a>.</p>
+
+    <h2>Supported Wallets</h2>
+    <p>Pluno supports MetaMask, MathWallet, BitGet, SafePal, WalletConnect, OKX, and Unstoppable Domains. Mantle supports all injected wallets. Ensure sufficient MNT for transaction fees to avoid errors like “Something went wrong.”</p>
+
+</body>
 </html>

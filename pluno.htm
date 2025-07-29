@@ -1,151 +1,165 @@
-<!DOCTYPE html>
+<script type="text/javascript">
+        var gk_isXlsx = false;
+        var gk_xlsxFileLookup = {};
+        var gk_fileData = {};
+        function filledCell(cell) {
+          return cell !== '' && cell != null;
+        }
+        function loadFileData(filename) {
+        if (gk_isXlsx && gk_xlsxFileLookup[filename]) {
+            try {
+                var workbook = XLSX.read(gk_fileData[filename], { type: 'base64' });
+                var firstSheetName = workbook.SheetNames[0];
+                var worksheet = workbook.Sheets[firstSheetName];
+
+                // Convert sheet to JSON to filter blank rows
+                var jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1, blankrows: false, defval: '' });
+                // Filter out blank rows (rows where all cells are empty, null, or undefined)
+                var filteredData = jsonData.filter(row => row.some(filledCell));
+
+                // Heuristic to find the header row by ignoring rows with fewer filled cells than the next row
+                var headerRowIndex = filteredData.findIndex((row, index) =>
+                  row.filter(filledCell).length >= filteredData[index + 1]?.filter(filledCell).length
+                );
+                // Fallback
+                if (headerRowIndex === -1 || headerRowIndex > 25) {
+                  headerRowIndex = 0;
+                }
+
+                // Convert filtered JSON back to CSV
+                var csv = XLSX.utils.aoa_to_sheet(filteredData.slice(headerRowIndex)); // Create a new sheet from filtered array of arrays
+                csv = XLSX.utils.sheet_to_csv(csv, { header: 1 });
+                return csv;
+            } catch (e) {
+                console.error(e);
+                return "";
+            }
+        }
+        return gk_fileData[filename] || "";
+        }
+        </script><!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Minterest Community Guidelines and Insights</title>
+    <title>Pluno Knowledge Base</title>
     <style>
         body {
             font-family: Arial, sans-serif;
             line-height: 1.6;
-            margin: 0;
-            padding: 20px;
+            margin: 20px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        h1, h2, h3 {
             color: #333;
         }
-        h1 {
-            color: #2c3e50;
-        }
-        h2 {
-            color: #3498db;
-        }
-        ul {
-            list-style-type: none;
-            padding-left: 0;
-        }
-        li {
-            margin-bottom: 10px;
-        }
         a {
-            color: #3498db;
+            color: #0066cc;
             text-decoration: none;
         }
         a:hover {
             text-decoration: underline;
         }
-        .section {
-            margin-bottom: 30px;
+        ul, ol {
+            margin: 15px 0;
+            padding-left: 20px;
+        }
+        code {
+            background-color: #f4f4f4;
+            padding: 2px 5px;
+            border-radius: 3px;
         }
     </style>
 </head>
 <body>
-    <div class="section">
-        <h1>Minterest Community Guidelines and Insights</h1>
-    </div>
+    <h1>Knowledge Base</h1>
+    <h2>Community Engagement and Transparency</h2>
+    <p>Pluno is committed to maintaining an open and collaborative environment. We encourage constructive discussions about project goals, milestones, and challenges while keeping conversations friendly and focused. Personal attacks or off-topic messages may be removed to ensure productive dialogue. Learn more in our <a href="https://minterest.com/ama-recap-product-market-fit">AMA Recap on Product-Market Fit</a>.</p>
+    <p>Pluno is a legitimate project, not a scam or rug pull. We’ve implemented robust transparency measures, including public audit reports and detailed documentation. Check out our <a href="https://minterest.com/security-incident-post-mortem">Security Incident Post-Mortem Report</a> and <a href="https://docs.minterest.com">official documentation</a> for more details on our safety protocols.</p>
+    <p>Our community team, spread across multiple time zones, works to provide clear updates and grow the Pluno brand. While we aim to respond promptly, responses may be delayed during weekends or holidays due to limited moderation availability. We appreciate your patience. Please adhere to our <a href="https://discord.com/channels/@minterest/rules">Discord rules</a> and avoid spamming or promoting unrelated projects to maintain chat integrity.</p>
 
-    <div class="section">
-        <h2>Introduction</h2>
-        <p>At Minterest, we prioritize transparency and foster an open environment for constructive discussions about our project's goals, achievements, and challenges.</p>
-        <p><a href="#">Read more about our AMA on Product-Market Fit</a></p>
-    </div>
+    <h2>Project Milestones and Challenges</h2>
+    <p>Pluno has achieved significant milestones, including a peak Total Value Locked (TVL) of $16M and 100,000 followers in 2024. Despite challenges in the competitive DeFi landscape, our focus remains on sustainable growth and delivering long-term value. Progress may feel slow, but we prioritize stability over rushed launches that could harm the ecosystem. Read more about our journey in <a href="https://minterest.com/navigating-product-market-fit">Navigating Toward Product-Market Fit</a>.</p>
+    <p>Our goal is to achieve a $50M borrow TVL to ensure liquidity and a stable token launch for PLUNO (formerly MINTY). This milestone supports borrowing, lending, and fee generation, driving ecosystem growth. Delays are influenced by market volatility and competition among 500+ lending protocols, but we’re actively addressing these through strategic partnerships and chain expansions. Learn more in our <a href="https://minterest.com/ama-recap-product-market-fit">AMA Recap</a>.</p>
 
-    <div class="section">
-        <h2>Community Standards</h2>
-        <ul>
-            <li><strong>Constructive Dialogue:</strong> We encourage sharing perspectives in a friendly manner. Personal attacks distract from relevant discussions.</li>
-            <li><strong>Transparency Measures:</strong> Minterest is not a scam or rug pull. We have implemented clear transparency measures and published audit reports for public review.</li>
-            <li><strong>Challenges and Milestones:</strong> Despite facing critical challenges, Minterest has achieved milestones like a $16M peak TVL and 100,000 followers in 2024. Our focus is on sustainability and key TVL milestones to deliver real value.</li>
-        </ul>
-        <p><a href="#">Learn more about our Security Incident Post-Mortem Report</a></p>
-    </div>
+    <h2>Tokenomics and Distribution</h2>
+    <p>The PLUNO token is designed to drive long-term value through fees, buybacks, and utility within the lending ecosystem. While the token is not yet tradable and no launch date is confirmed, we’re working toward a $50M borrow TVL to ensure a stable and impactful launch. For details, visit the <a href="https://minterest.com/minty-token">PLUNO Token Homepage</a> and <a href="https://minterest.com/public-distribution">Public Distribution Guide</a>.</p>
+    <p>Pluno has introduced <strong>Fan Card NFTs</strong>, which represent PLUNO token allocations and can be traded on the <a href="https://dagora.io">Dagora marketplace</a>. Available in Pluno and Starship Editions, these NFTs integrate with the <a href="https://starship.app">Starship dashboard</a> for vesting schedules (KYC required via OneID). They also offer boosted lending rates and governance power. Explore the <a href="https://docs.minterest.com/fan-card-nft">Fan Card NFT Documentation</a> or check collections on <a href="https://opensea.io">OpenSea</a> and <a href="https://mintle.com">Mintle</a>.</p>
 
-    <div class="section">
-        <h2>Community Support</h2>
-        <ul>
-            <li><strong>Feedback Channels:</strong> Share your feedback via <a href="https://t.me/Minterest">Telegram</a>, <a href="https://discord.gg/minterest">Discord</a>, or email at nextlevel@minterest.com.</li>
-            <li><strong>Official Homepage:</strong> Discover more about Minterest on our <a href="https://minterest.com">official homepage</a>.</li>
-        </ul>
-        <p><a href="#">Explore our New Homepage in 2025</a></p>
-    </div>
+    <h2>Platform Operations</h2>
+    <p>Pluno’s lending platform allows users to borrow assets like stablecoins by locking tokens as collateral in an overcollateralized model. Interest rates are dynamic, based on market supply and demand, and protocol earnings are redistributed to users for a rewarding experience. If collateral value drops, partial liquidation may occur to maintain stability. Learn more in <a href="https://minterest.com/crypto-borrowing-101">Crypto Borrowing 101</a>.</p>
+    <p>Pluno operates on Ethereum, Mantle, Taiko, and Morph (via adaptiFi) to maximize liquidity. We’ve partnered with AGNI, mETH Protocol, and Coin98 for campaigns like Methamorphosis and Morph Zoo, and launched Fan Card NFTs on the Viction network. See our <a href="https://minterest.com/ama-recap-product-market-fit">AMA Recap</a> for details.</p>
 
-    <div class="section">
-        <h2>Token Information</h2>
-        <ul>
-            <li><strong>MINTY Token:</strong> The token design drives long-term value in Minterest’s lending ecosystem, supporting fees, buybacks, and utility as the platform grows.</li>
-            <li><strong>Public Distribution:</strong> Everything you need to know about MINTY’s public distribution can be found <a href="#">here</a>.</li>
-        </ul>
-        <p><a href="#">Dive into MINTY — Your Gateway to More Rewards</a></p>
-    </div>
+    <h2>Checking Your Balance</h2>
+    <p>To check your PLUNO balance from the Community Allocation Event (CAE) or Liquidity Bootstrapping Pool (LBP):</p>
+    <ol>
+        <li>Visit <a href="https://ethereum.minterest.com">ethereum.minterest.com</a>.</li>
+        <li>Connect the wallet used during CAE/LBP events.</li>
+        <li>Navigate to the Dashboard and scroll to “Pluno Supporters” to view your balance.</li>
+    </ol>
+    <p>If your balance isn’t displayed, try these steps:</p>
+    <ul>
+        <li>Ensure you’re on the Ethereum network.</li>
+        <li>Verify the correct MetaMask account is connected.</li>
+        <li>Clear your browser cache and reconnect.</li>
+        <li>Try a different browser or device.</li>
+        <li>If MetaMask isn’t listed, follow this <a href="https://docs.minterest.com/wallet-setup">wallet setup guide</a>.</li>
+    </ul>
+    <p>For CAE/LBP balance calculations, use the <a href="https://docs.google.com/spreadsheets/d/1RQ2hIVSAZPDDIeZ_gpK-MmT9824TDomU">CAE Balance Calculator</a> or <a href="https://minterest.com/lbp-calculator">LBP Calculator</a>. For dashboard access, use <a href="https://impersonator.xyz">impersonator.xyz</a> with WalletConnect.</p>
 
-    <div class="section">
-        <h2>Technical Support</h2>
-        <h3>Checking Your Balance</h3>
-        <ol>
-            <li>Go to <a href="https://ethereum.minterest.com">ethereum.minterest.com</a></li>
-            <li>Connect your wallet used during CAE LBP events</li>
-            <li>Go to the Dashboard</li>
-            <li>Scroll down until MINTEREST SUPPORTERS to see your balance</li>
-        </ol>
-        <p><a href="#">Follow these steps to check your balance</a></p>
-    </div>
+    <h2>Technical Support</h2>
+    <h3>Checking Contributions</h3>
+    <p>To verify contributions on Binance Smart Chain or Ethereum:</p>
+    <ol>
+        <li>Visit <a href="https://bscscan.com">bscscan.com</a> or <a href="https://etherscan.io">etherscan.io</a>.</li>
+        <li>Enter the destination address:
+            <ul>
+                <li>Binance: <code>0x985e9951fF1627363473c720D903f8734aaA5410</code></li>
+                <li>Ethereum: <code>0x57d9F8A25C312fAA89b2F3beD4ddD86124A9eF9b</code></li>
+            </ul>
+        </li>
+        <li>Select BEP-20 or ERC-20 token transactions.</li>
+        <li>Download the transaction list (from November 1, 2023).</li>
+        <li>Search by your wallet address.</li>
+        <li>If issues persist, provide your Wallet Address, Transaction ID, and Email/Handle to <a href="mailto:nextlevel@minterest.com">nextlevel@minterest.com</a>.</li>
+    </ol>
 
-    <div class="section">
-        <h2>NFTs and Boosters</h2>
-        <ul>
-            <li><strong>Minterest Fan Cards:</strong> These NFTs represent allocations in MINTY that can be traded or managed. They come in two distinct forms: the Minterest Edition and the Starship Edition.</li>
-            <li><strong>NFT Boosters:</strong> Digital assets that offer special lending benefits, including boosted rates and protocol rewards.</li>
-        </ul>
-        <p><a href="#">Introducing the Minterest Fan Card NFT</a></p>
-    </div>
+    <h3>Checking NFTs</h3>
+    <p>To verify NFT ownership:</p>
+    <ul>
+        <li>Mantle: <a href="https://mantle.minterest.com/api/user/nft/0xcc69D786042077865CC86CDF5e1524830114e67E">API on Mantle</a></li>
+        <li>Ethereum: <a href="https://app.minterest.com/api/user/nft/0xcc69D786042077865CC86CDF5e1524830114e67E">API on Ethereum</a></li>
+    </ul>
 
-    <div class="section">
-        <h2>Borrowing on Minterest</h2>
-        <ul>
-            <li><strong>Overcollateralised Model:</strong> Users can borrow assets like stablecoins by locking up their tokens as collateral. Interest rates are dynamic and driven by market supply and demand.</li>
-            <li><strong>Protocol Earnings:</strong> Minterest redistributes protocol earnings back to users, offering a more rewarding DeFi experience.</li>
-        </ul>
-        <p><a href="#">Learn more about Crypto Borrowing 101</a></p>
-    </div>
+    <h3>Withdrawing Assets</h3>
+    <p>To withdraw assets:</p>
+    <ol>
+        <li>Repay any borrow position in full.</li>
+        <li>Ensure sufficient MNT for transaction fees.</li>
+        <li>Turn off the collateral toggle.</li>
+        <li>Select the asset, click “Withdraw,” choose the amount, and confirm.</li>
+    </ol>
 
-    <div class="section">
-        <h2>Community Allocation Event (CAE)</h2>
-        <ul>
-            <li><strong>Balance Calculator:</strong> For CAE participants, use the <a href="https://docs.google.com/spreadsheets/d/1RQ2hIVSAZPDDIeZ_gpK-MmT9824TDomU">balance calculator</a>.</li>
-            <li><strong>Impersonator Tool:</strong> Use <a href="https://impersonator.xyz">impersonator.xyz</a> to access a member’s dashboard.</li>
-        </ul>
-        <p><a href="#">Check user initial contribution details</a></p>
-    </div>
+    <h3>Compromised Wallets</h3>
+    <p>PLUNO tokens are distributed to CAE/LBP wallets and cannot be reassigned. If your wallet is compromised, ensure borrow positions are repaid and follow withdrawal steps. Contact <a href="mailto:nextlevel@minterest.com">nextlevel@minterest.com</a> for support.</p>
 
-    <div class="section">
-        <h2>Risk Management</h2>
-        <ul>
-            <li><strong>Market Challenges:</strong> TVL consolidation, market volatility, and competition among 500+ lending protocols are real challenges for growth. Minterest is focusing on PMF and key TVL milestones to ensure stability.</li>
-        </ul>
-        <p><a href="#">Navigate Toward Product-Market Fit</a></p>
-    </div>
+    <h2>Community Support and Feedback</h2>
+    <p>We value your input! Share feedback via <a href="https://t.me/minterest">Telegram</a>, <a href="https://discord.com/channels/@minterest">Discord</a>, or <a href="mailto:nextlevel@minterest.com">nextlevel@minterest.com</a>. Visit our <a href="https://minterest.com">official homepage</a> for updates.</p>
+    <p>Moderation is handled by our team, including @KynChaturvedi and @JimmyEds on Discord, and @KynChaturvedi on Telegram. To manage admin roles or address compromised accounts:</p>
+    <ul>
+        <li><strong>Discord:</strong> Right-click the Discord icon, select Roles > Manage Members, and remove or adjust roles. Use the Time Out feature to mute bad actors.</li>
+        <li><strong>Telegram:</strong> Access Group Info, go to Administrators, and dismiss or restrict users as needed.</li>
+        <li>To remove webhooks (e.g., for phishing prevention), go to the #updates channel’s Integrations, select the webhook, and delete.</li>
+    </ul>
 
-    <div class="section">
-        <h2>Partnerships and Collaborations</h2>
-        <ul>
-            <li><strong>Galxe and AGNI Protocol:</strong> Co-hosted online tasks to engage a broader audience.</li>
-            <li><strong>Coin98 and Viction Network:</strong> Deployed Fan Card NFTs on the Dagora marketplace.</li>
-            <li><strong>Morph Zoo Campaign:</strong> Launched a franchised model of our app on the Morph blockchain.</li>
-        </ul>
-        <p><a href="#">Explore our partnerships and collaborations</a></p>
-    </div>
+    <h2>Roadmap and Future Plans</h2>
+    <p>Our 2025 roadmap focuses on simplifying the platform, forming partnerships, and hitting the $50M borrow TVL goal. We’re exploring stablecoin markets and additional chain expansions to ensure a robust launch. Check the <a href="https://minterest.com/roadmap-2025">public roadmap</a> for details.</p>
+    <p>Pluno is redefining DeFi by building a lending platform with low onboarding friction and sustainable growth. We’re adapting to market trends, mitigating risks like volatility and competition, and prioritizing product-market fit. Stay updated via our <a href="https://minterest.com/navigating-product-market-fit">blog</a> and <a href="https://minterest.com/ama-recap-product-market-fit">AMA recaps</a>.</p>
 
-    <div class="section">
-        <h2>Future Plans</h2>
-        <ul>
-            <li><strong>TVL Milestone:</strong> Targeting a $50M borrow TVL to ensure liquidity stays steady and borrowing demand is sustainable.</li>
-            <li><strong>Strategic Foundations:</strong> Prioritizing strategic foundations for lasting sustainability, including exploring stablecoin markets and ensuring favorable external market conditions.</li>
-        </ul>
-        <p><a href="#">Learn more about our future plans</a></p>
-    </div>
+    <h2>Supported Wallets</h2>
+    <p>Pluno supports MetaMask, MathWallet, BitGet, SafePal, WalletConnect, OKX, and Unstoppable Domains. Mantle supports all injected wallets. Ensure sufficient MNT for transaction fees to avoid errors like “Something went wrong.”</p>
 
-    <div class="section">
-        <h2>Conclusion</h2>
-        <p>Minterest is committed to building a successful product and ecosystem for all. Despite delays, we remain focused on delivering real value and achieving key milestones.</p>
-        <p><a href="#">Read more about Navigating Toward Product-Market Fit</a></p>
-    </div>
 </body>
 </html>

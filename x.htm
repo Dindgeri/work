@@ -4,25 +4,46 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Minterest Nitter Feeds</title>
-<style>
-    body {
-        margin: 0;
-        display: flex;
-        flex-direction: row;
-        width: 100%;
-        height: 100vh;
-        overflow: hidden;
-    }
-    iframe {
-        height: 100%;
-        width: 33.33%;
-        border: none;
-    }
-</style>
+    <style>
+        body {
+            margin: 0;
+            display: flex;
+            flex-direction: row;
+            width: 100%;
+            height: 100vh;
+            overflow: hidden;
+        }
+        .container {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            height: 100%;
+        }
+        .row {
+            display: flex;
+            width: 100%;
+            height: 50%;
+        }
+        iframe {
+            flex: 1;
+            border: none;
+            height: 100%;
+        }
+    </style>
 </head>
 <body>
-    <iframe src="https://nitter.net/search?f=tweets&q=%24minty"></iframe>
-    <iframe src="https://nitter.net/search?f=tweets&q=%23minterest"></iframe>
-    <iframe src="https://nitter.net/search?f=tweets&q=to%3Aminterest+OR+to%3Aminterestintern"></iframe>
+    <div class="container">
+        <!-- First row: 2 Nitter searches -->
+        <div class="row">
+            <iframe src="https://nitter.net/search?f=tweets&q=%28from%3Ayieldupai%29+OR+%28to%3Ayieldupai%29+OR+%28%40yieldupai%29&f-nativeretweets=on&since=&until=&near="></iframe>
+            <iframe src="https://x.com/search-advanced?q=(from%3Aminterest)%20OR%20(to%3Aminterest)%20OR%20(%40minterest)&f=live"></iframe>
+        </div>
+
+        <!-- Second row: 2 Twitter searches -->
+        <div class="row">
+            <iframe src="https://nitter.net/search?f=tweets&q=%28from%3Ayieldupai%29+OR+%28to%3Ayieldupai%29+OR+%28%40yieldupai%29&f-nativeretweets=on&since=&until=&near="></iframe>
+            <iframe src="https://x.com/search-advanced?q=(from%3Aminterest)%20OR%20(to%3Aminterest)%20OR%20(%40minterest)&f=live"></iframe>
+        </div>
+    </div>
 </body>
 </html>
